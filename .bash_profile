@@ -3,7 +3,8 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 
-if [ -f ~/.bash_scripts/cb ]; then
+if [ -d ~/.bash_scripts/ ]; then
     . ~/.bash_scripts/cb
+    . ~/.bash_scripts/docker-ip
 fi
 
