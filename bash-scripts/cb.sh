@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # @see http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 
 # A shortcut function that simplifies usage of xclip.
