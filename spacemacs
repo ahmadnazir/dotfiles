@@ -107,6 +107,7 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+;;  (progn (load-file "~/code/me/dotfiles/emacs.old") )
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
