@@ -2,6 +2,12 @@
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
+;; NOTE:
+;;
+;; This is a backup - I was trying out spacemacs and realized that it
+;; will take me significant amount of time to port my configurations
+;; to spacemacs. Maybe another day
+
 (defun dotspacemacs/layers ()
   "Configuration Layers declaration."
   (setq-default
@@ -10,7 +16,18 @@
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
-   dotspacemacs-configuration-layers '(git markdown javascript)
+   dotspacemacs-configuration-layers '(
+                                       ;; Officially supported
+                                       git
+                                       markdown
+                                       javascript
+                                       php
+                                       ;; My layers
+                                       (phpunit :variables
+                                                phpunit-configuration-file "phpunit.xml.dist"
+                                                phpunit-root-directory "/vagrant/app/")
+                                       smart-tabs
+                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -101,14 +118,45 @@ before layers configuration."
    ;; Not used for now.
    dotspacemacs-default-package-repository nil)
   ;; User initialization goes here
-  )
+)
 
 (defun dotspacemacs/config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-;;  (progn (load-file "~/code/me/dotfiles/emacs.old") )
+  (progn (load-file "~/code/me/dotfiles/emacs.old")
+         ;; Tabs
+         (setq indent-tabs-mode nil)
+         ;; Window related
+         ;; (setq split-height-threshold 0)
+         ;; (setq split-width-threshold nil)
+         ;; (setq helm-split-window-in-side-p t)
+         ;; Tramp
+         ;; @todo: the following doesn't work
+         (setq tramp-default-proxies-alist nil)
+         ;; (setq tramp-default-proxies-alist '("localhost" "mandark" "/ssh:vagrant@localhost#2222:"))
+         )
 )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ac-ispell-requires 4)
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(indent-tabs-mode t)
+ '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

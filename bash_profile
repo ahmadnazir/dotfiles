@@ -6,6 +6,9 @@ fi
 if [ -d "$HOME/.cask/bin" ] ; then
   PATH="$PATH:$HOME/.cask/bin"
 fi
+if [ -d "$HOME/packer" ] ; then
+  PATH="$PATH:$HOME/packer"
+fi
 
 
 if [ -d ~/.bash-scripts/ ]; then
@@ -13,5 +16,6 @@ if [ -d ~/.bash-scripts/ ]; then
     . ~/.bash-scripts/docker.sh
     . ~/.bash-scripts/visual.sh
     . ~/.bash-scripts/system.sh
+    . ~/.bash-scripts/util.sh
     # . ~/.bash-scripts/wireless.sh
 fi
