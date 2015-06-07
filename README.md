@@ -1,4 +1,4 @@
-| d . o . t . f . i . l . e . s | 
+# | d . o . t . f . i . l . e . s | 
 
 ## Todo:
 
@@ -15,6 +15,9 @@
 
 ##### Window Commands
 - On saving, go in vi 'normal mode'
+
+##### Package Management
+- Keep a list of packages that the emacs configurations depend on
 
 ### Misc
 - A script is required that creates symlinks in the home folder for all the files/folders present in the top level of this repo
