@@ -81,3 +81,24 @@
 ;;
 ;; Default
 (anr-set-font-size anr-default-font-size)
+
+;; Themes
+;;
+;; Configuration
+(setq anr-primary-theme "spolsky")
+(setq anr-secondary-theme "junio")
+(setq anr-default-theme anr-primary-theme)
+;;
+;; Functions
+(defun anr-toggle-theme()
+    "Toggle between themes"
+    (interactive)
+    (setq anr-default-theme (if (eq anr-default-theme anr-primary-theme) anr-secondary-theme anr-primary-theme))
+    (load-theme (intern anr-default-theme)))
+;;
+;; Keybindings
+(global-set-key (kbd "C-=") 'anr-toggle-theme)
+;;
+;; Default
+;; - Loaded at startup instead of here
+;; (load-theme (intern anr-default-theme))

@@ -9,9 +9,6 @@
   Refer to [Super user question: Directly open remote shell with tramp in emacs](http://superuser.com/a/905060/413325)
 - Interaction with docker containers
 
-#### Visual
-- Toggle between selected themes
-
 ##### Window Commands
 - On saving, go in vi 'normal mode'
 
