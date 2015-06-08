@@ -58,22 +58,26 @@
 ;; Remove menu bar (Cut/Copy/Paste icons)
 (menu-bar-mode -1)
 
-;; Functions
-(defun small-font-size ()
-  (interactive)
-  (set-face-attribute 'default nil :height 80))
-(defun regular-font-size ()
-  (interactive)
-  (set-face-attribute 'default nil :height 130))
-(defun big-font-size ()
-  (interactive)
-  (set-face-attribute 'default nil :height 140))
-
-;; For the low resolution bigger screen
-(defun low-resolution-screen-preferences ()
-  (interactive)
-  (small-font-size))
-(global-set-key (kbd "C-0") 'low-resolution-screen-preferences)
-
+;; Font Sizes
+;;
 ;; Configuration
-(regular-font-size)
+(setq anr-small-font-size 80)    ;; larger screens with lower resolution
+(setq anr-regular-font-size 130) ;; default on lenovo x1 carbon
+(setq anr-big-font-size 150)
+(setq anr-default-font-size anr-regular-font-size)
+;;
+;; Functions
+(defun anr-set-font-size(size)
+  (interactive)
+  (set-face-attribute 'default nil :height size))
+(defun anr-toggle-font-size()
+    "Toggle between font sizes"
+    (interactive)
+    (setq anr-default-font-size (if (= anr-default-font-size anr-regular-font-size ) anr-small-font-size anr-regular-font-size))
+    (anr-set-font-size anr-default-font-size))
+;;
+;; Keybindings
+(global-set-key (kbd "C-0") 'anr-toggle-font-size)
+;;
+;; Default
+(anr-set-font-size anr-default-font-size)

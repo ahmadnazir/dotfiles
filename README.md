@@ -10,7 +10,6 @@
 - Interaction with docker containers
 
 #### Visual
-- Toggle between different font sizes
 - Toggle between selected themes
 
 ##### Window Commands
@@ -20,5 +19,5 @@
 - Keep a list of packages that the emacs configurations depend on
 
 ### Misc
-- A script is required that creates symlinks in the home folder for all the files/folders present in the top level of this repo
+- A script is required that creates symlinks in the home folder for all the files/folders present in the top level of this repo. As an example, see [Using Git And Github To Manage Your Dotfiles](http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/)
 
