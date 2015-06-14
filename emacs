@@ -93,10 +93,10 @@
 			 (setq tab-width 4)
 			 (setq c-basic-offset 4)))
 
-;; web-mode
+;; Recognizing file extensions
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
 
 ;; Autocomplete
 (global-auto-complete-mode)

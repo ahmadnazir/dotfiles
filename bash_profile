@@ -10,12 +10,9 @@ if [ -d "$HOME/packer" ] ; then
   PATH="$PATH:$HOME/packer"
 fi
 
+# Load all the functions
+for file in ~/.bash-scripts/functions/*.sh
+do
+  . $file
+done
 
-if [ -d ~/.bash-scripts/ ]; then
-    . ~/.bash-scripts/cb.sh
-    . ~/.bash-scripts/docker.sh
-    . ~/.bash-scripts/visual.sh
-    . ~/.bash-scripts/system.sh
-    . ~/.bash-scripts/util.sh
-    # . ~/.bash-scripts/wireless.sh
-fi
