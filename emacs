@@ -142,13 +142,14 @@
 (guide-key-mode)
 
 ;; Load other files
-;; (load-file "~/.emacs.d/macros.el")
-(load-file "~/.emacs.d/commands.el")
-(load-file "~/.emacs.d/commands-third-party.el")
+(load-file "~/.emacs.d/util.el")
+(load-file "~/.emacs.d/crypt.el")
+(load-file "~/.emacs.d/dev.el")
+(load-file "~/.emacs.d/custom.el")
 (load-file "~/.emacs.d/visual.el")
 (load-file "~/.emacs.d/keybindings.el")
+;; @todo: should be removed
 (load-file "~/.emacs.d/registers.el")
-(load-file "~/.emacs.d/custom.el")
 
 
 ;; (defun anr-buffer-file-name ()
@@ -186,21 +187,4 @@
 (setq evil-insert-state-map (make-sparse-keymap))
 (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
-
-
-;; temp - custom
-
-;; http://rejeep.github.io/emacs/elisp/2010/11/16/delete-file-and-buffer-in-emacs.html
-(defun delete-this-buffer-and-file ()
-  "Removes file connected to current buffer and kills buffer."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (when (yes-or-no-p "Are you sure you want to remove this file? ")
-        (delete-file filename)
-        (kill-buffer buffer)
-        (message "File '%s' successfully removed" filename)))))
 
