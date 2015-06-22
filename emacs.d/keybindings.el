@@ -87,16 +87,6 @@
 			 (local-set-key (kbd "<C-return>") 'restclient-http-send-current-stay-in-window)
 			 ))
 
-;; ;; drag-stuff-mode
-;; (add-hook 'drag-stuff-mode-hook
-;; 		  '(lambda ()
-;; 			 (local-set-key (kbd "<C-S-up>")    'drag-stuff-up)
-;; 			 (local-set-key (kbd "<C-S-down>")  'drag-stuff-down)
-;; 			 (local-set-key (kbd "<C-S-right>") 'drag-stuff-right)
-;; 			 (local-set-key (kbd "<C-S-left>")  'drag-stuff-left)
-;; 			 ))
-
-
 ;; multipile-cursors
 (global-set-key (kbd "C-C C-C") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
