@@ -3,11 +3,14 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+		c-beginning-of-statement
+		c-electric-brace
 		c-electric-colon
 		c-electric-delete-forward
 		c-electric-paren
 		c-electric-pound
 		c-electric-semi&comma
+		c-end-of-statement
 		comint-delchar-or-maybe-eof
 		dabbrev-expand
 		end-of-buffer
