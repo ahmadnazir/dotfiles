@@ -188,3 +188,5 @@
 (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "SPC") 'ace-jump-mode)
 
+;; Electric Pair Mode
+(electric-pair-mode)
