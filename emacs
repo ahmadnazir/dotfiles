@@ -1,6 +1,9 @@
 ;; -*- mode: emacs-lisp -*-
 
-;; ;; Customizing startup
+;; @todo: For some reason two instances for the custom-set-variables
+;; are being included. Look into it later
+;;
+;; Customizing startup
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -8,6 +11,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector
    ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"])
+ '(auto-dim-other-buffers-face ((t (:background "gray15"))))
  '(custom-safe-themes
    (quote
 	("3cc2385c39257fed66238921602d8104d8fd6266ad88a006d0a4325336f5ee02" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" default)))
@@ -40,7 +44,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(auto-dim-other-buffers-face ((t (:background "gray15")))))
 
 ;; Disable the default startup screen
 (setq inhibit-startup-message t)
@@ -190,3 +194,7 @@
 
 ;; Electric Pair Mode
 (electric-pair-mode)
+
+;; Auto dim other buffers
+(auto-dim-other-buffers-mode)
+
