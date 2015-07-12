@@ -13,6 +13,7 @@
 		c-end-of-statement
 		comint-delchar-or-maybe-eof
 		dabbrev-expand
+		electric-pair-delete-pair
 		end-of-buffer
 		evil-backward-char
 		evil-change
