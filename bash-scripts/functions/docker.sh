@@ -20,5 +20,5 @@ di () {
 		return -1;
 	fi
 	local dir='/shared'
-	docker run -it -rm -w $dir -v `pwd`:$dir $1
+	docker run -it --rm -w $dir -v `pwd`:$dir $1
 }
