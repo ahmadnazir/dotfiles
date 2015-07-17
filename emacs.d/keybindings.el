@@ -34,7 +34,6 @@
 (global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
 
 ;; Frame specific commands
-(global-set-key (kbd "M-W") 'kill-this-buffer)
 (global-set-key (kbd "M-S") 'save-buffer)
 
 ;; Expand region

@@ -102,3 +102,12 @@
 ;; Default
 ;; - Loaded at startup instead of here
 ;; (load-theme (intern anr-default-theme))
+
+;; Kill the current buffer and go to the last buffer
+(defun anr-kill-this-buffer()
+    "Kill buffer and go to the last used buffer"
+    (interactive)
+	(let ((buffer (current-buffer)))
+	  (previous-buffer)
+	  (kill-buffer buffer)))
+(global-set-key (kbd "M-W") 'anr-kill-this-buffer)
