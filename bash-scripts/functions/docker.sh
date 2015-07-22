@@ -13,12 +13,21 @@ docker-clean-exited-containers() {
 
 # Get an interactive docker environment mapped to the current working directory
 #
-# Usage: 'di haskell', which will run a container for the haskell image
-di () {
+# Usage: 'dt haskell', which will run a container for the haskell image
+dt () {
+
+	# image
 	if [ -z "$1" ]; then
 		echo "Docker image name not provided";
 		return -1;
 	fi
-	local dir='/shared'
-	docker run -it --rm -w $dir -v `pwd`:$dir $1
+	local image=$1;
+
+	# shared directory
+	local dir='/shared';
+	if [ -n $2 ]; then
+		dir=$2;
+	fi
+
+	docker run -it --rm -w $dir -v `pwd`:$dir $image
 }
