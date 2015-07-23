@@ -1,5 +1,35 @@
 # | d . o . t . f . i . l . e . s | 
 
+## Requirements
+
+This is tested only on Ubuntu 14.04. Following is an incomplete list of packages required:
+
+### Packages
+```
+sudo apt-get install \
+ zsh \
+ lxc-docker-1.7.1 \
+ 
+```
+
+### Installation from source
+
+Emacs is installed from source
+
+## Setup
+
+An install script is missing. Until then, here is an incomplete list of scripts to setup the system:
+
+```
+# Use zsh
+# @todo: remove this as oh-my-zsh will take care of it
+chsh -s /bin/zsh
+
+# oh-my-zsh
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+echo 'Link the zshrc file in ahmadnazir/dotfiles manually';
+```
+
 ## Todo:
 
 ### Emacs

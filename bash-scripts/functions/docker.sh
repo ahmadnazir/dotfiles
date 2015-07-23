@@ -17,7 +17,7 @@ docker-clean-exited-containers() {
 dt () {
 
 	# image
-	if [ -z "$1" ]; then
+	if [[ -z $1 ]]; then
 		echo "Docker image name not provided";
 		return -1;
 	fi
@@ -25,7 +25,7 @@ dt () {
 
 	# shared directory
 	local dir='/shared';
-	if [ -n $2 ]; then
+	if [[ -n $2 ]]; then
 		dir=$2;
 	fi
 
