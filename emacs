@@ -150,6 +150,7 @@
 (load-file "~/.emacs.d/crypt.el")
 (load-file "~/.emacs.d/dev.el")
 (load-file "~/.emacs.d/custom.el")
+(load-file "~/.emacs.d/system.el")
 (load-file "~/.emacs.d/visual.el")
 (load-file "~/.emacs.d/keybindings.el")
 ;; @todo: should be removed
@@ -197,4 +198,6 @@
 
 ;; Auto dim other buffers
 (auto-dim-other-buffers-mode)
+
+
 
