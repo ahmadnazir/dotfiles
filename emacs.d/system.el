@@ -7,10 +7,10 @@
 ;; fine for me so don't need to look into it any further
 (defun turn-off-mouse (&optional frame)
   (interactive)
-  (shell-command "xinput --disable \"SynPS/2 Synaptics TouchPad\""))
+  (call-process-shell-command "xinput --disable \"SynPS/2 Synaptics TouchPad\""))
 (defun turn-on-mouse (&optional frame)
   (interactive)
-  (shell-command "xinput --enable \"SynPS/2 Synaptics TouchPad\""))
+  (call-process-shell-command "xinput --enable \"SynPS/2 Synaptics TouchPad\""))
 (add-hook 'focus-in-hook #'turn-off-mouse)
 (add-hook 'focus-out-hook #'turn-on-mouse)
 (add-hook 'delete-frame-functions #'turn-on-mouse)
