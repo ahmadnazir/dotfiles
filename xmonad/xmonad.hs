@@ -1,3 +1,7 @@
+-- Configuration for xmonad
+--
+-- Keybinding for loading the configuration: mod-q
+
 import XMonad
 
 -- For disabling greedy view
@@ -6,6 +10,9 @@ import XMonad.Util.EZConfig
 
 -- Xmobar
 import XMonad.Hooks.DynamicLog
+
+-- Fixing a problem with chrome focus
+import XMonad.Hooks.EwmhDesktops
 
 myModMask = mod4Mask
 
@@ -26,10 +33,15 @@ myKeys = [
                                       , ("S-", windows . W.shift)]
     ]
 
+-- Layouts / Hooks
+myLogHook :: X ()
+myLogHook = ewmhDesktopsLogHook
+
 main = xmonad =<< xmobar defaults
 
 defaults = defaultConfig {
-    modMask    = myModMask,
-    workspaces = myWorkspaces
+      modMask         = myModMask
+    , workspaces      = myWorkspaces
+    , logHook         = myLogHook -- fixes chrome focus problem
   } `additionalKeysP` myKeys
 
