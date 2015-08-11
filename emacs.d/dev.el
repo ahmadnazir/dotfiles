@@ -25,8 +25,6 @@
 	    phpunit-configuration-file
 	    args))
 
-
-
 ;; Rest Client
 (load-file "~/code/forks/pashky/restclient.el/restclient.el")
 

@@ -89,3 +89,9 @@
     (shell buffer)
     ))
 (global-set-key (kbd "C-`") 'anr-shell)
+
+
+(defun an-buffer-string (buffer)
+  "Get the contents of a buffer"
+  (with-current-buffer buffer
+    (buffer-string)))
