@@ -72,7 +72,8 @@
 (require 'cl) ;; todo: don't know what this does?
 
 ;; Tab width
-(setq-default indent-tabs-mode t)
+;; @see: https://github.com/bbatsov/projectile/issues/139
+(setq-default indent-tabs-mode nil)
 (setq tab-width 4)
 (setq c-basic-offset 4)
 

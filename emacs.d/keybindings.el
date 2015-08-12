@@ -1,7 +1,8 @@
 ;; Helm projectile
 (global-set-key (kbd "M-F") 'helm-projectile)
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-c s") 'projectile-grep)
+;; Use ag for searching helm-projectile-ag
+;; (global-set-key (kbd "C-c p s g") 'projectile-grep)
 
 ;; Buffer navigation (Similar to Chrome navigation except that in a
 ;; brower the windows contents are modified when we go back and forth

@@ -14,8 +14,8 @@ docker-clean-exited-containers() {
 # Docker interactive: Get an interactive docker environment mapped to
 # the current working directory
 #
-# Usage: 'dint haskell', which will run a container for the haskell image
-dint () {
+# Usage: 'di haskell', which will run a container for the haskell image
+di () {
 
 	# image
 	if [[ -z $1 ]]; then

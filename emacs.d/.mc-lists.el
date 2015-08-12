@@ -16,15 +16,22 @@
 		electric-pair-delete-pair
 		end-of-buffer
 		evil-backward-char
+		evil-backward-word-begin
 		evil-change
 		evil-delete
 		evil-delete-backward-word
+		evil-delete-char
+		evil-find-char-to
+		evil-force-normal-state
+		evil-forward-char
 		evil-insert
 		evil-next-line
 		evil-normal-state
 		evil-open-above
 		evil-previous-line
+		evil-repeat-pop
 		evil-scroll-line-down
+		evil-window-next
 		forward-sentence
 		god-local-mode
 		god-mode-self-insert
@@ -48,5 +55,6 @@
       '(
 		compile
 		eval-defun
+		evil-insert-line
 		paredit-open-round
 		))

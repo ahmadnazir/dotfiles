@@ -88,6 +88,10 @@ source $ZSH/oh-my-zsh.sh
 # custom aliases that shouldn't be committed
 source $HOME/.aliases
 
+if [ -d "$HOME/.cabal/bin" ] ; then
+  PATH="$PATH:$HOME/.cabal/bin"
+fi
+
 # Load all the functions - maybe this should be created as a plugin
 for file in ~/.bash-scripts/functions/*.sh
 do
