@@ -46,7 +46,10 @@
 ;; (setq split-width-threshold nil)
 ;; Helm
 ;; @see http://tuhdo.github.io/helm-intro.html
-(setq helm-split-window-in-side-p           t) ; open helm buffer inside current window, not occupy whole other window
+(setq helm-split-window-in-side-p           t) ; open helm buffer
+                                               ; inside current
+                                               ; window, not occupy
+                                               ; whole other window
 
 ;; -------------
 ;; GUI MODE ONLY
@@ -57,6 +60,9 @@
 
 ;; Remove menu bar (Cut/Copy/Paste icons)
 (menu-bar-mode -1)
+
+;; Remove the scroll bars
+(scroll-bar-mode -1)
 
 ;; Font Sizes
 ;;
