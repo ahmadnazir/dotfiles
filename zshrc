@@ -97,3 +97,8 @@ for file in ~/.bash-scripts/functions/*.sh
 do
   . $file
 done
+
+. /usr/share/autojump/autojump.sh
+
+# required by autojump
+autoload -U compinit && compinit
