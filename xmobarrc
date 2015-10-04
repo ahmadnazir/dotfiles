@@ -11,8 +11,8 @@ Config {
    -- layout
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   -- Not including %StdinReader% as nothing writes to it
-   , template = " %battery%  |  %wifi%  |  %coretemp%  %multicpu% }{ %memory%  |  %swap%  |  %date%"
+
+   , template = "%battery%      %wifi%      %StdinReader% }{ %locks%     %multicpu%      %coretemp%      %memory% | %swap%      %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
@@ -83,7 +83,7 @@ Config {
                              ] 10
 
         -- battery monitor
-        , Run Battery        [ "--template" , "Batt: <acstatus>"
+        , Run Battery        [ "--template" , "<acstatus>"
                              , "--Low"      , "10"        -- units: %
                              , "--High"     , "80"        -- units: %
                              , "--low"      , "darkred"
@@ -98,6 +98,9 @@ Config {
                                        -- charged status
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
+
+        -- Caps lock etc
+        , Run Locks
 
         -- time and date indicator 
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
