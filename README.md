@@ -10,7 +10,16 @@ This is tested only on Ubuntu 14.04. Following is an incomplete list
 of packages required:
 
 ### Packages
+
 ```
+# Use zsh
+# @todo: remove this as oh-my-zsh will take care of it
+chsh -s /bin/zsh
+
+# oh-my-zsh
+sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+echo 'Link the zshrc file in ahmadnazir/dotfiles manually';
+
 sudo apt-get install \
  zsh \
  lxc-docker-1.7.1 \
@@ -44,6 +53,24 @@ sudo apt-get remove cabal-install
 # Tempory: symlink so it looks like a program and not a shell script
 #          required by haskell-emacs
 sudo ln -s /home/mandark/.cabal/bin/cabal cabal
+
+# Haskell
+# @todo: Other requirements need to be added as well
+# @see: https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md#haskell-mode
+#
+# Indentation
+cabal install happy
+cabal install structured-haskell-mode # emacs package required 'exec-path-from-shell'
+
+
+# Autojump
+sudo apt-get install autojump
+
+# Other repositories for getting the latest versions e.g. git
+sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
 ```
 
 ### Installation from source
@@ -51,21 +78,6 @@ sudo ln -s /home/mandark/.cabal/bin/cabal cabal
 Emacs is installed from source. I am planning on creating a docker
 image that runs the latest version of emacs.. maybe an image already
 exists.
-
-## Setup
-
-An install script is missing. Until then, here is an incomplete list
-of scripts to setup the system:
-
-```
-# Use zsh
-# @todo: remove this as oh-my-zsh will take care of it
-chsh -s /bin/zsh
-
-# oh-my-zsh
-sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-echo 'Link the zshrc file in ahmadnazir/dotfiles manually';
-```
 
 ## Todo
 
