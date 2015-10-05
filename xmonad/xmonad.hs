@@ -16,7 +16,7 @@ import XMonad.Hooks.EwmhDesktops
 
 myModMask = mod4Mask
 
-myWorkspaces = ["emacs","2","3","4","5","misc","7","8","web"]
+myWorkspaces = ["emacs","system","3","prod","5","6","7","misc","web"]
 
 -- Copied from
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
