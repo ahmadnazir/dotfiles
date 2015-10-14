@@ -2,7 +2,7 @@
 (global-set-key (kbd "M-F") 'helm-projectile)
 (global-set-key (kbd "M-x") 'helm-M-x)
 ;; Use ag for searching helm-projectile-ag
-;; (global-set-key (kbd "C-c p s g") 'projectile-grep)
+(global-set-key (kbd "C-c s") 'projectile-grep)
 
 ;; Buffer navigation (Similar to Chrome navigation except that in a
 ;; brower the windows contents are modified when we go back and forth
@@ -28,8 +28,11 @@
 (global-set-key (kbd "M-L")  'tabbar-forward-group)
 
 ;; Window navigation
-(global-set-key (kbd "<M-S-left>" ) '(lambda() (interactive) (other-window -1)))
-(global-set-key (kbd "<M-S-right>" ) '(lambda() (interactive) (other-window  1)))
+(global-set-key (kbd "<M-S-left>" ) '(lambda() (interactive) (buf-move-left)))
+(global-set-key (kbd "<M-S-right>" ) '(lambda() (interactive) (buf-move-right)))
+(global-set-key (kbd "<M-S-up>" ) '(lambda() (interactive) (buf-move-up)))
+(global-set-key (kbd "<M-S-down>" ) '(lambda() (interactive) (buf-move-down)))
+
 ;; Home-row
 ;; (global-set-key (kbd "M-B" ) '(lambda() (interactive) (other-window -1)))
 (global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
@@ -87,6 +90,12 @@
 			 (local-set-key (kbd "<C-return>") 'restclient-http-send-current-stay-in-window)
 			 ))
 
+;; haskell-mode
+(add-hook 'haskell-mode-hook
+		  '(lambda ()
+			 (local-set-key (kbd "<M-return>") 'compile)
+			 ))
+
 ;; multipile-cursors
 (global-set-key (kbd "C-C C-C") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -107,3 +116,9 @@
 
 ;; Translate
 (global-set-key (kbd "C-c t") 'google-translate-smooth-translate)
+
+
+;; diff-hl
+(global-set-key (kbd "M-n") 'diff-hl-next-hunk)
+(global-set-key (kbd "M-p") 'diff-hl-previous-hunk)
+(global-set-key (kbd "M-=") 'diff-hl-diff-goto-hunk)
