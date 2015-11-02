@@ -161,6 +161,8 @@
 
 
 ;; phpunit
+;;
+;; @todo: this should go in the .dir-locals.el
 (setq phpunit-configuration-file "phpunit.xml.dist")
 (setq phpunit-root-directory "/app/data/app/")
 ;; (setq phpunit-root-directory "/var/www/Symfony/")
