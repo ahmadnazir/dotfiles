@@ -66,3 +66,10 @@ sudo apt-get install python-software-properties
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get install git
+
+# NPM packages
+sudo apt-get install npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+#
+# eslint
+sudo npm install -g eslint@0.24.1 # update this later. 1.7 didn't show line numbers
