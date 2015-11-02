@@ -12,7 +12,7 @@ Config {
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
 
-   , template = "%battery%      %wifi%      %StdinReader% }{ %locks%     %multicpu%      %coretemp%      %memory% | %swap%      %date%"
+   , template = "%battery%      %wifi%      %StdinReader% }{ <fc=#dAA520>%locks%</fc>     %multicpu%      %coretemp%      %memory% | %swap%      %date%"
 
    -- general behavior
    , lowerOnStart =     True    -- send to bottom of window stack on start
