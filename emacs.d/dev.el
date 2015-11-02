@@ -9,8 +9,10 @@
 		 (if (get-buffer "**phpunit-docker**") (kill-buffer "**phpunit-docker**"))
 		 ;; @hack: there can be multiple containers running for the same image
 		 ;; Get the container id
-		 (call-process-shell-command "docker ps | grep 'penneo/webapp' | awk '{printf $1}'" nil "**phpunit-docker**")
+		 ;; (call-process-shell-command "docker ps | grep 'penneo/webapp' | awk '{printf $1}'" nil "**phpunit-docker**")
+		 (call-process-shell-command "docker ps | grep '_phpAS_' | awk '{printf $1}'" nil "**phpunit-docker**")
 		 (s-concat "docker exec " (an-buffer-string "**phpunit-docker**") " phpunit")
+		 ;; (s-concat "docker exec " (an-buffer-string "**phpunit-docker**") " /app/data/bin/phpunit")
 		 )
   )
 ;;

@@ -95,3 +95,57 @@
   "Get the contents of a buffer"
   (with-current-buffer buffer
     (buffer-string)))
+
+;; @see http://emacswiki.org/emacs/InsertingTodaysDate
+(defun date (arg)
+   (interactive "P")
+   (insert (if arg
+               (format-time-string "%d.%m.%Y")
+             (format-time-string "%Y-%m-%d"))))
+
+(defun anr-shell-region (start end)
+  "Execute region in an inferior shell"
+  (interactive "r")
+  (kill-buffer "**Shell**")
+  ;; @todo: if the paragraph is modified, an error is thrown if I use
+  ;; mark-paragraph here. I am sure it is related to my cursor
+  ;; position
+  ;; (mark-paragraph)
+  (call-process-shell-command (buffer-substring-no-properties start end) nil "**Shell**")
+  (switch-to-buffer-other-window "**Shell**")
+  (other-window -1)
+  )
+
+
+;; http://ergoemacs.org/emacs/dired_sort.html
+(defun an-xah-dired-sort ()
+  "Sort dired dir listing in different ways.
+Prompt for a choice.
+URL `http://ergoemacs.org/emacs/dired_sort.html'
+Version 2015-07-30"
+  (interactive)
+  (let (ξsort-by ξarg)
+    (setq ξsort-by (ido-completing-read "Sort by:" '( "date" "size" "name" "dir")))
+    (cond
+     ((equal ξsort-by "name") (setq ξarg "-Al --si --time-style long-iso "))
+     ((equal ξsort-by "date") (setq ξarg "-Al --si --time-style long-iso -t"))
+     ((equal ξsort-by "size") (setq ξarg "-Al --si --time-style long-iso -S"))
+     ((equal ξsort-by "dir") (setq ξarg "-Al --si --time-style long-iso --group-directories-first"))
+     (t (error "logic error 09535" )))
+    (dired-sort-other ξarg )))
+
+
+;; http://stackoverflow.com/a/6541072/1589512
+(defun func-region (start end func)
+  "run a function over the region between START and END in current buffer."
+  (save-excursion
+    (let ((text (delete-and-extract-region start end)))
+      (insert (funcall func text)))))
+(defun hex-region (start end)
+  "urlencode the region between START and END in current buffer."
+  (interactive "r")
+  (func-region start end #'url-hexify-string))
+(defun unhex-region (start end)
+  "de-urlencode the region between START and END in current buffer."
+  (interactive "r")
+  (func-region start end #'url-unhex-string))
