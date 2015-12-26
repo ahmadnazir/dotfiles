@@ -15,6 +15,8 @@
     ("3cc2385c39257fed66238921602d8104d8fd6266ad88a006d0a4325336f5ee02" "0c29db826418061b40564e3351194a3d4a125d182c6ee5178c237a7364f0ff12" default)))
  '(fci-rule-color "#383838")
  '(golden-ratio-mode nil)
+ '(haskell-interactive-popup-errors nil)
+ '(server-mode t)
  '(tabbar-separator (quote (0.5)))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
@@ -48,11 +50,12 @@
 ;; Disable the default startup screen
 (setq inhibit-startup-message t)
 
-;; Need to add the following to prelude-packages
+;; @todo Keep a list of all packages and their versions
+;;       Maybe use-packages will help in also tracking the versions
+;; 
 ;; @see http://stackoverflow.com/questions/13866848/how-to-save-a-list-of-all-the-installed-packages-in-emacs-24
+;;      to fetch the list of installed packages.. these need to be added to prelude-packages
 ;;
-;; (diff-hl diff-hl git-gutter 2048-game ac-helm popup auto-complete popup helm async ace-jump-buffer dash ace-jump-mode ace-jump-mode auto-complete popup auto-dim-other-buffers csharp-mode dash-functional dash deferred dockerfile-mode evil-escape evil goto-chg undo-tree evil-surround evil-visualstar evil goto-chg undo-tree expand-region f dash s flymake-php flymake-easy flymake-yaml flymake-easy fullscreen-mode function-args swiper geben god-mode golden-ratio google-translate goto-chg guide-key s popwin dash haskell-mode helm-ag helm async helm-gist gist gh logito pcache helm async helm-hoogle helm async helm-projectile dash projectile pkg-info epl dash helm async helm-themes helm async hyde inf-php php-mode js-comint keyfreq logito magit-tramp magit magit-popup dash git-commit with-editor dash dash with-editor dash dash markdown-mode multiple-cursors org org-journal paredit pcache persp-projectile projectile pkg-info epl dash perspective perspective php-auto-yasnippets yasnippet php-mode php-mode popup popwin projectile pkg-info epl dash puppet-mode pkg-info epl s shift-text es-lib skewer-mode js2-mode simple-httpd smart-tabs-mode speed-type sqlup-mode sublime-themes swiper tabbar tern undo-tree web-mode windata with-editor dash xclip xkcd yaml-mode yasnippet zenburn-theme)
-
 
 ;; Initialize Packages
 (package-initialize)                 ;; initializing the packages
@@ -81,11 +84,13 @@
 (setq tab-width 4)
 (setq c-basic-offset 4)
 
-;; @see https://gist.github.com/fzerorubigd/2977839
-(smart-tabs-advice c-indent-line c-basic-offset)
-(smart-tabs-advice c-indent-region c-basic-offset)
-(smart-tabs-insinuate 'c)
-(smart-tabs-advice js2-indent-line js2-basic-offset)
+;; @note: smart tabs should be enabled on demand
+;;
+;; ;; @see https://gist.github.com/fzerorubigd/2977839
+;; (smart-tabs-advice c-indent-line c-basic-offset)
+;; (smart-tabs-advice c-indent-region c-basic-offset)
+;; (smart-tabs-insinuate 'c)
+;; (smart-tabs-advice js2-indent-line js2-basic-offset)
 
 
 ;; Recognizing file extensions
