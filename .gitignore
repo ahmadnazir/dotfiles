@@ -2,3 +2,9 @@
 .cask
 elpa
 semanticdb
+
+# Haskell build related
+*.hi
+*.o
+xmonad.errors
+xmonad-x86_64-linux
