@@ -8,4 +8,5 @@
 sudo ln -s ~/.cabal/bin/cabal /usr/bin/cabal
 
 
-sudo ln -s ~/.bash-scripts/ec.sh ~/bin/e
+ln -s ~/.bash-scripts/e.sh ~/bin/e
+ln -s ~/.bash-scripts/c.sh ~/bin/c
