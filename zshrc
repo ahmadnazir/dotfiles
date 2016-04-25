@@ -86,7 +86,8 @@ source $ZSH/oh-my-zsh.sh
 # anr
 
 # custom aliases that shouldn't be committed
-source $HOME/.aliases
+# @todo: remove this aliases file as I don't seem to be using them
+# source $HOME/.aliases
 
 if [ -d "$HOME/.cabal/bin" ] ; then
   PATH="$PATH:$HOME/.cabal/bin"
@@ -98,7 +99,9 @@ do
   . $file
 done
 
-. /usr/share/autojump/autojump.sh
+# autojump
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
 
-# required by autojump
-autoload -U compinit && compinit
+# # Default editor
+# export EDITOR=emacsclient
