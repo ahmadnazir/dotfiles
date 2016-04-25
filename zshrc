@@ -100,6 +100,7 @@ do
 done
 
 # autojump
+# @prereq: https://github.com/wting/autojump
 [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
 autoload -U compinit && compinit -u
 

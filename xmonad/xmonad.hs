@@ -6,7 +6,7 @@ import XMonad
 
 -- For disabling greedy view
 import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig
+import qualified XMonad.Util.EZConfig as Config
 
 -- Xmobar
 import XMonad.Hooks.DynamicLog
@@ -30,6 +30,8 @@ myKeys = [
         ("M-S-l", spawn lockScreenCmd)
       , ("M-S-m", spawn volumeIncCmd)
       , ("M-S-n", spawn volumeDecCmd)
+      , ("M-S-e", spawn enableTouchPad)
+      , ("M-S-d", spawn disableTouchPad)
 
      ] ++ -- (++) is needed here because the following list comprehension
           -- is a list, not a single key binding. Simply adding it to the
@@ -73,14 +75,18 @@ defaults = defaultConfig {
            --                       ppTitle = xmobarColor "green" "" . shorten 50
            --                     }
 
-           } `additionalKeysP` myKeys
+           } `Config.additionalKeysP` myKeys
 
 -- commands
 --
 -- @todo: currently xmonad doesn't recognize the custom bash scripts
--- in dotfiles so all relevant commands are listed here:
+-- in dotfiles so all relevant commands are listed here
+--
+-- @todo: some of these commands are also being used from emacs so it
+-- would make sense to place them in a common place
 
-lockScreenCmd = "gnome-screensaver-command --lock"
-volumeIncCmd  = "pactl -- set-sink-volume 0 +10%"
-volumeDecCmd  = "pactl -- set-sink-volume 0 -10%"
-
+lockScreenCmd   = "gnome-screensaver-command --lock"
+volumeIncCmd    = "pactl -- set-sink-volume 0 +10%"
+volumeDecCmd    = "pactl -- set-sink-volume 0 -10%"
+enableTouchPad  = "xinput --enable \"SynPS/2 Synaptics TouchPad\""
+disableTouchPad = "xinput --disable \"SynPS/2 Synaptics TouchPad\""
