@@ -9,11 +9,11 @@ Config {
    , borderColor =  "black"
 
    -- layout
-   , sepChar =  "|"   -- delineator between plugin names and straight text
+   , sepChar =  "`"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
 
-   -- , template = "|battery|      |wifi|      |StdinReader| }{ |system| <fc=#dAA520>|locks|</fc>     |multicpu|      |coretemp|      |memory| - |swap|      |date|"
-   , template = "|battery|      |wifi|      |StdinReader| }{ <fc=#dAA520>|vpn|  |locks|</fc>     |multicpu|      |coretemp|      |memory| - |swap|      |date|"
+   -- @todo: try |system|
+   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520>`vpn` `locks`</fc>    `multicpu` / `coretemp`     `memory` / `swap`     `date`"
 
    -- general behavior
    , lowerOnStart =     False    -- send to bottom of window stack on start
@@ -57,7 +57,7 @@ Config {
         --                      ] 10
 
         -- cpu activity monitor
-        Run MultiCpu         [ "--template" , "Cpu: <total0>% <total1>% <total2>% <total3>%"
+        Run MultiCpu         [ "--template" , "<total0>% <total1>% <total2>% <total3>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "darkgreen"
@@ -66,7 +66,7 @@ Config {
                              ] 10
 
         -- cpu core temperature monitor
-        , Run CoreTemp       [ "--template" , "Temp: <core0>°C <core1>°C"
+        , Run CoreTemp       [ "--template" , "<core0>° <core1>°"
                              , "--Low"      , "60"        -- units: °C
                              , "--High"     , "70"        -- units: °C
                              , "--low"      , "darkgreen"
@@ -75,13 +75,22 @@ Config {
                              ] 50
                           
         -- memory usage monitor
-        , Run Memory         [ "--template" ,"Mem: <usedratio>%"
-                             , "--Low"      , "20"        -- units: %
-                             , "--High"     , "90"        -- units: %
+        , Run Memory         [ "--template" ,"<usedratio>%"
+                             , "--Low"      , "30"        -- units: %
+                             , "--High"     , "85"        -- units: %
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
+
+        , Run Swap           [ "--template", "<usedratio>%"
+                             , "--Low"      , "10"        -- units: %
+                             , "--High"     , "85"        -- units: %
+                             , "--low"      , "darkgreen"
+                             , "--normal"   , "darkorange"
+                             , "--high"     , "darkred"
+                             ] 10
+
 
         -- battery monitor
         , Run Battery        [ "--template" , "<acstatus>"
@@ -127,15 +136,13 @@ Config {
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
 
-        , Run Swap [] 10
-
         -- this should somehow be helpful in fixing the problem when xmonad gets stuck
         -- @see http://www.haskell.org/haskellwiki/Xmonad/Frequently_asked_questions#XMonad_is_frozen.21
         -- wifi indicator
         , Run Com "/home/mandark/.bash-scripts/wireless.sh" [] "wifi" 25
 
         -- VPN connectivity status
-        , Run Com "/home/mandark/.bash-scripts/vpn.sh" [] "vpn" 25
+        , Run Com "/home/mandark/.bash-scripts/vpn-status.sh" [] "vpn" 25
 
         , Run StdinReader
 
