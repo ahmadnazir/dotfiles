@@ -26,6 +26,14 @@
 ;; Closer to the home row
 (global-set-key (kbd "M-H") 'tabbar-backward-group)
 (global-set-key (kbd "M-L")  'tabbar-forward-group)
+;; (defun compose (funcs)
+;;   "composes several funcitons into one"
+;;   (lexical-let ((funcs funcs))
+;;     (lambda (arg)
+;;       (if funcs
+;;           (funcall (car funcs) (funcall (compose (cdr funcs)) arg))
+;;         arg))))
+;; (global-set-key (kbd "M-??")  (compose 'anr-kill-this-buffer 'reopen-killed-file))
 
 ;; Window navigation
 (global-set-key (kbd "<M-S-left>" ) '(lambda() (interactive) (buf-move-left)))
@@ -96,6 +104,12 @@
 			 (local-set-key (kbd "<M-return>") 'compile)
 			 ))
 
+;; elm-mode
+(add-hook 'elm-mode-hook
+		  '(lambda ()
+			 (local-set-key (kbd "C-c c") 'compile)
+			 ))
+
 ;; multipile-cursors
 (global-set-key (kbd "C-C C-C") 'mc/edit-lines)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
@@ -122,3 +136,9 @@
 (global-set-key (kbd "M-n") 'diff-hl-next-hunk)
 (global-set-key (kbd "M-p") 'diff-hl-previous-hunk)
 (global-set-key (kbd "M-=") 'diff-hl-diff-goto-hunk)
+
+;; spotify / Media (Play/Pause, preV, neXt)
+(global-set-key (kbd "C-c M p") 'spotify-play)
+(global-set-key (kbd "C-c M s") 'spotify-stop)
+(global-set-key (kbd "C-c M v") 'spotify-previous)
+(global-set-key (kbd "C-c M x") 'spotify-next)

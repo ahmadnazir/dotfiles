@@ -3,6 +3,7 @@
 ;; Enabling tabs and tweaks
 (tabbar-mode t)
 (setq tabbar-cycle-scope 'tabs)
+;; (load-file "~/.emacs.d/tabbar-group.el")
 (load-file "~/.emacs.d/tabbar-tweak.el")
 
 ;; Paren mode

@@ -3,8 +3,10 @@
 ;; For related setup, @see: https://truongtx.me/2014/08/23/setup-emacs-as-an-sql-database-client/
 (add-hook 'sql-mode-hook
           '(lambda ()
-             (global-set-key (kbd "<C-return>") 'sql-send-paragraph)
+             (local-set-key (kbd "<C-return>") 'sql-send-paragraph)
              (sql-set-sqli-buffer-generally)
+             (yas-global-mode)
+             (yas-minor-mode)
              ))
 
 ;; SQL interactive mode
@@ -16,10 +18,10 @@
 ;;
 (add-hook 'php-mode-hook
           '(lambda ()
-             (smart-tabs-mode-enable)
+             ;; (smart-tabs-mode-enable) ;; should be set in dir-locals
              ;; (flymake-mode) ;; disabling it, as it creates temp files in the same directory
              ;; compile
-             (global-set-key (kbd "<C-return>") 'compile)
+             (local-set-key (kbd "<C-return>") 'compile)
              ;; yasnippet
              (define-key php-mode-map (kbd "C-c C-y") 'yas/create-php-snippet)
              ))
@@ -33,9 +35,9 @@
             ))
 ;; JS Mode
 ;;
-(add-hook 'js-mode-hook
+(add-hook 'js2-mode-hook
           '(lambda ()
-             (setq indent-tabs-mode t)
+             (setq indent-tabs-mode nil)
              (setq tab-width 4)
              (setq c-basic-offset 4)
              (c-set-offset 'case-label '+)
@@ -45,16 +47,32 @@
 ;;
 (add-hook 'sh-mode-hook
           '(lambda ()
-             (global-set-key (kbd "<C-return>") 'anr-shell-region)
+             (local-set-key (kbd "<C-return>") 'anr-shell-region)
              ))
 
 ;; Haskell Mode
 ;;
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook
           '(lambda ()
-             (structured-haskell-mode)
+             (turn-on-haskell-indentation)
+             ;; (structured-haskell-mode)
              ;; (haskell-unicode)
              ))
 
 
+;; Elm Mode
+;;
+(add-hook 'elm-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<M-return>") 'elm-repl-load)
+             (local-set-key (kbd "<C-return>") 'elm-repl-push)
+             ))
+(add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
+
+
+;; Before save
+(add-hook 'before-save-hook 'anr-sudo-before-save-hook)
+
+;; Helper function to remove hooks
+;;
+;; (remove-hook 'elm-mode-hook (first elm-mode-hook))
