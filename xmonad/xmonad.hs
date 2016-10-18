@@ -20,7 +20,7 @@ myWorkspaces :: [[Char]]
 myWorkspaces = ["1","2","3" -- standard workspaces (emacs and terminals)
                ,"prod"      -- live environments
                ,"s1","s2"   -- scratch
-               ,"p1","p2"   -- personal (surfing/music/todo)
+               ,"p1","p2"   -- operations
                ,"web"       -- Work related browsing
                ]
 

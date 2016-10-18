@@ -9,13 +9,14 @@ Config {
    , borderColor =  "black"
 
    -- layout
-   , sepChar =  "%"   -- delineator between plugin names and straight text
+   , sepChar =  "|"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
 
-   , template = "%battery%      %wifi%      %StdinReader% }{ <fc=#dAA520>%locks%</fc>     %multicpu%      %coretemp%      %memory% | %swap%      %date%"
+   -- , template = "|battery|      |wifi|      |StdinReader| }{ |system| <fc=#dAA520>|locks|</fc>     |multicpu|      |coretemp|      |memory| - |swap|      |date|"
+   , template = "|battery|      |wifi|      |StdinReader| }{ <fc=#dAA520>|vpn|  |locks|</fc>     |multicpu|      |coretemp|      |memory| - |swap|      |date|"
 
    -- general behavior
-   , lowerOnStart =     True    -- send to bottom of window stack on start
+   , lowerOnStart =     False    -- send to bottom of window stack on start
    , hideOnStart =      False   -- start with window unmapped (hidden)
    , allDesktops =      True    -- show on all desktops
    , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
@@ -56,7 +57,7 @@ Config {
         --                      ] 10
 
         -- cpu activity monitor
-        Run MultiCpu       [ "--template" , "Cpu: <total0>% <total1>% <total2>% <total3>%"
+        Run MultiCpu         [ "--template" , "Cpu: <total0>% <total1>% <total2>% <total3>%"
                              , "--Low"      , "50"         -- units: %
                              , "--High"     , "85"         -- units: %
                              , "--low"      , "darkgreen"
@@ -99,6 +100,26 @@ Config {
                                        , "-i"	, "<fc=#006000>Charged</fc>"
                              ] 50
 
+        --   -- @todo: If xmobar displays 'Updating..' and the text
+        --   -- doesn't change, this means that the named pipes are not
+        --   -- created which are being referenced below They can be
+        --   -- created using the mkfifo utility:
+        --   --
+        --   -- mkfifo /tmp/system
+        --   -- echo testing > /tmp/status
+        --   --
+        --   -- @todo: isn't there a buffered file reader? Maybe I should
+        --   -- use the CommandReader for this?
+        --   --
+        --   -- @todo: I should create named pipes on system startup if
+        --   -- the only way is to rely on named pipes
+        -- , Run BufferedPipeReader "system"
+        --   [
+        --     (  0, False, "/tmp/system"  )
+        --     -- (  0, False, "/tmp/system_status"  )
+        --   -- , ( 15,  True, "/tmp/system_update"  )
+        --   ]
+
         -- Caps lock etc
         , Run Locks
 
@@ -111,7 +132,10 @@ Config {
         -- this should somehow be helpful in fixing the problem when xmonad gets stuck
         -- @see http://www.haskell.org/haskellwiki/Xmonad/Frequently_asked_questions#XMonad_is_frozen.21
         -- wifi indicator
-        , Run Com "/home/mandark/.bash-scripts/wireless.sh" [] "wifi" 30
+        , Run Com "/home/mandark/.bash-scripts/wireless.sh" [] "wifi" 25
+
+        -- VPN connectivity status
+        , Run Com "/home/mandark/.bash-scripts/vpn.sh" [] "vpn" 25
 
         , Run StdinReader
 
