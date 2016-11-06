@@ -1,3 +1,3 @@
 #!/bin/bash
 
-emacsclient -c
+emacsclient -c /tmp/`date +%N`

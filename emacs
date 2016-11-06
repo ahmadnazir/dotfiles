@@ -16,6 +16,7 @@
  '(fci-rule-color "#383838")
  '(golden-ratio-mode nil)
  '(haskell-interactive-popup-errors nil)
+ '(safe-local-variable-values (quote ((smart-tabs-mode))))
  '(server-mode t)
  '(tabbar-separator (quote (0.5)))
  '(vc-annotate-background "#2B2B2B")
@@ -72,7 +73,7 @@
 (setq tramp-default-method "ssh")
 
 ;; Experimental
-(semantic-mode)
+;; (semantic-mode)
 
 
 ;; required for php-mode
@@ -111,7 +112,11 @@
 (projectile-global-mode)
 ;; Enable projectile helm integration
 (setq projectile-completion-system 'helm)
-(helm-projectile-on)
+;;
+;; fails after update. Not sure if we need it anymore
+;; - does it enable the search functionality for the project?? [related to overwriting ag ?]
+;;
+;; (helm-projectile-on)
 (add-to-list 'projectile-globally-ignored-directories "backup")
 (add-to-list 'projectile-globally-ignored-directories "tmp")
 (add-to-list 'projectile-globally-ignored-directories "cache")
@@ -122,21 +127,21 @@
 ;; Switch project action
 ;; (setq projectile-switch-project-action 'projectile-dired)
 
-;; ansi-color
-;; so that emacs shell handles console output correctly
-(require 'ansi-color)
-;; http://stackoverflow.com/questions/3072648/cucumbers-ansi-colors-messing-up-emacs-compilation-buffer
-(defun colorize-compilation-buffer ()
-  (interactive)
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-(add-hook
- 'compilation-filter-hook
- ;; @todo: add magit hook when buffer displayed e.g. diff etc
- ;; added from the example
- 'colorize-compilation-buffer
- )
+;; ;; ansi-color
+;; ;; so that emacs shell handles console output correctly
+;; (require 'ansi-color)
+;; ;; http://stackoverflow.com/questions/3072648/cucumbers-ansi-colors-messing-up-emacs-compilation-buffer
+;; (defun colorize-compilation-buffer ()
+;;   (interactive)
+;;   (toggle-read-only)
+;;   (ansi-color-apply-on-region (point-min) (point-max))
+;;   (toggle-read-only))
+;; (add-hook
+;;  'compilation-filter-hook
+;;  ;; @todo: add magit hook when buffer displayed e.g. diff etc
+;;  ;; added from the example
+;;  'colorize-compilation-buffer
+;;  )
 
 (setq guide-key/recursive-key-sequence-flag t)
 ;; (setq guide-key/popup-window-position 'bottom) ;; height of the window is not automatically adjusted
@@ -152,7 +157,6 @@
 (load-file "~/.emacs.d/visual.el")
 (load-file "~/.emacs.d/keybindings.el")
 (load-file "~/.emacs.d/hooks.el")
-(load-file "~/.emacs.d/experiment.el")
 ;; @todo: should be removed
 (load-file "~/.emacs.d/registers.el")
 
@@ -213,7 +217,6 @@
 ;; file (or bashrc file)
 (exec-path-from-shell-initialize)
 
-
 ;; JS code conventions
 ;;
 ;; http://www.flycheck.org/manual/latest/index.html
@@ -240,3 +243,5 @@
 (provide 'emacs)
 
 ;;; emacs ends here
+
+(evil-magit-init)

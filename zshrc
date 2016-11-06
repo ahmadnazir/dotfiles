@@ -99,10 +99,15 @@ do
   . $file
 done
 
-# autojump
-# @prereq: https://github.com/wting/autojump
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
 # # Default editor
 # export EDITOR=emacsclient
+
+export ATHAME_ENABLED=0
+
+j() {
+    unset -f j
+    [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] \
+        && source $HOME/.autojump/etc/profile.d/autojump.sh \
+        && autoload -U compinit && compinit -u
+    j "$@"
+}
