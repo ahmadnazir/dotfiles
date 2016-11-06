@@ -34,6 +34,7 @@
     (util :location local)
     (penneo :location local)
     (visual :location local)
+    (window :location local)
     )
   "The list of Lisp packages required by the anr layer.
 
@@ -74,9 +75,12 @@ Each entry is either:
 
 (defun anr/init-visual ()
   "Initialize visual package"
-  (use-package visual
-    ;; :config (visual/set-font-size visual/default-font-size)
-    )
+  (use-package visual)
+  )
+
+(defun anr/init-window ()
+  "Initialize window package"
+  (use-package window)
   )
 
 ;;; packages.el ends here
