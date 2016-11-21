@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # http://stackoverflow.com/a/1119738/1589512
-function swap()         
+function swap()
 {
     local TMPFILE=tmp.$$
     mv "$1" $TMPFILE
@@ -31,6 +31,22 @@ function fpid()
     ps ax | grep $1 | awk '{print $1}' 
 }
 
+function count-group-by()
+{
+    if [ -z $1  -o  -z $2 ]; then
+        echo "Usage: $0 <column-number> <file> [<delimiter>]";
+        return -1;
+    fi
+
+
+    local colNum=$1
+    local file=$2
+    local delim=${3:-,}
+
+    local cmd="awk -F '"$delim"' 'NR>0{arr[$"$colNum"]++}END{for (a in arr) print a, arr[a]}' "$file
+    echo $cmd
+    eval $cmd
+}
 function travis()
 {
     local uid=`id -u $USER`
@@ -67,8 +83,8 @@ function preview_()
          -q $IN 
 }
 
-function rm()
-{
-    echo "Moved to /tmp/$1"
-    mv $1 /tmp/$1
-}
+# function rm()
+# {
+#     echo "Moved to /tmp/$1"
+#     mv $1 /tmp/$1
+# }
