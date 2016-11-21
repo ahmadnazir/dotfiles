@@ -123,7 +123,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner nil
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
    ;; Possible values for list-type are:
@@ -146,7 +146,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 25 ;; @todo: pick this from the anr layer
+                               :size 15 ;; @todo: pick this from the anr layer
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -313,7 +313,14 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   ;; (visual/set-font-size visual/default-font-size)
-  )
+  ;; (setq helm-split-window-in-side-p t)
+  (setq split-width-threshold 160)
+  (add-hook 'sql-mode-hook
+            (progn
+               (yas-minor-mode) ;; disable
+               (yas-minor-mode) ;; enable
+               ))
+)
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
