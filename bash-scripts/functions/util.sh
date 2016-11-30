@@ -44,9 +44,10 @@ function count-group-by()
     local delim=${3:-,}
 
     local cmd="awk -F '"$delim"' 'NR>0{arr[$"$colNum"]++}END{for (a in arr) print a, arr[a]}' "$file
-    echo $cmd
+    # echo $cmd
     eval $cmd
 }
+
 
 function get-col()
 {
@@ -60,9 +61,11 @@ function get-col()
     local delim=${2:- }
 
     local cmd="awk -F '"$delim"' '{print $"$colNum"}' "
-    echo $cmd
+    # echo $cmd
     eval $cmd
 }
+
+alias c="get-col"
 
 function travis()
 {
