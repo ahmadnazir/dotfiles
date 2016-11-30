@@ -47,6 +47,23 @@ function count-group-by()
     echo $cmd
     eval $cmd
 }
+
+function get-col()
+{
+    if [ -z $1 ]; then
+        echo "Usage: $0 <column-number> [<delimeter>]";
+        return -1;
+    fi
+
+
+    local colNum=$1
+    local delim=${2:- }
+
+    local cmd="awk -F '"$delim"' '{print $"$colNum"}' "
+    echo $cmd
+    eval $cmd
+}
+
 function travis()
 {
     local uid=`id -u $USER`
