@@ -5,4 +5,4 @@
   (progn () (message (concat "Copied to killring: " (kill-new (secure-hash 'sha256 string)))))
   )
 
-(provide 'penneo)
+(provide 'crypt)
