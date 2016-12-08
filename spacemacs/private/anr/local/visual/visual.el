@@ -1,5 +1,5 @@
-(setq visual/small-font-size   10) ;; larger screens with lower resolution
-(setq visual/regular-font-size 13) ;; works for lenovo x1 carbon
+(setq visual/small-font-size   7) ;; larger screens with lower resolution
+(setq visual/regular-font-size 12) ;; works for lenovo x1 carbon
 
 ;; Defaults
 (setq visual/default-font "Source Code Pro")

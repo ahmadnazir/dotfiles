@@ -16,8 +16,13 @@
 ;; restclient-mode
 (add-hook 'restclient-mode-hook
           '(lambda ()
-             ;; (local-set-key (kbd "<C-S-return>") 'restclient-http-send-current)
              (local-set-key (kbd "<C-return>") 'restclient-http-send-current-stay-in-window)
+             ))
+
+(add-hook 'sql-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'sql-send-paragraph)
+             ;; (sql-set-sqli-buffer-generally)
              ))
 
 ;; Visual

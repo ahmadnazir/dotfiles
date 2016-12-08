@@ -35,6 +35,7 @@
     (penneo :location local)
     (visual :location local)
     (window :location local)
+    (crypt :location local)
     )
   "The list of Lisp packages required by the anr layer.
 
@@ -83,4 +84,8 @@ Each entry is either:
   (use-package window)
   )
 
+(defun anr/init-crypt()
+  "Initialize crypt package"
+  (use-package crypt)
+  )
 ;;; packages.el ends here
