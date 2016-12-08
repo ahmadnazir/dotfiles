@@ -17,14 +17,18 @@ import XMonad.Hooks.EwmhDesktops
 myModMask = mod4Mask
 
 myWorkspaces :: [[Char]]
-myWorkspaces = ["1","2","3" -- standard workspaces (emacs and terminals)
-               ,"prod"      -- live environments
-               ,"s1","s2"   -- scratch
-               ,"p1","p2"   -- operations
-               ,"web"       -- Work related browsing
-               ]
-
+myWorkspaces = [
+  "1","2","3"  -- standard workspaces (emacs and terminals)
+  ,"4"
+  ,"5","6"
+  ,"7","8"
+  ,"9"
+  ,"0"
+  ,"[", "]"
+  ,"stg", "sbx", "prd"
+  ]
 -- Copied from
+
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
 myKeys = [
         ("M-S-l", spawn lockScreenCmd)
@@ -39,7 +43,7 @@ myKeys = [
           -- [ b3, b4, b5 ] ] resulting in a type error. (Lists must
           -- contain items all of the same type.)
      [ (otherModMasks ++ "M-" ++ [key], action tag)
-       | (tag, key)  <- zip myWorkspaces "123456789"
+       | (tag, key)  <- zip myWorkspaces "1234567890[];'\\"
        , (otherModMasks, action) <- [ ("", windows . W.view) -- was W.greedyView
                                        , ("S-", windows . W.shift)]
      ]

@@ -1,4 +1,4 @@
-Config { 
+Config {
 
    -- appearance
      font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true"
@@ -38,7 +38,7 @@ Config {
    --   The --template option controls how the plugin is displayed. Text
    --   color can be set by enclosing in <fc></fc> tags. For more details
    --   see http://projects.haskell.org/xmobar/#system-monitor-plugins.
-   , commands = 
+   , commands =
 
         -- weather monitor
         -- @see http://weather.rap.ucar.edu/surface/stations.txt
