@@ -25,6 +25,12 @@
              ;; (sql-set-sqli-buffer-generally)
              ))
 
+;; Buffers
+;;
+(global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
+(global-set-key (kbd "M-S-SPC") 'window/toggle-window-split)
+;; (global-set-key (kbd "M-S-k" ) 'spacemacs/kill-this-buffer) ;; @fixme: doesn't work
+
 ;; Visual
 ;;
 ;; @todo: use spacemacs conventions
