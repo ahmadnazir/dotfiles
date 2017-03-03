@@ -44,6 +44,7 @@
 ;; Home-row
 ;; (global-set-key (kbd "M-B" ) '(lambda() (interactive) (other-window -1)))
 (global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
+(global-set-key (kbd "M-S-SPC") 'window/toggle-window-split)
 
 ;; Frame specific commands
 (global-set-key (kbd "M-S") 'save-buffer)
