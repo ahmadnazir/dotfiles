@@ -111,3 +111,20 @@ j() {
         && autoload -U compinit && compinit -u
     j "$@"
 }
+
+myinit() {
+    # 1. Store keys in the ssh-session
+    # 2. Update the logo - to indicate that keys have been added :)
+
+    # @fixme: location of the image should be relative and committed to the repo
+    keys && \
+        feh --bg-scale /home/mandark/Pictures/Background/427841.png
+}
+
+if [ ! -f /tmp/.myinit ]; then
+    b=$(tput bold)
+    n=$(tput sgr0)
+    echo "${b}Initializing:${n}"
+    myinit && \
+        touch /tmp/.myinit
+fi
