@@ -117,6 +117,7 @@ myinit() {
     # 2. Update the logo - to indicate that keys have been added :)
 
     # @fixme: location of the image should be relative and committed to the repo
+    # @fixme: This is functionality specific to me. Maybe I should create a shim for the keys command
     keys && \
         feh --bg-scale /home/mandark/Pictures/Background/427841.png
 }
