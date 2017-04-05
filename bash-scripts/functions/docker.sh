@@ -15,26 +15,38 @@ docker-clean-exited-containers() {
 # the current working directory
 #
 # Usage: 'di haskell', which will run a container for the haskell image
-di () {
+function di () {
 
-	# image
-	if [[ -z $1 ]]; then
-		echo "Docker image name not provided";
-		return -1;
-	fi
-	local image=$1;
+  # image
+  if [[ -z $1 ]]; then
+    echo "Docker image name not provided";
+    return -1;
+  fi
+  local image=$1;
 
-	# shared directory
-	local dir='/shared';
-	# @todo: use a switch to set the shared dir name
-	# if [[ -n $2 ]]; then
-	# 	dir=$2;
-	# fi
+  # shared directory
+  local dir='/app/data';
 
-	local cmd=''
-	if [[ -n $2 ]]; then
-		cmd=$2;
-	fi
-	
-	docker run -it --rm -w $dir -v `pwd`:$dir $image $cmd
+  # Either open an interactive shell for the image or run the command
+  #
+  # @todo: If not command is specified, docker is being invoked as:
+  #
+  # docker run -it IMAGE sh -c /bin/bash
+  #
+  # so like using a shell to run a shell which doesn't make sense. I need to
+  # investigate how to fix it and still be able to pass the arguments
+  local cmd='/bin/bash'
+  if [[ -n $2 ]]; then
+      cmd="${@:2}"
+  fi
+
+  docker run -it \
+         --rm \
+         -w $dir \
+         -v `pwd`:$dir \
+         -v /ssh-agent:/ssh-agent \
+         -v ~/.ssh:/root/.ssh \
+         $image sh -c $cmd
+
+  # -u $UID:$GID \
 }
