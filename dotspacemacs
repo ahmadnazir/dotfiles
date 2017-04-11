@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     nginx
+     ;; python
      csv
      haskell
      html
@@ -62,18 +64,23 @@ values."
                       )
      restclient
      react
-     sml
+     ;; sml
      csharp
      ruby-on-rails
+     ;; slack
      ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
      ;;   custom
      anr
+     regexp
+     sos
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      org-journal
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -316,6 +323,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (progn
     (setq evil-insert-state-map (make-sparse-keymap))
     (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+    (setq shell-command-switch "-ic") ;; with -i emacs is aware of shell aliases
     )
   )
 
@@ -334,6 +342,11 @@ you should place your code here."
                (yas-minor-mode) ;; disable
                (yas-minor-mode) ;; enable
                ))
+  (setq compilation-scroll-output t)
+  (setq org-todo-keywords
+        '((sequence "TODO" "STARTED" "|" "DONE" "CANCELLED")))
+  ;; @fixme: this should go in sos config.el
+  (setq sql-product 'mysql)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
