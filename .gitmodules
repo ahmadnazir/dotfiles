@@ -1,0 +1,3 @@
+[submodule "spacemacs/private/sos/local/exsqlaim"]
+	path = spacemacs/private/sos/local/exsqlaim
+	url = https://github.com/ahmadnazir/exsqlaim
