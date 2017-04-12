@@ -1,19 +1,12 @@
-;; ;;;###autoload
-;; (defun sql-wrapper/connect(connection &optional new-name)
-;;   "Wrapper for sql connect"
-;;   (interactive)
-;;   (progn () (
-;;              (sql-mode)
-;;              (setq sql-product 'mysql)
-;;              (sql-connect connection new-name)
-;;              ))
-;;   )
+(require 'sql)
 
-;; A variable can be defined as:
+;; Variables can be defined as:
 ;;
-;; @db = "test"
+;; @db   = `test`
+;; @id   =  1234
+;; @name = 'John Doe'
 ;;
-(defconst sos/var-regexp "^\\(@[^@ ]+\\)[ \t]*=[ \t]*\\(.*\\)$")
+(defconst sos/regexp-stmt-var-assign "^\\(@[^@ ]+\\)[ \t]*=[ \t]*\\(.*\\)$")
 
 ;; Inspired and modified from restclient.el: restclient-find-vars-before-point
 (defun sos/find-vars-before-point ()
@@ -21,7 +14,7 @@
         (bound (point)))
     (save-excursion
       (goto-char (point-min))
-      (while (search-forward-regexp sos/var-regexp bound t)
+      (while (search-forward-regexp sos/regexp-stmt-var-assign bound t)
         (let ((name (match-string-no-properties 1))
               (value (match-string-no-properties 2)))
           (setq vars (cons (cons name (message value)) vars))))
@@ -58,5 +51,14 @@
                (forward-paragraph)
                (point))))
     (sos/sql-send-region start end)))
+
+;; Highlight variables
+(add-hook 'sql-mode-hook
+          '(lambda ()
+             (font-lock-add-keywords
+              'sql-mode
+              '(("@[^@= \n\"'\.]+" . font-lock-variable-name-face)))
+             ))
+
 
 (provide 'sos)
