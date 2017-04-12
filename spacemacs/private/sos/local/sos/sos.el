@@ -1,3 +1,6 @@
+;; @deprecated This functionality has moved to the exsqlaim project:
+;; https://github.com/ahmadnazir/exsqlaim
+
 (require 'sql)
 
 ;; Variables can be defined as:

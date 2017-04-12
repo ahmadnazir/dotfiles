@@ -31,7 +31,7 @@
 
 (defconst sos-packages
   '(
-    (sos :location local)
+    (exsqlaim :location local)
     )
   "The list of Lisp packages required by the sos layer.
 
@@ -61,9 +61,9 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
 
-(defun sos/init-sos()
+(defun sos/init-exsqlaim()
   "Initialize util package"
-  (use-package sos)
+  (use-package exsqlaim)
   )
 
 ;;; packages.el ends here
