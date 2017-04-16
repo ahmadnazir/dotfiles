@@ -80,6 +80,8 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
                                       org-journal
+                                      package-lint
+                                      flycheck-package
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -316,16 +318,16 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  ;; (exec-path-from-shell-initialize)
-  ;;
-  ;; Using emacs mode as the standard insert mode
-  ;; http://stackoverflow.com/a/28985130/1589512
   (progn
+    ;; Using emacs mode as the standard insert mode
+    ;; http://stackoverflow.com/a/28985130/1589512
     (setq evil-insert-state-map (make-sparse-keymap))
     (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
-    (setq shell-command-switch "-ic") ;; with -i emacs is aware of shell aliases
-    )
-  )
+    ;; To make emacs aware of shell aliases using -i switch
+    (setq shell-command-switch "-ic")
+    ;; To make flycheck-package-setup find packages e.g. (require 's)
+    (setq-default flycheck-emacs-lisp-load-path 'inherit)
+    ))
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
