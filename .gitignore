@@ -2,6 +2,7 @@
 .cask
 elpa
 semanticdb
+projectile.cache
 
 # Haskell build related
 *.hi

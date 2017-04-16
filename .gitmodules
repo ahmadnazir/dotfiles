@@ -1,3 +1,3 @@
-[submodule "spacemacs/private/sos/local/exsqlaim"]
-	path = spacemacs/private/sos/local/exsqlaim
-	url = https://github.com/ahmadnazir/exsqlaim
+[submodule "spacemacs/private/sos/local/exsqlaim-mode"]
+	path = spacemacs/private/sos/local/exsqlaim-mode
+	url = git@github.com:ahmadnazir/exsqlaim-mode.git
