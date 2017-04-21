@@ -32,7 +32,6 @@
 (defconst anr-packages
   '(
     (util :location local)
-    (penneo :location local)
     (visual :location local)
     (window :location local)
     (crypt :location local)
@@ -67,11 +66,6 @@ Each entry is either:
 (defun anr/init-util ()
   "Initialize util package"
   (use-package util)
-  )
-
-(defun anr/init-penneo ()
-  "Initialize penneo package"
-  (use-package penneo)
   )
 
 (defun anr/init-visual ()
