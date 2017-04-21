@@ -67,12 +67,14 @@ values."
      ;; sml
      csharp
      ruby-on-rails
+     prodigy
      ;; slack
      ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
      ;;   custom
      anr
      regexp
      sos
+     penneo
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
