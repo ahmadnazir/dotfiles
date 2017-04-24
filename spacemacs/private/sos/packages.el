@@ -64,6 +64,11 @@ Each entry is either:
 (defun sos/init-exsqlaim-mode()
   "Initialize util package"
   (use-package exsqlaim-mode)
+  (add-hook 'sql-mode-hook
+            (lambda()
+              (exsqlaim-mode--fontify 'sql-mode)
+              (exsqlaim-mode)
+              ))
   )
 
 ;;; packages.el ends here
