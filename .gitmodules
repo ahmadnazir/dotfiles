@@ -1,3 +1,6 @@
 [submodule "spacemacs/private/sos/local/exsqlaim-mode"]
 	path = spacemacs/private/sos/local/exsqlaim-mode
 	url = git@github.com:ahmadnazir/exsqlaim-mode.git
+[submodule "spacemacs/private/penneo"]
+	path = spacemacs/private/penneo
+	url = git@github.com:ahmadnazir/spacemacs-penneo-layer.git
