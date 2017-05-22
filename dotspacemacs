@@ -321,10 +321,6 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (progn
-    ;; Using emacs mode as the standard insert mode
-    ;; http://stackoverflow.com/a/28985130/1589512
-    (setq evil-insert-state-map (make-sparse-keymap))
-    (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
     ;; To make emacs aware of shell aliases using -i switch
     (setq shell-command-switch "-ic")
     ;; To make flycheck-package-setup find packages e.g. (require 's)
@@ -351,6 +347,10 @@ you should place your code here."
         '((sequence "TODO" "STARTED" "|" "DONE" "CANCELLED")))
   ;; @fixme: this should go in sos config.el
   (setq sql-product 'mysql)
+  ;; Using emacs mode as the standard insert mode
+  ;; http://stackoverflow.com/a/28985130/1589512
+  (setq evil-insert-state-map (make-sparse-keymap))
+  (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
