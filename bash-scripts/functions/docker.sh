@@ -40,12 +40,16 @@ function di () {
       cmd="${@:2}"
   fi
 
+  local history=~/.bash_history_docker
+  touch $history
+
   docker run -it \
          --rm \
          -w $dir \
          -v `pwd`:$dir \
          -v /ssh-agent:/ssh-agent \
          -v ~/.ssh:/root/.ssh \
+         -v $history:/root/.bash_history \
          $image sh -c $cmd
 
   # -u $UID:$GID \
