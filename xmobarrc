@@ -13,7 +13,7 @@ Config {
    , alignSep = "}{"  -- separator between left-right alignment
 
    -- @todo: try |system|
-   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520>`vpn` `locks`</fc>    `multicpu` / `coretemp`     `memory` / `swap`     `date`"
+   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520>`vpn` `locks`</fc>    `multicpu` / `coretemp`     `memory` / `swap`     `kbd` `date`"
 
    -- general behavior
    , lowerOnStart =     False    -- send to bottom of window stack on start
@@ -146,9 +146,10 @@ Config {
 
         , Run StdinReader
 
-        -- -- keyboard layout indicator
-        -- , Run Kbd            [ ("us(dvorak)" , "<fc=#00008B>DV</fc>")
-        --                      , ("us"         , "<fc=#8B0000>US</fc>")
-        --                      ]
+        -- keyboard layout indicator
+        -- For now I change the layout using the commandline: setxkbmap dk
+        , Run Kbd            [ ("us" , "")
+                             , ("dk" , "<fc=#8B0000>DK</fc>")
+                             ]
         ]
    }

@@ -7,6 +7,7 @@ import XMonad
 -- For disabling greedy view
 import qualified XMonad.StackSet as W
 import qualified XMonad.Util.EZConfig as Config
+import qualified XMonad.Operations as O
 
 -- Xmobar
 import XMonad.Hooks.DynamicLog
@@ -18,35 +19,49 @@ myModMask = mod4Mask
 
 myWorkspaces :: [[Char]]
 myWorkspaces = [
-  "1","2","3"  -- standard workspaces (emacs and terminals)
-  ,"4"
-  ,"5","6"
-  ,"7","8"
-  ,"9"
-  ,"0"
-  ,"[", "]"
-  ,"stg", "sbx", "prd"
+  "main"      -- 1
+  ,"sign"     -- 2
+  ,"auth"     -- 3
+
+  ,"gateway"  -- 4
+  ,"logs" -- 5
+  ,"?"    -- 6
+  ,"local-db"  -- 7
+  ,"prod-db"       -- 8
+  ,"web"      -- 9
+  ,"todo"     -- 0
+  ,"repl"     -- =
+  -- Scratch / tmp
+  ,"tmp-1"    -- [
+  ,"tmp-2"    -- ]
+  -- testing
+  ,"api"      -- ;
+  -- remote
+  ,"sbx"      -- '
+  ,"prd"      -- \
   ]
+
+-- TODO: switch to screen when a key is pressed
+-- myAction action tag = case tag of
+--   "main" -> O.screenWorkspace 0  >>= flip whenJust (windows . W.view) >> action tag
+--   "sign" -> O.screenWorkspace 1  >>= flip whenJust (windows . W.view) >> action tag
+--   _      -> O.screenWorkspace 2  >>= flip whenJust (windows . W.view) >> action tag
+
 -- Copied from
-
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
-myKeys = [
-        ("M-S-l", spawn lockScreenCmd)
-      , ("M-S-m", spawn volumeIncCmd)
-      , ("M-S-n", spawn volumeDecCmd)
-      , ("M-S-e", spawn enableTouchPad)
-      , ("M-S-d", spawn disableTouchPad)
 
-     ] ++ -- (++) is needed here because the following list comprehension
-          -- is a list, not a single key binding. Simply adding it to the
-          -- list of key bindings would result in something like [ b1, b2,
-          -- [ b3, b4, b5 ] ] resulting in a type error. (Lists must
-          -- contain items all of the same type.)
-     [ (otherModMasks ++ "M-" ++ [key], action tag)
-       | (tag, key)  <- zip myWorkspaces "1234567890[];'\\"
-       , (otherModMasks, action) <- [ ("", windows . W.view) -- was W.greedyView
-                                       , ("S-", windows . W.shift)]
-     ]
+myKeys = [
+  ("M-S-l", spawn lockScreenCmd)   ,
+  ("M-S-m", spawn volumeIncCmd)    ,
+  ("M-S-n", spawn volumeDecCmd)    ,
+  ("M-S-e", spawn enableTouchPad)  ,
+  ("M-S-d", spawn disableTouchPad) ,
+  ("M-S-p", spawn screenshotCmd)
+  ] ++ [
+  (otherModMasks ++ "M-" ++ [key], action tag) -- @todo: if key 0-5, update action so that monitor 1 is selected
+  | (tag, key)  <- zip myWorkspaces "1234567890=[];'\\" ,
+    (otherModMasks, action) <- [ ("", windows . W.view) , ("S-", windows . W.shift)] -- was W.greedyView
+  ]
 
 -- Layouts / Hooks
 myLogHook :: X ()
@@ -94,3 +109,4 @@ volumeIncCmd    = "pactl -- set-sink-volume 0 +10%"
 volumeDecCmd    = "pactl -- set-sink-volume 0 -10%"
 enableTouchPad  = "xinput --enable \"SynPS/2 Synaptics TouchPad\""
 disableTouchPad = "xinput --disable \"SynPS/2 Synaptics TouchPad\""
+screenshotCmd    = "import -window root /tmp/`date +%s.png`"
