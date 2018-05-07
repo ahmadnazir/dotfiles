@@ -43,7 +43,7 @@ function count-group-by()
     local file=$2
     local delim=${3:-,}
 
-    local cmd="awk -F '"$delim"' 'NR>0{arr[$"$colNum"]++}END{for (a in arr) print a, arr[a]}' "$file
+    local cmd="awk -F '"$delim"' 'NR>0{arr[tolower($"$colNum")]++}END{for (a in arr) print a, arr[a]}' "$file
     # echo $cmd
     eval $cmd
 }
