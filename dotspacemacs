@@ -31,9 +31,13 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     elm
+     go
+     python
      nginx
      ;; python
      csv
+     clojure
      haskell
      html
      sql
@@ -84,6 +88,7 @@ values."
                                       org-journal
                                       package-lint
                                       flycheck-package
+                                      editorconfig
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -337,6 +342,7 @@ you should place your code here."
   ;; (visual/set-font-size visual/default-font-size)
   ;; (setq helm-split-window-in-side-p t)
   (setq split-width-threshold 160)
+
   (add-hook 'sql-mode-hook
             (progn
                (yas-minor-mode) ;; disable
@@ -351,12 +357,12 @@ you should place your code here."
   ;; http://stackoverflow.com/a/28985130/1589512
   (setq evil-insert-state-map (make-sparse-keymap))
   (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
-  ;; (editorconfig-mode 1)
-  (add-hook 'before-save-hook
-            '(lambda ()
-               (when (eq major-mode 'haskell-mode)
-                 (hindent-reformat-buffer))
-               ))
+  (editorconfig-mode)
+  ;; (add-hook 'before-save-hook
+  ;;           '(lambda ()
+  ;;              (when (eq major-mode 'haskell-mode)
+  ;;                (hindent-reformat-buffer))
+  ;;              ))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
