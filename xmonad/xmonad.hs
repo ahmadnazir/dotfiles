@@ -9,45 +9,61 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.EZConfig as Config
 import qualified XMonad.Operations as O
 
+import qualified Data.Map as M
+import System.Exit
+
 -- Xmobar
 import XMonad.Hooks.DynamicLog
 
 -- Fixing a problem with chrome focus
 import XMonad.Hooks.EwmhDesktops
 
+import Data.Char
+
+import Debug.Trace
+
 myModMask = mod4Mask
 
-myWorkspaces :: [[Char]]
-myWorkspaces = [
-  "main"      -- 1
-  ,"sign"     -- 2
-  ,"auth"     -- 3
+workspacesAndScreens :: [[[Char]]]
+workspacesAndScreens = [
+  ["main"     ,"1",   "1" ] ,
+  ["sign"     ,"2",   "1" ] ,
+  ["auth"     ,"3",   "1" ] ,
 
-  ,"gateway"  -- 4
-  ,"logs" -- 5
-  ,"?"    -- 6
-  ,"local-db"  -- 7
-  ,"prod-db"       -- 8
-  ,"web"      -- 9
-  ,"todo"     -- 0
-  ,"repl"     -- =
+  ["gateway"  ,"4",   "2" ] ,
+  ["logs"     ,"5",   "2" ] ,
+  ["?"        ,"6",   "2" ] ,
+  ["local-db" ,"7",   "2" ] ,
+  ["prod-db"  ,"8",   "2" ] ,
+  ["9"        ,"9",   "2" ] ,
+  ["0"        ,"0",   "2" ] ,
+
+  ["web"      ,"-",   "0" ] ,
+  ["plan"     ,"=",   "0" ] ,
+
   -- Scratch / tmp
-  ,"tmp-1"    -- [
-  ,"tmp-2"    -- ]
+  ["tmp-1"    ,"[",   "0" ] ,
+  ["tmp-2"    ,"]",   "0" ] ,
+
   -- testing
-  ,"api"      -- ;
+  ["api"      ,";",   "0" ] ,
+
   -- remote
-  ,"sbx"      -- '
-  ,"prd"      -- \
+  ["sbx"      ,"'",   "0" ] ,
+  ["prd"      ,"\\",  "0" ]
   ]
 
--- TODO: switch to screen when a key is pressed
--- myAction action tag = case tag of
---   "main" -> O.screenWorkspace 0  >>= flip whenJust (windows . W.view) >> action tag
---   "sign" -> O.screenWorkspace 1  >>= flip whenJust (windows . W.view) >> action tag
---   _      -> O.screenWorkspace 2  >>= flip whenJust (windows . W.view) >> action tag
+myWorkspaces :: [[Char]]
+myWorkspaces = map (\x -> x !! 0) workspacesAndScreens
 
--- Copied from
+-- focus a workspace to a specific screen
+-- right now the action could be anything from viewing a workpace to shift a window to a workspace
+myFocus screenId action tag =
+  O.screenWorkspace (S screenId) -- Select the screen
+  >>= flip whenJust (windows . W.view) -- Focus the screen
+  >> action tag -- perform the action on the screen (usually, focusing/shift to a workspace)
+
+-- Copied (and modified) from
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
 
 myKeys = [
@@ -58,10 +74,85 @@ myKeys = [
   ("M-S-d", spawn disableTouchPad) ,
   ("M-S-p", spawn screenshotCmd)
   ] ++ [
-  (otherModMasks ++ "M-" ++ [key], action tag) -- @todo: if key 0-5, update action so that monitor 1 is selected
-  | (tag, key)  <- zip myWorkspaces "1234567890=[];'\\" ,
+
+-- screenWorkspace (S screenId) >>= flip whenJust (windows . W.view) >> action tag
+  (otherModMasks ++ "M-" ++ [key], myFocus screenId action tag) -- @todo: if key 0-5, update action so that monitor 1 is selected
+  | (tag, key, screenId)  <- zip3
+                             myWorkspaces
+                             (concat (map (\x -> x !! 1) workspacesAndScreens))
+                             (map digitToInt (concat (map (\x -> x !! 2) workspacesAndScreens)))
+                             -- (map (\x -> x !! 2) workspacesAndScreens)
+  ,
     (otherModMasks, action) <- [ ("", windows . W.view) , ("S-", windows . W.shift)] -- was W.greedyView
   ]
+
+
+help :: String
+help = "I, mandark, have overridden the default keybindings. Check the config to see the keybindings."
+
+-- | The xmonad key bindings. Add, modify or remove key bindings here.
+--
+-- (The comment formatting character is used when generating the manpage)
+--
+defaultKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
+    -- launching and killing programs
+    [ ((modMask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
+    , ((modMask,               xK_p     ), spawn "dmenu_run") -- %! Launch dmenu
+    , ((modMask .|. shiftMask, xK_p     ), spawn "gmrun") -- %! Launch gmrun
+    , ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
+
+    , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
+    , ((modMask .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) -- %!  Reset the layouts on the current workspace to default
+
+    , ((modMask,               xK_n     ), refresh) -- %! Resize viewed windows to the correct size
+
+    -- move focus up or down the window stack
+    , ((modMask,               xK_Tab   ), windows W.focusDown) -- %! Move focus to the next window
+    , ((modMask .|. shiftMask, xK_Tab   ), windows W.focusUp  ) -- %! Move focus to the previous window
+    , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
+    , ((modMask,               xK_k     ), windows W.focusUp  ) -- %! Move focus to the previous window
+    , ((modMask,               xK_m     ), windows W.focusMaster  ) -- %! Move focus to the master window
+
+    -- modifying the window order
+    , ((modMask,               xK_Return), windows W.swapMaster) -- %! Swap the focused window and the master window
+    , ((modMask .|. shiftMask, xK_j     ), windows W.swapDown  ) -- %! Swap the focused window with the next window
+    , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    ) -- %! Swap the focused window with the previous window
+
+    -- resizing the master/slave ratio
+    , ((modMask,               xK_h     ), sendMessage Shrink) -- %! Shrink the master area
+    , ((modMask,               xK_l     ), sendMessage Expand) -- %! Expand the master area
+
+    -- floating layer support
+    , ((modMask,               xK_t     ), withFocused $ windows . W.sink) -- %! Push window back into tiling
+
+    -- increase or decrease number of windows in the master area
+    , ((modMask              , xK_comma ), sendMessage (IncMasterN 1)) -- %! Increment the number of windows in the master area
+    , ((modMask              , xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
+
+    -- quit, or restart
+    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- %! Quit xmonad
+    , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
+
+    , ((modMask .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -")) -- %! Run xmessage with a summary of the default keybindings (useful for beginners)
+    -- repeat the binding for non-American layout keyboards
+    , ((modMask              , xK_question), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+    ]
+    ++
+    -- mod-[1..9] %! Switch to workspace N
+    -- mod-shift-[1..9] %! Move client to workspace N
+    [((m .|. modMask, k), windows $ f i)
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    ++
+
+    -- My modifications
+    --
+    -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
+    -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
+    [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_w, xK_e, xK_r] [1,2,0]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 -- Layouts / Hooks
 myLogHook :: X ()
@@ -79,6 +170,7 @@ defaults = defaultConfig {
              modMask         = myModMask
            , workspaces      = myWorkspaces
            , logHook         = myLogHook -- fixes chrome focus problem
+           , keys            = defaultKeys
 
            -- How do I combine different hooks.. the hook is an IO ()
            -- action so it should be possible to combine multiple of
