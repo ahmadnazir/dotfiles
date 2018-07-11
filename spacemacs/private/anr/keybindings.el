@@ -19,6 +19,12 @@
              (local-set-key (kbd "<C-return>") 'restclient-http-send-current-stay-in-window)
              ))
 
+;; clojure-mode
+(add-hook 'clojure-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)
+             ))
+
 ;; Buffers
 ;;
 (global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
