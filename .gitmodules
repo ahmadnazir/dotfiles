@@ -4,3 +4,6 @@
 [submodule "spacemacs/private/penneo"]
 	path = spacemacs/private/penneo
 	url = git@github.com:ahmadnazir/spacemacs-penneo-layer.git
+[submodule "spacemacs/private/sos/local/pine-mode"]
+	path = spacemacs/private/sos/local/pine-mode
+	url = git@github.com:ahmadnazir/pine-mode.git

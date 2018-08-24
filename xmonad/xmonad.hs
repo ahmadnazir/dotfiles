@@ -37,9 +37,9 @@ workspacesAndScreens = [
   ["prod-db"  ,"8",   "2" ] ,
   ["9"        ,"9",   "2" ] ,
 
-  ["0"        ,"0",   "0" ] ,
-  ["web"      ,"-",   "0" ] ,
-  ["plan"     ,"=",   "0" ] ,
+  ["web"      ,"0",   "0" ] ,
+  ["plan"     ,"-",   "0" ] ,
+  ["sys"      ,"=",   "0" ] ,
 
   -- Scratch / tmp
   ["tmp-1"    ,"[",   "0" ] ,
@@ -56,12 +56,19 @@ workspacesAndScreens = [
 myWorkspaces :: [[Char]]
 myWorkspaces = map (\x -> x !! 0) workspacesAndScreens
 
+myWorkspaceKeys :: [Char]
+myWorkspaceKeys = concat (map (\x -> x !! 1) workspacesAndScreens)
+
+
+
 -- focus a workspace to a specific screen
 -- right now the action could be anything from viewing a workpace to shift a window to a workspace
-myFocus screenId action tag =
+myFocus screenId tag
+  =
   O.screenWorkspace (S screenId) -- Select the screen
   >>= flip whenJust (windows . W.view) -- Focus the screen
-  >> action tag -- perform the action on the screen (usually, focusing/shift to a workspace)
+  >> (windows . W.view) tag -- perform the action on the screen (usually, focusing/shift to a workspace)
+                -- TODO: shifting doesn't work at the moment
 
 -- Copied (and modified) from
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
@@ -75,15 +82,14 @@ myKeys = [
   ("M-S-p", spawn screenshotCmd)
   ] ++ [
 
--- screenWorkspace (S screenId) >>= flip whenJust (windows . W.view) >> action tag
-  (otherModMasks ++ "M-" ++ [key], myFocus screenId action tag) -- @todo: if key 0-5, update action so that monitor 1 is selected
-  | (tag, key, screenId)  <- zip3
-                             myWorkspaces
-                             (concat (map (\x -> x !! 1) workspacesAndScreens))
+  ("M-" ++ [key], myFocus screenId tag)
+  | (tag, key, screenId)  <- zip3 myWorkspaces myWorkspaceKeys
                              (map digitToInt (concat (map (\x -> x !! 2) workspacesAndScreens)))
-                             -- (map (\x -> x !! 2) workspacesAndScreens)
-  ,
-    (otherModMasks, action) <- [ ("", windows . W.view) , ("S-", windows . W.shift)] -- was W.greedyView
+  ] ++ [
+
+  ("S-M-" ++ [key], (windows . W.shift) tag)
+  | (tag, key, screenId)  <- zip3 myWorkspaces myWorkspaceKeys
+                             (map digitToInt (concat (map (\x -> x !! 2) workspacesAndScreens)))
   ]
 
 
@@ -138,12 +144,14 @@ defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- repeat the binding for non-American layout keyboards
     , ((modMask              , xK_question), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
-    ++
-    -- mod-[1..9] %! Switch to workspace N
-    -- mod-shift-[1..9] %! Move client to workspace N
-    [((m .|. modMask, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+    -- ++
+    -- -- mod-[1..9] %! Switch to workspace N
+    -- -- mod-shift-[1..9] %! Move client to workspace N
+    -- [((m .|. modMask, k), windows $ f i)
+    --     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+    --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
     ++
 
     -- My modifications

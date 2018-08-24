@@ -1,3 +1,7 @@
+;; Helper function to remove hooks
+;;
+;; (remove-hook 'clojure-mode-hook (first clojure-mode-hook))
+
 ;; git-gutter
 (global-set-key (kbd "M-n") 'git-gutter+-next-hunk)
 (global-set-key (kbd "M-p") 'git-gutter+-previous-hunk)
@@ -25,6 +29,23 @@
              (local-set-key (kbd "<C-return>") 'cider-eval-defun-at-point)
              ))
 
+(defun python-shell-send-region-at-point (&optional send-main msg)
+  "Testing"
+  (interactive)
+  (let ((start (save-excursion
+                 (backward-paragraph)
+                 (point)))
+        (end (save-excursion
+               (forward-paragraph)
+               (point))))
+    (python-shell-send-region start end send-main msg)))
+
+;; python-mode
+(add-hook 'python-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'python-shell-send-region-at-point)
+             ))
+
 ;; Buffers
 ;;
 (global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
@@ -43,3 +64,9 @@
 (global-set-key (kbd "M-U")  'previous-buffer)
 (global-set-key (kbd "M-I")  'next-buffer)
 
+;; org-mode
+(global-set-key (kbd "C-c i") '(lambda() (interactive) (org-clock-in) (save-buffer)))
+(global-set-key (kbd "C-c o") '(lambda() (interactive) (org-clock-out) (save-buffer)))
+(global-set-key (kbd "C-c r") '(lambda() (interactive) (org-clock-report) (save-buffer)))
+
+(global-set-key (kbd "C-c r") '(lambda() (interactive) (org-clock-report) (save-buffer)))
