@@ -1,20 +1,23 @@
 #!/bin/bash
 
 # set single monitor
-single () {
+-one-monitor () {
     xrandr --output HDMI1 --off --output HDMI2 --off
 }
+
 # set dual monitors
-dual () {
+-two-monitors () {
     xrandr --output eDP1 --primary --output HDMI1 --auto --above eDP1 --output HDMI2 --off
 }
 
-triple () {
+-three-monitors () {
     xrandr --output eDP1 --primary --output HDMI1 --auto --above eDP1 --output HDMI2 --auto --right-of HDMI1
 }
 
+home-mode () {
+    three-monitors
+}
 
-# lock the screen
-lock () {
-    gnome-screensaver-command --lock
+office-mode () {
+    three-monitors
 }
