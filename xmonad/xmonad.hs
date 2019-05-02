@@ -24,42 +24,32 @@ import Debug.Trace
 
 myModMask = mod4Mask
 
-workspacesAndScreens :: [[[Char]]]
+workspacesAndScreens :: [(String, String, Int)]
 workspacesAndScreens = [
-  ["main"     ,"1",   "1" ] ,
-  ["sign"     ,"2",   "1" ] ,
-  ["auth"     ,"3",   "1" ] ,
+  ( "scratch"  ,"1",   1 ) ,
+  ( "local-db" ,"2",   1 ) ,
+  ( "prod-db"  ,"3",   1 ) ,
+  ( "4"        ,"4",   1 ) ,
+  ( "5"        ,"5",   1 ) ,
+  ( "6"        ,"6",   1 ) ,
 
-  ["gateway"  ,"4",   "2" ] ,
-  ["logs"     ,"5",   "2" ] ,
-  ["?"        ,"6",   "2" ] ,
-  ["local-db" ,"7",   "2" ] ,
-  ["prod-db"  ,"8",   "2" ] ,
-  ["9"        ,"9",   "2" ] ,
+  ( "main"     ,"7",   2 ) ,
+  ( "8"        ,"8",   2 ) ,
+  ( "9"        ,"9",   2 ) ,
+  ( "0"        ,"0",   2 ) ,
 
-  ["web"      ,"0",   "0" ] ,
-  ["plan"     ,"-",   "0" ] ,
-  ["sys"      ,"=",   "0" ] ,
+  ( "web"      ,"-",   0 ) ,
+  ( "plan"     ,"=",   0 ) ,
 
   -- Scratch / tmp
-  ["tmp-1"    ,"[",   "0" ] ,
-  ["tmp-2"    ,"]",   "0" ] ,
-
-  -- testing
-  ["api"      ,";",   "0" ] ,
+  ( "tmp-1"    ,";",   0 ) ,
+  ( "tmp-2"    ,"'",   0 ) ,
 
   -- remote
-  ["sbx"      ,"'",   "0" ] ,
-  ["prd"      ,"\\",  "0" ]
+  ( "stg"      ,"[",   0 ) ,
+  ( "sbx"      ,"]",   0 ) ,
+  ( "prd"      ,"\\",  0 )
   ]
-
-myWorkspaces :: [[Char]]
-myWorkspaces = map (\x -> x !! 0) workspacesAndScreens
-
-myWorkspaceKeys :: [Char]
-myWorkspaceKeys = concat (map (\x -> x !! 1) workspacesAndScreens)
-
-
 
 -- focus a workspace to a specific screen
 -- right now the action could be anything from viewing a workpace to shift a window to a workspace
@@ -74,23 +64,16 @@ myFocus screenId tag
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
 
 myKeys = [
-  ("M-S-l", spawn lockScreenCmd)   ,
-  ("M-S-m", spawn volumeIncCmd)    ,
-  ("M-S-n", spawn volumeDecCmd)    ,
-  ("M-S-e", spawn enableTouchPad)  ,
-  ("M-S-d", spawn disableTouchPad) ,
-  ("M-S-p", spawn screenshotCmd)
-  ] ++ [
-
-  ("M-" ++ [key], myFocus screenId tag)
-  | (tag, key, screenId)  <- zip3 myWorkspaces myWorkspaceKeys
-                             (map digitToInt (concat (map (\x -> x !! 2) workspacesAndScreens)))
-  ] ++ [
-
-  ("S-M-" ++ [key], (windows . W.shift) tag)
-  | (tag, key, screenId)  <- zip3 myWorkspaces myWorkspaceKeys
-                             (map digitToInt (concat (map (\x -> x !! 2) workspacesAndScreens)))
+    ("M-S-s", spawn suspendCmd)   ,
+    ("M-S-l", spawn lockScreenCmd)   ,
+    ("M-S-m", spawn volumeIncCmd)    ,
+    ("M-S-n", spawn volumeDecCmd)    ,
+    ("M-S-e", spawn enableTouchPad)  ,
+    ("M-S-d", spawn disableTouchPad) ,
+    ("M-S-p", spawn screenshotCmd)
   ]
+  ++ [ ("M-" ++ keys,   myFocus screenId tag)    | (tag, keys, screenId) <- workspacesAndScreens ]
+  ++ [ ("S-M-" ++ keys, (windows . W.shift) tag) | (tag, keys, screenId) <- workspacesAndScreens ]
 
 
 help :: String
@@ -145,6 +128,8 @@ defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_question), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
 
+    -- My modifications
+
     -- ++
     -- -- mod-[1..9] %! Switch to workspace N
     -- -- mod-shift-[1..9] %! Move client to workspace N
@@ -153,9 +138,6 @@ defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
     ++
-
-    -- My modifications
-    --
     -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
@@ -165,6 +147,8 @@ defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- Layouts / Hooks
 myLogHook :: X ()
 myLogHook = ewmhDesktopsLogHook
+
+fst' (x,_,_) = x
 
 -- Note: xmobar relies on the statusBar in
 -- xmonad-contrib:XMonad.Hooks.DynamicLog, which specifies how the
@@ -176,7 +160,7 @@ main = xmonad =<< xmobar defaults
 
 defaults = defaultConfig {
              modMask         = myModMask
-           , workspaces      = myWorkspaces
+           , workspaces      = map fst' workspacesAndScreens
            , logHook         = myLogHook -- fixes chrome focus problem
            , keys            = defaultKeys
 
@@ -205,8 +189,9 @@ defaults = defaultConfig {
 -- would make sense to place them in a common place
 
 lockScreenCmd   = "gnome-screensaver-command --lock"
+suspendCmd      = "sudo pm-suspend"
 volumeIncCmd    = "pactl -- set-sink-volume 0 +10%"
 volumeDecCmd    = "pactl -- set-sink-volume 0 -10%"
 enableTouchPad  = "xinput --enable \"SynPS/2 Synaptics TouchPad\""
 disableTouchPad = "xinput --disable \"SynPS/2 Synaptics TouchPad\""
-screenshotCmd    = "import -window root /tmp/`date +%s.png`"
+screenshotCmd   = "import -window root /tmp/`date +%s.png`"
