@@ -1,23 +1,27 @@
 #!/bin/bash
 
+
+ONE=DVI-I-1-1
+TWO=DVI-I-2-2
+LAPTOP=eDP-1
+
 # set single monitor
 -one-monitor () {
-    xrandr --output HDMI1 --off --output HDMI2 --off
-}
-
-# set dual monitors
--two-monitors () {
-    xrandr --output eDP1 --primary --output HDMI1 --auto --above eDP1 --output HDMI2 --off
+    # xrandr --output $ONE --off --output $TWO --off
+    xrandr --output $LAPTOP --primary --output $ONE --off --output $TWO --off
 }
 
 -three-monitors () {
-    xrandr --output eDP1 --primary --output HDMI1 --auto --above eDP1 --output HDMI2 --auto --right-of HDMI1
+    # xrandr --output $LAPTOP --primary --output $TWO --auto --left-of $LAPTOP --output $ONE --auto --left-of $TWO
+    xrandr --output $LAPTOP --primary
+    xrandr --output $TWO --auto --left-of $LAPTOP
+    xrandr --output $ONE --auto --left-of $TWO
 }
 
 home-mode () {
-    three-monitors
+    -one-monitor
 }
 
 office-mode () {
-    three-monitors
+    -three-monitors
 }
