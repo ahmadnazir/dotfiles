@@ -132,6 +132,12 @@ function scribbles-publish () {
   cd -
 }
 
+function scribbles-compile () {
+    cd ~/code/me/scribbles
+    di ahmadnazir/sphinx make html
+    cd -
+}
+
 function blog-publish () {
   cd ~/code/me/ahmadnazir.github.io
   git push origin `git subtree split --prefix blog/_site source`:master --force
