@@ -13,14 +13,14 @@ Config {
    , alignSep = "}{"  -- separator between left-right alignment
 
    -- @todo: try |system|
-   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520>`vpn` `locks`</fc>    `multicpu` / `coretemp`     `memory` / `swap`     `kbd` `date`"
+   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520> `locks`</fc>    `multicpu` / `coretemp`     `memory` / `swap`     `kbd` `date`"
 
    -- general behavior
    , lowerOnStart =     False    -- send to bottom of window stack on start
    , hideOnStart =      False   -- start with window unmapped (hidden)
    , allDesktops =      True    -- show on all desktops
    , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-   -- @mandark: The following is throwing an error for some reason 
+   -- @mandark: The following is throwing an error for some reason
    -- , pickBroadest =     False   -- choose widest display (multi-monitor)
    , persistent =       True    -- enable/disable hiding (True = disabled)
 
@@ -73,7 +73,7 @@ Config {
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 50
-                          
+
         -- memory usage monitor
         , Run Memory         [ "--template" ,"<usedratio>%"
                              , "--Low"      , "30"        -- units: %
@@ -132,17 +132,17 @@ Config {
         -- Caps lock etc
         , Run Locks
 
-        -- time and date indicator 
+        -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
 
         -- this should somehow be helpful in fixing the problem when xmonad gets stuck
         -- @see http://www.haskell.org/haskellwiki/Xmonad/Frequently_asked_questions#XMonad_is_frozen.21
         -- wifi indicator
-        , Run Com "/home/mandark/.bash-scripts/wireless.sh" [] "wifi" 25
+        , Run Com "/home/darkman/.bash-scripts/wireless.sh" [] "wifi" 25
 
         -- VPN connectivity status
-        , Run Com "/home/mandark/.bash-scripts/vpn-status.sh" [] "vpn" 25
+        -- , Run Com "/home/mandark/.bash-scripts/vpn-status.sh" [] "vpn" 25
 
         , Run StdinReader
 

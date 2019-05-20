@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/mandark/.oh-my-zsh
+export ZSH=/home/darkman/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,11 +49,13 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker-compose)
+#
+# plugins=(git docker-compose)
+plugins=(git)
 
 # User configuration
 
-export PATH="/home/mandark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/home/darkman/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,26 +85,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# anr
-
-# custom aliases that shouldn't be committed
-# @todo: remove this aliases file as I don't seem to be using them
-# source $HOME/.aliases
-
-if [ -d "$HOME/.cabal/bin" ] ; then
-  PATH="$PATH:$HOME/.cabal/bin"
-fi
-
 # Load all the functions - maybe this should be created as a plugin
 for file in ~/.bash-scripts/functions/*.sh
 do
   . $file
 done
-
-# # Default editor
-# export EDITOR=emacsclient
-
-export ATHAME_ENABLED=0
 
 j() {
     unset -f j
@@ -121,20 +108,32 @@ nvm() {
 }
 
 
-myinit() {
-    # 1. Store keys in the ssh-session
-    # 2. Update the logo - to indicate that keys have been added :)
-
-    # @fixme: location of the image should be relative and committed to the repo
-    # @fixme: This is functionality specific to me. Maybe I should create a shim for the keys command
-    keys && \
-        feh --bg-scale /home/mandark/Pictures/Background/427841.png
+keys-init () {
+    ssh-add ~/.ssh/id_rsa
 }
 
-if [ ! -f /tmp/.myinit ]; then
+# Init xmonad
+if [ ! -f /tmp/.init-bg ]; then
+    background-init && touch /tmp/.init-bg
+fi
+
+# Add keys to ssh
+if [ ! -f /tmp/.init-keys ]; then
     b=$(tput bold)
     n=$(tput sgr0)
     echo "${b}Initializing:${n}"
-    myinit && \
-        touch /tmp/.myinit
+    ssh-add ~/.ssh/id_rsa
+    touch /tmp/.init-keys
 fi
+
+function scribbles-publish () {
+  cd ~/code/me/scribbles
+  git push origin `git subtree split --prefix build/html source`:master --force
+  cd -
+}
+
+function blog-publish () {
+  cd ~/code/me/ahmadnazir.github.io
+  git push origin `git subtree split --prefix blog/_site source`:master --force
+  cd -
+}

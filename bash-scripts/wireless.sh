@@ -2,13 +2,13 @@
 
 # https://bbs.archlinux.org/viewtopic.php?id=74842
 
-iwconfig wlan0 2>&1 | grep -q no\ wireless\ extensions\. && {
+iwconfig wlp2s0 2>&1 | grep -q no\ wireless\ extensions\. && {
   echo wired
   exit 0
 }
 
-essid=`iwconfig wlan0 | awk -F '"' '/ESSID/ {print $2}'`
-stngth=`iwconfig wlan0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
+essid=`iwconfig wlp2s0 | awk -F '"' '/ESSID/ {print $2}'`
+stngth=`iwconfig wlp2s0 | awk -F '=' '/Quality/ {print $2}' | cut -d '/' -f 1`
 bars=`expr $stngth / 10`
 
 case $bars in

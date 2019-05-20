@@ -24,48 +24,42 @@ import Debug.Trace
 
 myModMask = mod4Mask
 
-workspacesAndScreens :: [(String, String, Int)]
-workspacesAndScreens = [
-  ( "a-1"        ,"1",   0 ) ,
-  ( "a-2"        ,"2",   0 ) ,
-  ( "a-3"        ,"3",   0 ) ,
-  ( "a-4"        ,"4",   0 ) ,
-  ( "a-5"        ,"5",   0 ) ,
-  ( "a-6"        ,"6",   0 ) ,
+myWorkspaces :: [(String, String)]
+myWorkspaces = [
+  ( "a-1"        ,"1" ) ,
+  ( "a-2"        ,"2" ) ,
+  ( "a-3"        ,"3" ) ,
 
-  ( "b-1"        ,"7",   2 ) ,
-  ( "b-2"        ,"8",   2 ) ,
+  ( "b-1"        ,"4" ) ,
+  ( "b-2"        ,"5" ) ,
+  ( "b-3"        ,"6" ) ,
 
-  ( "c-1"        ,"9",   1 ) ,
-  ( "c-2"        ,"0",   1 ) ,
-
-  ( "api"        ,";",   0 )
+  ( "c-1"        ,"7" ) ,
+  ( "c-2"        ,"8" ) ,
+  ( "c-3"        ,"9" ) ,
+  ( "c-4"        ,"0" )
 
   ]
 
+   -- [((m .|. modm, k), windows $ f i)
+   --      | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+   --      , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+
 -- focus a workspace to a specific screen
 -- right now the action could be anything from viewing a workpace to shift a window to a workspace
-myFocus screenId tag
-  =
-  O.screenWorkspace (S screenId) -- Select the screen
-  >>= flip whenJust (windows . W.view) -- Focus the screen
-  >> (windows . W.view) tag -- perform the action on the screen (usually, focusing/shift to a workspace)
-                -- TODO: shifting doesn't work at the moment
+myFocus tag = (windows . W.greedyView) tag
 
 -- Copied (and modified) from
 -- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#Replacing_greedyView_with_view
 
 myKeys = [
-    -- ("M-S-s", spawn suspendCmd)   ,
     ("M-S-l", spawn lockScreenCmd)   ,
     ("M-S-m", spawn volumeIncCmd)    ,
     ("M-S-n", spawn volumeDecCmd)    ,
-    -- ("M-S-e", spawn enableTouchPad)  ,
-    -- ("M-S-d", spawn disableTouchPad) ,
     ("M-S-p", spawn screenshotCmd)
   ]
-  ++ [ ("M-" ++ keys,   myFocus screenId tag)    | (tag, keys, screenId) <- workspacesAndScreens ]
-  ++ [ ("S-M-" ++ keys, (windows . W.shift) tag) | (tag, keys, screenId) <- workspacesAndScreens ]
+  ++ [ ("M-" ++ keys,   myFocus tag)    | (tag, keys) <- myWorkspaces ]
+  ++ [ ("S-M-" ++ keys, (windows . W.shift) tag) | (tag, keys) <- myWorkspaces]
 
 
 help :: String
@@ -120,25 +114,10 @@ defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_question), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     ]
 
-    -- My modifications
 
-    -- ++
-    -- -- mod-[1..9] %! Switch to workspace N
-    -- -- mod-shift-[1..9] %! Move client to workspace N
-    -- [((m .|. modMask, k), windows $ f i)
-    --     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-    --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-
-    ++
-    -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
-    [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0,2,1]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-
--- Layouts / Hooks
-myLogHook :: X ()
-myLogHook = ewmhDesktopsLogHook
+-- -- Layouts / Hooks
+-- myLogHook :: X ()
+-- myLogHook = ewmhDesktopsLogHook
 
 fst' (x,_,_) = x
 
@@ -152,24 +131,10 @@ main = xmonad =<< xmobar defaults
 
 defaults = defaultConfig {
              modMask         = myModMask
-           , workspaces      = map fst' workspacesAndScreens
-           , logHook         = myLogHook -- fixes chrome focus problem
+           , workspaces      = map fst myWorkspaces
+           -- , logHook         = myLogHook -- fixes chrome focus problem
            , keys            = defaultKeys
            , terminal        = "gnome-terminal"
-
-           -- How do I combine different hooks.. the hook is an IO ()
-           -- action so it should be possible to combine multiple of
-           -- them
-           -- , logHook         = myLogHook <b> dynamicLog -- How do I combine the two?
-
-           -- Playing with the xmobar output, apparently it doesn't
-           -- have any affect
-           --
-           -- , logHook         = dynamicLogWithPP xmobarPP
-           --                     {
-           --                       -- ppOutput = hPutStrLn xmproc
-           --                       ppTitle = xmobarColor "green" "" . shorten 50
-           --                     }
 
            } `Config.additionalKeysP` myKeys
 
@@ -182,9 +147,6 @@ defaults = defaultConfig {
 -- would make sense to place them in a common place
 
 lockScreenCmd   = "gnome-screensaver-command --lock"
-suspendCmd      = "sudo pm-suspend"
 volumeIncCmd    = "pactl -- set-sink-volume 0 +10%"
 volumeDecCmd    = "pactl -- set-sink-volume 0 -10%"
-enableTouchPad  = "xinput --enable \"SynPS/2 Synaptics TouchPad\""
-disableTouchPad = "xinput --disable \"SynPS/2 Synaptics TouchPad\""
 screenshotCmd   = "import -window root /tmp/`date +%s.png`"
