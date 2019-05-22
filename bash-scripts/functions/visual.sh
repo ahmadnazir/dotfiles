@@ -1,20 +1,28 @@
 #!/bin/bash
 
-ONE=DVI-I-1-1
-TWO=DVI-I-2-2
-LAPTOP=eDP-1
+W1=DVI-I-1-1
+W2=DVI-I-2-2
 
-# set single monitor
--one-monitor () {
+H1=DP-1-1
+
+DEFAULT=eDP-1
+
+-lap () {
     restart-xmonad "basic"
-    xrandr --output $LAPTOP --primary --output $ONE --off --output $TWO --off
+    xrandr --output $DEFAULT --primary --output $W1 --off --output $W2 --off --output $H1 --off
 }
 
--three-monitors () {
+-home () {
+    restart-xmonad "home"
+    xrandr --output $DEFAULT --primary \
+           --output $H1 --auto --right-of $DEFAULT \
+}
+
+-work () {
     restart-xmonad "xinerama"
-    xrandr --output $LAPTOP --primary \
-           --output $ONE --auto --right-of $LAPTOP \
-           --output $TWO --auto --right-of $ONE
+    xrandr --output $DEFAULT --primary \
+           --output $W1 --auto --right-of $DEFAULT \
+           --output $W2 --auto --right-of $W1
 }
 
 # hack for xmonad until I fix my display link setup
@@ -23,17 +31,22 @@ restart-xmonad () {
     ln -sf /home/darkman/.xmonad/xmonad-${1}.hs /home/darkman/.xmonad/xmonad.hs
     xmonad --recompile
     xmonad --restart
+    background-init
 }
 
 background-init () {
     feh --bg-scale /home/darkman/code/me/dotfiles/images/bg.png
 }
 
+lap () {
+    -lap
+}
+
 home () {
-    -one-monitor
+    -home
 }
 
 work () {
-    -three-monitors
+    -work
 }
 
