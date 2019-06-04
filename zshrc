@@ -108,10 +108,6 @@ nvm() {
 }
 
 
-keys-init () {
-    ssh-add ~/.ssh/id_rsa
-}
-
 # Init xmonad
 if [ ! -f /tmp/.init-bg ]; then
     background-init && touch /tmp/.init-bg
