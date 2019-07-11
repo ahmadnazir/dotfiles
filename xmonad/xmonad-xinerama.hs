@@ -27,16 +27,16 @@ myModMask = mod4Mask
 workspacesAndScreens :: [(String, String, Int)]
 workspacesAndScreens = [
   ( "me"       ,"`",   0 ) ,
-  ( "1"        ,"1",   0 ) ,
-  ( "2"        ,"2",   0 ) ,
-  ( "3"        ,"3",   0 ) ,
-  ( "4"        ,"4",   0 ) ,
-  ( "5"        ,"5",   0 ) ,
+  ( "teams"    ,"1",   0 ) ,
+  ( "mail"     ,"2",   0 ) ,
+  ( "brp"      ,"3",   0 ) ,
+  ( "azure"    ,"4",   0 ) ,
+  ( "search"   ,"5",   0 ) ,
   ( "6"        ,"6",   0 ) ,
-  ( "7"        ,"7",   1 ) , -- 2
-  ( "8"        ,"8",   1 ) , -- 2
-  ( "9"        ,"9",   1 ) ,
-  ( "0"        ,"0",   1 )
+  ( "code"     ,"7",   1 ) ,
+  ( "8"        ,"8",   1 ) ,
+  ( "9"        ,"9",   2 ) ,
+  ( "0"        ,"0",   2 )
 
   ]
 
@@ -130,7 +130,7 @@ defaultKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     -- mod-{w,e,r} %! Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r} %! Move client to screen 1, 2, or 3
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0,1,1]
+        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0,1,2]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 -- Layouts / Hooks

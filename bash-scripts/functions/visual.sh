@@ -3,8 +3,11 @@
 # W1=DVI-I-1-1
 # W2=DVI-I-2-2
 
-W1=DP-2
-W2=DP-1
+# W1=DP-2
+# W2=DP-1
+
+W1=DP-1-2
+W2=DP-2-2
 
 H1=DP-1-1
 
@@ -28,11 +31,18 @@ DEFAULT=eDP-1
     restart-xmonad "xinerama"
 }
 
+-work-v () {
+    xrandr --output $DEFAULT --primary \
+           --output $W1 --auto --above $DEFAULT
+    restart-xmonad "xinerama"
+}
+
+
 # hack for xmonad until I fix my display link setup
 restart-xmonad () {
-    rm ~/.xmonad/xmonad.state
+    # rm ~/.xmonad/xmonad.state
     ln -sf /home/darkman/.xmonad/xmonad-${1}.hs /home/darkman/.xmonad/xmonad.hs
-    xmonad --recompile
+    xmonad --recompile # @todo: disable once all the environments have been compiled
     xmonad --restart
     background-init
 }
@@ -55,3 +65,7 @@ work () {
     -work
 }
 
+work-v () {
+    -lap
+    -work-v
+}
