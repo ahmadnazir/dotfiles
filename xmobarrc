@@ -1,7 +1,7 @@
 Config {
 
    -- appearance
-     font =         "xft:Bitstream Vera Sans Mono:size=10:bold:antialias=true"
+     font =         "xft:Bitstream Vera Sans Mono:size=12:antialias=true"
    , bgColor =      "black"
    , fgColor =      "#646464"
    , position =     Top
@@ -13,15 +13,15 @@ Config {
    , alignSep = "}{"  -- separator between left-right alignment
 
    -- @todo: try |system|
-   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520> `locks`</fc>    `multicpu` / `coretemp`     `memory` / `swap`     `kbd` `date`"
+   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520> `locks`</fc>    C: `multicpu` / M: `memory` `swap` / T: `coretemp`     `kbd` `date`"
 
    -- general behavior
    , lowerOnStart =     False    -- send to bottom of window stack on start
    , hideOnStart =      False   -- start with window unmapped (hidden)
    , allDesktops =      True    -- show on all desktops
    , overrideRedirect = True    -- set the Override Redirect flag (Xlib)
-   -- @mandark: The following is throwing an error for some reason
-   -- , pickBroadest =     False   -- choose widest display (multi-monitor)
+   -- TODO Also try this setting with a single monitor
+   , pickBroadest =     False   -- choose widest display (multi-monitor)
    , persistent =       True    -- enable/disable hiding (True = disabled)
 
    -- plugins
@@ -76,16 +76,16 @@ Config {
 
         -- memory usage monitor
         , Run Memory         [ "--template" ,"<usedratio>%"
-                             , "--Low"      , "30"        -- units: %
-                             , "--High"     , "85"        -- units: %
+                             , "--Low"      , "50"        -- units: %
+                             , "--High"     , "80"        -- units: %
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
                              ] 10
 
         , Run Swap           [ "--template", "<usedratio>%"
-                             , "--Low"      , "10"        -- units: %
-                             , "--High"     , "85"        -- units: %
+                             , "--Low"      , "0"        -- units: %
+                             , "--High"     , "10"       -- units: %
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
