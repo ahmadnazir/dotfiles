@@ -46,6 +46,12 @@
              (local-set-key (kbd "<C-return>") 'python-shell-send-region-at-point)
              ))
 
+;; csharp-mode
+(add-hook 'csharp-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'omnisharp-auto-complete)
+             ))
+
 ;; Buffers
 ;;
 (global-set-key (kbd "M-O" ) '(lambda() (interactive) (other-window  1)))
