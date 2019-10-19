@@ -9,7 +9,8 @@
 W1=DP-1-2
 W2=DP-2-2
 
-H1=DP-1-1
+# H1=DP-1-1
+H1=HDMI-1
 
 DEFAULT=eDP-1
 
@@ -20,7 +21,7 @@ DEFAULT=eDP-1
 
 -home () {
     xrandr --output $DEFAULT --primary \
-           --output $H1 --auto --right-of $DEFAULT
+           --output $H1 --scale 1.85x1.85 --auto --right-of $DEFAULT
     restart-xmonad "home"
 }
 
