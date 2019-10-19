@@ -21,7 +21,7 @@ DEFAULT=eDP-1
 
 -home () {
     xrandr --output $DEFAULT --primary \
-           --output $H1 --scale 1.85x1.85 --auto --right-of $DEFAULT
+           --output $H1 --scale 1.6x1.6 --auto --right-of $DEFAULT
     restart-xmonad "home"
 }
 
