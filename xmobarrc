@@ -13,7 +13,7 @@ Config {
    , alignSep = "}{"  -- separator between left-right alignment
 
    -- @todo: try |system|
-   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520> `locks`</fc>    C: `multicpu` / M: `memory` `swap` / T: `coretemp`     `kbd` `date`"
+   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520> `locks`</fc>   Disk: `diskspace` / C: `multicpu` / M: `memory` `swap` / T: `coretemp`     `kbd` `date`"
 
    -- general behavior
    , lowerOnStart =     False    -- send to bottom of window stack on start
@@ -76,8 +76,8 @@ Config {
 
         -- memory usage monitor
         , Run Memory         [ "--template" ,"<usedratio>%"
-                             , "--Low"      , "50"        -- units: %
-                             , "--High"     , "80"        -- units: %
+                             , "--Low"      , "60"        -- units: %
+                             , "--High"     , "90"        -- units: %
                              , "--low"      , "darkgreen"
                              , "--normal"   , "darkorange"
                              , "--high"     , "darkred"
@@ -135,6 +135,8 @@ Config {
         -- time and date indicator
         --   (%F = y-m-d date, %a = day of week, %T = h:m:s time)
         , Run Date           "<fc=#ABABAB>%F (%a) %T</fc>" "date" 10
+
+        , Run Com "/home/darkman/.bash-scripts/diskspace.sh" [] "diskspace" 25
 
         -- this should somehow be helpful in fixing the problem when xmonad gets stuck
         -- @see http://www.haskell.org/haskellwiki/Xmonad/Frequently_asked_questions#XMonad_is_frozen.21
