@@ -35,6 +35,7 @@
     (visual :location local)
     (window :location local)
     (crypt :location local)
+    (plantuml :location local)
     )
   "The list of Lisp packages required by the anr layer.
 
@@ -81,5 +82,10 @@ Each entry is either:
 (defun anr/init-crypt()
   "Initialize crypt package"
   (use-package crypt)
+  )
+
+(defun anr/init-plantuml()
+  "Initialize plantuml package"
+  (use-package plantuml)
   )
 ;;; packages.el ends here

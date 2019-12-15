@@ -1,0 +1,13 @@
+---
+- name: Provision my machine with goodies
+  hosts: localhost
+
+  tasks:
+  - name: jq
+    apt:
+      name: jq
+
+  tasks:
+  - name: Powershell
+    apt:
+      name: powershell
