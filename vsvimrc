@@ -1,0 +1,44 @@
+" spacemacs/kill-this-buffer
+nnoremap <space>bd :vsc Window.CloseDocumentWindow<cr>
+" spacemacs/helm-project-do-ag
+nnoremap <space>sap :vsc Window.SolutionExplorerSearch<cr>
+" spacemacs/helm-find-files
+nnoremap <space>ff :vsc Edit.FindInFiles<cr>
+" save-buffer
+nnoremap <space>fs :vsc File.SaveSelectedItems<cr>
+" describe-key
+nnoremap <space>hdk :vsc Tools.CustomizeKeyboard<cr>
+" other-window
+nnoremap <space>ww :vsc Window.NextDocumentWindow<cr>
+nnoremap <space>bn :vsc Window.NextDocumentWindow<cr>
+nnoremap <space>bp :vsc Window.PreviousDocumentWindow<cr>
+
+nnoremap <space>zf+ :vsc View.ZoomIn<cr>
+nnoremap <space>zf- :vsc View.ZoomOut<cr>
+
+" nnoremap <space>v :vsc Edit.ExpandSelection<cr>
+" nnoremap <space>V :vsc Edit.ContractSelection<cr>
+
+
+let mapleader = ","
+
+" omnisharp-find-implementations
+nnoremap <leader>gi :vsc Edit.GoToImplementation<cr>
+" omnisharp-helm-find-symbols
+nnoremap <leader>gs :vsc Edit.GoToAll<cr>
+
+
+"Close everything : File.Exit<cr>
+"Refactor rename : Refactor.Rename<cr>
+"Edit.NextMethod<cr>
+"Edit.PreviousMethod<cr>
+"View.NextError<cr>
+"View.PreviousError<cr>
+
+"" testing and debugging
+" nnoremap <leader>b :vsc Debug.ToggleBreakpoint<cr>
+" nnoremap <leader>r :vsc TestExplorer.RunAllTestsInContext<cr>
+" nnoremap <leader>R :vsc TestExplorer.DebugAllTestsInContext<cr>
+
+"" open the change parameter window, a bit fake because it's not a text-object
+" nnoremap cia :vsc Refactor.ReorderParameters<cr>
