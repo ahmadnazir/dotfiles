@@ -56,13 +56,28 @@
 (global-set-key (kbd "C-0") 'visual/toggle-font-size)
 
 
-; org-mode
+; org journal
+(spacemacs/declare-prefix "oj" "journal")
+(spacemacs/set-leader-keys "ojn" 'org-journal-new-entry)
+(spacemacs/set-leader-keys "ojb" 'org-journal-open-previous-entry)
+(spacemacs/set-leader-keys "ojf" 'org-journal-open-next-entry)
 
-(spacemacs/declare-prefix "oo" "org")
-(spacemacs/set-leader-keys "oon" 'org-journal-new-entry)
-(spacemacs/set-leader-keys "ooi" '(lambda() (interactive) (org-clock-in) (save-buffer)))
-(spacemacs/set-leader-keys "ooo" '(lambda() (interactive) (org-clock-out) (save-buffer)))
-(spacemacs/set-leader-keys "oor" '(lambda() (interactive) (org-clock-report) (save-buffer)))
+; clock !
+(spacemacs/declare-prefix "oc" "clock")
+(spacemacs/set-leader-keys "ocd" 'org-clock-display)
+(spacemacs/set-leader-keys "oci" '(lambda() (interactive) (org-clock-in) (save-buffer)))
+(spacemacs/set-leader-keys "oco" '(lambda() (interactive) (org-clock-out) (save-buffer)))
+(spacemacs/set-leader-keys "ocr" '(lambda() (interactive)
+                                    (beginning-of-buffer)
+                                    (evil-open-below 0)
+                                    (org-clock-report)
+                                    (save-buffer)))
+
+(spacemacs/set-leader-keys "ob" 'pop-global-mark) ;; Go back to the previous cursor position
+
+;; the following doesn't seem to work
+(spacemacs/declare-prefix-for-mode 'org-journal-mode "o" "custom")
+(spacemacs/set-leader-keys-for-major-mode 'org-mode "oc" 'org-ctrl-c-ctrl-c)
 
 ;; Legacy
 
