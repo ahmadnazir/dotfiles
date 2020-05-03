@@ -73,7 +73,7 @@
                                     (org-clock-report)
                                     (save-buffer)))
 
-(spacemacs/set-leader-keys "ob" 'pop-global-mark) ;; Go back to the previous cursor position
+(spacemacs/set-leader-keys "or" 'helm-global-mark-ring)
 
 ;; the following doesn't seem to work
 (spacemacs/declare-prefix-for-mode 'org-journal-mode "o" "custom")
