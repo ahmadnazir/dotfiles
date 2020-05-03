@@ -18,7 +18,8 @@ PRIMARY_SCREEN=eDP-1
 
     disable-secondary-screens && \
     xrandr --output $PRIMARY_SCREEN --primary \
-           --output $H1 --auto --right-of $PRIMARY_SCREEN
+           --output $H1 --auto --right-of $PRIMARY_SCREEN \
+           --scale 1.75x1.75
     restart-xmonad "home"
 }
 
