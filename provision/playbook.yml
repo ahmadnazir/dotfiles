@@ -3,11 +3,43 @@
   hosts: localhost
 
   tasks:
-  - name: jq
+  - name: vim
     apt:
-      name: jq
+      name: vim
+  - name: emacs
+    apt:
+      name: emacs
+  - name: git
+    apt:
+      name: git
+  - name: xmonad
+    apt:
+      name: xmonad
+  - name: xmobar
+    apt:
+      name: xmobar
+  - name: xmobar
+    apt:
+      name: xmobar
+  - name: dmenu
+    apt:
+      name: dmenu
+  - name: zsh
+    apt:
+      name: zsh
+  - name: feh
+    apt:
+      name: feh
 
-  tasks:
-  - name: Powershell
+  # Really fast search: ag > awk > grep (Runtimes)
+  # @see https://github.com/ggreer/the_silver_searcher
+  - name: The silver searcher
     apt:
-      name: powershell
+      name: silversearcher-ag
+
+  - name: autojump
+    apt:
+      name: autojump
+  - name: cowsay
+    apt:
+      name: cowsay

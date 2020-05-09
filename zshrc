@@ -91,13 +91,7 @@ do
   . $file
 done
 
-j() {
-    unset -f j
-    [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] \
-        && source $HOME/.autojump/etc/profile.d/autojump.sh \
-        && autoload -U compinit && compinit -u
-    j "$@"
-}
+. /usr/share/autojump/autojump.sh
 
 nvm() {
     unset -f nvm
