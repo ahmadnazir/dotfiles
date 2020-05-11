@@ -9,6 +9,14 @@
   - name: emacs
     apt:
       name: emacs
+
+  - name: tree
+    apt:
+      name: tree
+  - name: xclip
+    apt:
+      name: xclip
+
   - name: git
     apt:
       name: git
@@ -43,3 +51,11 @@
   - name: cowsay
     apt:
       name: cowsay
+
+  - name: docker
+    apt:
+      name: docker.io
+
+  - name: Chromium
+    apt:
+      name: chromium-browser
