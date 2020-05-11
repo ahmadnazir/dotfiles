@@ -71,7 +71,9 @@
                                     (beginning-of-buffer)
                                     (evil-open-below 0)
                                     (org-clock-report)
-                                    (save-buffer)))
+                                    (save-buffer)
+                                    (evil-force-normal-state)
+                                    ))
 
 (spacemacs/set-leader-keys "or" 'helm-global-mark-ring)
 
