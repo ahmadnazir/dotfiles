@@ -13,7 +13,7 @@ Config {
    , alignSep = "}{"  -- separator between left-right alignment
 
    -- @todo: try |system|
-   , template = "`battery`      `wifi`      `StdinReader` }{ <fc=#dAA520> `locks`</fc>   Disk: `diskspace` / C: `multicpu` / M: `memory` `swap` / T: `coretemp`     `kbd` `date`"
+   , template = "`battery`      `wifi`   `StdinReader` }{ <fc=#dAA520> `locks`</fc>   Disk: `diskspace` / C: `multicpu` / M: `memory` `swap` / T: `coretemp`   `kbd` `vpn`   `date`"
 
    -- general behavior
    , lowerOnStart =     False    -- send to bottom of window stack on start
@@ -144,7 +144,7 @@ Config {
         , Run Com "/home/darkman/.bash-scripts/wireless.sh" [] "wifi" 25
 
         -- VPN connectivity status
-        -- , Run Com "/home/mandark/.bash-scripts/vpn-status.sh" [] "vpn" 25
+        , Run Com "/home/darkman/.bash-scripts/vpn-status.sh" [] "vpn" 25
 
         , Run StdinReader
 
