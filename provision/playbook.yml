@@ -10,12 +10,18 @@
     apt:
       name: emacs
 
+  - name: curl
+    apt:
+      name: curl
   - name: tree
     apt:
       name: tree
   - name: xclip
     apt:
       name: xclip
+  - name: jq
+    apt:
+      name: jq
 
   - name: git
     apt:
@@ -59,3 +65,36 @@
   - name: Chromium
     apt:
       name: chromium-browser
+
+  - name: Pulse audio video control
+    apt:
+      name: pavucontrol
+
+  # Screen recording
+  - name: Kazam
+    apt:
+      name: kazam
+  # Screenshots
+  - name: flameshot
+    apt:
+      name: flameshot
+
+  # Play videos
+  - name: VLC
+    apt:
+      name: vlc
+
+  # Secret management
+  - name: Last pass
+    apt:
+      name: lastpass-cli
+
+  # xfreerdp
+  - name: Remote desktop
+    apt:
+      name: freerdp2-x11
+
+  # Python formatter
+  - name: Yapf
+    apt:
+      name: yapf3
