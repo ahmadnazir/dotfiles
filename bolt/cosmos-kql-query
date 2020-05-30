@@ -1,0 +1,6 @@
+#!/bin/bash
+
+QUERY="$1"
+
+cosmosdb 8000 kql "$QUERY"
+

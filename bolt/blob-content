@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Usage
+# blob ci_$CI_IID/Enriched/model.json
+
+PREFIX=${1:-$BLOB_PREFIX}
+echo "Prefix    : $PREFIX"
+echo "Container : $BLOB_CONTAINER_NAME"
+
+FILE=/tmp/blob-contents.xxx
+az storage blob download --container-name $BLOB_CONTAINER_NAME --name $1 --file $FILE --output none && cat $FILE

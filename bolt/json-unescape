@@ -1,0 +1,14 @@
+#!/usr/bin/python3
+
+import sys, json
+
+# Unescape
+s = json.loads(sys.argv[1])
+
+# Load the string as json
+j = json.loads(s)
+
+# Pretty print
+output = json.dumps(j, indent=4)
+
+print(output)

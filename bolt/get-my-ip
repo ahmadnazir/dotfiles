@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl -s -XGET https://httpbin.org/get | jq -r '.origin'
