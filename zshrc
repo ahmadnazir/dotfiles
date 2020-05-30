@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/darkman/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -55,9 +55,6 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/home/darkman/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -85,34 +82,47 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Load all the functions - maybe this should be created as a plugin
-for file in ~/.bash-scripts/functions/*.sh
+# Custom functions
+for file in ~/.dotfiles/bash-scripts/functions/*.sh
 do
   . $file
 done
 
 . /usr/share/autojump/autojump.sh
 
-nvm() {
-    unset -f nvm
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    nvm "$@"
-}
-
-
-# Init xmonad
+# Init
 if [ ! -f /tmp/.init-bg ]; then
-    background-init && touch /tmp/.init-bg
+    background-init && touch /tmp/.init-bg && ~/.dotfiles/quotes/random.sh
 fi
 
 # Add keys to ssh
 if [ ! -f /tmp/.init-keys ]; then
     b=$(tput bold)
     n=$(tput sgr0)
-    echo "${b}Initializing:${n}"
-    ssh-add ~/.ssh/id_rsa
+    echo "${b}Disabled adding the keys!${n}"
+    # echo "${b}Initializing:${n}"
+    # ssh-add ~/.ssh/id_rsa
     touch /tmp/.init-keys
 fi
 
+# export PATH="$HOME/.cask/bin:$PATH"
+export PATH="$HOME/.bolt:$PATH"
+
+# Specific rc files
+RC_DIR=~/.rc
+if [ -d $RC_DIR ]; then
+    for file in $RC_DIR/*rc
+    do
+        . $file
+    done
+fi
+
+# Secret rc files
+# These temporarily hold secrets before moving to lpass / keyvault
+RC_DIR=~/.secret
+if [ -d $RC_DIR ]; then
+    for file in $RC_DIR/*rc
+    do
+        . $file
+    done
+fi
