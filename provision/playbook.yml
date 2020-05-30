@@ -94,7 +94,13 @@
     apt:
       name: freerdp2-x11
 
-  # Python formatter
+  # Python
+  #
+  # Formatter
   - name: Yapf
     apt:
       name: yapf3
+  # Package installer
+  - name: pip
+    apt:
+      name: python3-pip
