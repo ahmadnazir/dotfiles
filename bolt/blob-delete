@@ -1,0 +1,10 @@
+#!/bin/bash
+
+. "$(dirname "$(realpath "$0")")"/blob-common
+
+if [ -z "$NAME" ]; then
+    echo "Error :: No blob name supplied" && exit
+fi
+
+
+az storage blob delete --container-name $BLOB_CONTAINER_NAME  --name $NAME

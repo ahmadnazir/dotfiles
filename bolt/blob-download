@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Usage
+# blob ci_$CI_IID/Enriched/model.json
+
+. "$(dirname "$(realpath "$0")")"/blob-common
+
+if [ -z "$NAME" ]; then
+    echo "Error :: No blob name supplied" && exit
+fi
+
+DIR=/tmp/`dirname $1`
+mkdir -p $DIR
+
+FILE=/tmp/$1
+az storage blob download --container-name $BLOB_CONTAINER_NAME --name $1 --file $FILE --output none && echo $FILE
+
+if [ $? -eq 0 ]; then
+    echo Saved at: $FILE
+else
+    echo Unable to download blob: $1
+fi

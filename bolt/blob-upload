@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# az storage blob upload -h
+
+NAME=$1
+az storage blob upload --container-name $BLOB_CONTAINER_NAME --name $NAME --file ./$NAME

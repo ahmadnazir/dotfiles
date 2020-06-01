@@ -7,8 +7,7 @@
 # Get all the blobs with a prefix:
 # $ list ci_$INSTANCE/Enriched
 
-PREFIX=${1:-$BLOB_PREFIX}
-echo "Prefix    : $PREFIX"
-echo "Container : $BLOB_CONTAINER_NAME"
+. "$(dirname "$(realpath "$0")")"/blob-common
+
 az storage blob list --container-name $BLOB_CONTAINER_NAME --prefix $PREFIX | jq ".[].name" -r
 

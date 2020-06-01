@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PREFIX=${1:-$BLOB_PREFIX}
+NAME=$1
+
+echo "Name      : $NAME"
+echo "Prefix    : $PREFIX"
+echo "Container : $BLOB_CONTAINER_NAME"
+
+# TODO: move validation for the inputs and environment variables here
