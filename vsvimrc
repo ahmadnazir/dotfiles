@@ -3,9 +3,11 @@ nnoremap <space>bd :vsc Window.CloseDocumentWindow<cr>
 " omnisharp-helm-find-symbols
 nnoremap <space>sap :vsc Edit.GoToAll<cr>
 " helm-projectile
-nnoremap <space>ph :vsc Window.SolutionExplorerSearch<cr>
+" nnoremap <space>ph :vsc Window.SolutionExplorerSearch<cr>
+nnoremap <space>ph :vsc ReSharper.ReSharper_GotoRecentFiles<cr>
 " spacemacs/helm-find-files
-nnoremap <space>ff :vsc Edit.FindInFiles<cr>
+nnoremap <space>ff :vsc SolutionExplorer.SyncWithActiveDocument<cr>
+nnoremap <space>gs :vsc SolutionExplorer.SyncWithActiveDocument<cr>
 " save-buffer
 nnoremap <space>fs :vsc File.SaveSelectedItems<cr>
 " describe-key
@@ -37,16 +39,24 @@ let mapleader = ","
 " omnisharp-find-implementations
 nnoremap <leader>gi :vsc Edit.GoToImplementation<cr>
 " omnisharp-helm-find-symbols
-nnoremap <leader>gs :vsc Edit.GoToAll<cr>
 nnoremap <leader>rm :vsc Refactor.Rename<cr>
-nnoremap <leader>ta :vsc TestExplorer.RunAllTestsInContext<cr>
+
 " Evaluate expression
 nnoremap <leader>ee :vsc InteractiveConsole.ExecuteInInteractive<cr>
+
+" VsVim
+nnoremap <leader>xx :vsc VsVim.ToggleEnabled<cr>
+
+" Resharper (Run / Debug Tests)
+" nnoremap <leader>ta :vsc TestExplorer.RunAllTestsInContext<cr>
+" nnoremap <leader>da :vsc TestExplorer.DebugAllTestsInContext<cr>
+nnoremap <leader>ta :vsc ReSharper.ReSharper_UnitTestRunFromContext<cr>
+nnoremap <leader>da :vsc ReSharper.ReSharper_UnitTestRunFromContext<cr>
+nnoremap <leader>bb :vsc Debug.ToggleBreakpoint<cr>
+
 " Debug instance
 nnoremap <leader>di :vsc ClassViewContextMenus.ClassViewProject.Debug.Startnewinstance<cr>
 nnoremap <leader>dd :vsc Debug.ToggleBreakpoint<cr>
-nnoremap <leader>da :vsc TestExplorer.DebugAllTestsInContext<cr>
-
 
 "Close everything : File.Exit<cr>
 "Refactor rename : Refactor.Rename<cr> 
