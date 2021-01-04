@@ -1,21 +1,7 @@
 ---
-- name: Provision my machine with goodies
+- name: Provision linux machine with goodies
   hosts: localhost
 
-  tasks:
-  - name: vim
-    apt:
-      name: vim
-  - name: emacs
-    apt:
-      name: emacs
-
-  - name: curl
-    apt:
-      name: curl
-  - name: tree
-    apt:
-      name: tree
   - name: xclip
     apt:
       name: xclip
@@ -23,9 +9,6 @@
     apt:
       name: jq
 
-  - name: git
-    apt:
-      name: git
   - name: xmonad
     apt:
       name: xmonad
@@ -45,22 +28,12 @@
     apt:
       name: feh
 
-  # Really fast search: ag > awk > grep (Runtimes)
-  # @see https://github.com/ggreer/the_silver_searcher
-  - name: The silver searcher
-    apt:
-      name: silversearcher-ag
-
-  - name: autojump
-    apt:
-      name: autojump
-  - name: cowsay
-    apt:
-      name: cowsay
-
   - name: docker
     apt:
       name: docker.io
+  - name: docker-compose
+    apt:
+      name: docker-compose
 
   - name: Chromium
     apt:
@@ -104,3 +77,23 @@
   - name: pip
     apt:
       name: python3-pip
+
+  - name: hugo
+    apt:
+      name: hugo
+
+  - name: graphviz
+    apt:
+      name: graphviz
+
+  - name: gnome-screensaver
+    apt:
+      name: gnome-screensaver
+
+  - name: rlwrap
+    apt:
+      name: rlwrap
+
+  - name: openjdk-8-jre
+    apt:
+      name: openjdk-8-jre

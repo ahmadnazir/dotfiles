@@ -119,11 +119,6 @@ sudo apt-get install lxc-docker-1.7.1
 # sudo dpkg -i xmind-7.5-update1-linux_amd64.deb
 
 
-# adobe source code pro
-#
-# @see: https://github.com/adobe-fonts/source-code-pro
-npm install git://github.com/adobe-fonts/source-code-pro.git#release
-
 # #
 # sudo snap install microk8s
 # sudo snap remove microk8s

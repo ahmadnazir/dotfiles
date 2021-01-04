@@ -1,0 +1,35 @@
+---
+- name: Provision any machine with goodies
+  hosts: localhost
+
+  tasks:
+  - name: vim
+    apt:
+      name: vim
+  - name: emacs
+    apt:
+      name: emacs
+
+  - name: curl
+    apt:
+      name: curl
+  - name: tree
+    apt:
+      name: tree
+
+  - name: git
+    apt:
+      name: git
+
+  # Really fast search: ag > awk > grep (Runtimes)
+  # @see https://github.com/ggreer/the_silver_searcher
+  - name: The silver searcher
+    apt:
+      name: silversearcher-ag
+
+  - name: autojump
+    apt:
+      name: autojump
+  - name: cowsay
+    apt:
+      name: cowsay
