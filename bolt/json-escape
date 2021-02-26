@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+import sys, json
+
+s = json.loads(sys.argv[1])
+output = json.dumps(json.dumps(s))
+print(output)
+

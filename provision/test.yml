@@ -1,0 +1,10 @@
+---
+- name: Testing provisioning of libraries
+  hosts: localhost
+
+  tasks:
+
+  - name: cowsay
+    apt:
+      name: cowsay
+      # state: absent

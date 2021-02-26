@@ -1,0 +1,3 @@
+#!/bin/bash
+
+blob-content $1 | tail -1 | jq .
