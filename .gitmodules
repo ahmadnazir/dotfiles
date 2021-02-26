@@ -10,3 +10,9 @@
 [submodule "spacemacs/private/bolt/local/bolt"]
 	path = spacemacs/private/bolt/local/bolt
 	url = git@github.com:ahmadnazir/bolt.git
+[submodule "spacemacs/private/fzf"]
+	path = spacemacs/private/fzf
+	url = git@github.com:ashyisme/fzf-spacemacs-layer.git
+[submodule "spacemacs/private/scala-lsp"]
+	path = spacemacs/private/scala-lsp
+	url = git@github.com:zheli/scala-lsp.git
