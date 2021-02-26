@@ -31,13 +31,15 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     rust
+     vimscript
+     ;; terraform
      windows-scripts
      fsharp
      elm
      go
      python
      nginx
-     ;; python
      csv
      clojure
      haskell
@@ -46,6 +48,7 @@ values."
      yaml
      markdown
      javascript
+     typescript
      php
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -77,10 +80,16 @@ values."
      ;; slack
      ;; (ibuffer :variables ibuffer-group-buffers-by 'projects)
      ;;   custom
-     anr
      flymd
      regexp
-     sos
+     ;; (scala :variables scala-backend 'scala-metals) ;; seems to require ensime even with the scala-backend variable
+     plantuml
+     fzf
+
+     ;; private
+     anr
+     bolt
+     ;; sos
      ;; penneo ;; @todo: get this configuration from mandark
      )
    ;; List of additional packages that will be installed without being
@@ -92,11 +101,14 @@ values."
                                       package-lint
                                       flycheck-package
                                       editorconfig
+                                      transpose-frame
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(
+                                    ;; ensime ;; scala - see above
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and uninstall any
@@ -329,10 +341,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (progn
-    ;; To make emacs aware of shell aliases using -i switch
     (setq shell-command-switch "-ic")
     ;; To make flycheck-package-setup find packages e.g. (require 's)
     (setq-default flycheck-emacs-lisp-load-path 'inherit)
+    (setq dired-dwim-target t)
     ))
 
 (defun dotspacemacs/user-config ()
@@ -375,12 +387,17 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(anr-pumlator--buffer
+   "/home/darkman/code/docs/microsoft/ci/enrichment/metadata.pumlr")
  '(evil-want-Y-yank-to-eol nil)
- '(gnutls-verify-error t)
  '(mode-require-final-newline (quote ask))
  '(package-selected-packages
    (quote
-    (powershell docker fsharp-mode company-quickhelp pos-tip flymd visual-regexp-steroids visual-regexp yapfify yaml-mode web-mode web-beautify tagedit smeargle slim-mode scss-mode sass-mode rvm ruby-test-mode rubocop restclient-helm rbenv pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails prodigy pip-requirements phpcbf php-extras orgit org-journal omnisharp ob-restclient nginx-mode magit-gitflow livid-mode json-mode json-snatcher json-reformat js-doc intero hy-mode dash-functional hlint-refactor hindent helm-hoogle helm-gitignore helm-css-scss go-guru go-eldoc gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper gh-md flyspell-correct-helm flycheck-package package-lint flycheck simple-httpd ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org sql-indent spaceline skewer-mode ruby-tools rspec-mode robe restclient restart-emacs request rake rainbow-delimiters popwin phpunit php-auto-yasnippets persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file ob-http neotree move-text mmm-mode minitest markdown-toc magit-popup macrostep lorem-ipsum live-py-mode linum-relative link-hint js2-refactor indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag haskell-snippets haml-mode google-translate golden-ratio go-mode gitignore-mode git-gutter git-gutter+ flyspell-correct flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu emmet-mode elm-mode elisp-slime-nav editorconfig dumb-jump drupal-mode diminish diff-hl define-word cython-mode csv-mode csharp-mode company-ghci company-ghc column-enforce-mode coffee-mode cmm-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-highlight-symbol auto-dictionary auto-complete auto-compile anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (fzf inf-clojure lsp-scala ht toml-mode racer cargo rust-mode help-fns+ helm-spacemacs-help helm-spacemacs-faq go-rename exsqlaim-mode dos dired-x crypt centered-cursor-mode bolt hybrid-mode holy-mode evil-evilified-state posframe company-lsp lsp-ui lsp-metals lsp-mode exec-path-from-shell projectile yafolding ein polymode deferred anaphora websocket telega ac-cider tide typescript-mode vimrc-mode dactyl-mode plantuml-mode noflet ensime sbt-mode scala-mode cider transpose-frame flymd impatient-mode terraform-mode hcl-mode powershell docker fsharp-mode company-quickhelp pos-tip visual-regexp-steroids visual-regexp yapfify yaml-mode web-mode web-beautify tagedit smeargle slim-mode scss-mode sass-mode rvm ruby-test-mode rubocop restclient-helm rbenv pyvenv pytest pyenv-mode py-isort pug-mode projectile-rails prodigy pip-requirements phpcbf php-extras orgit org-journal omnisharp ob-restclient nginx-mode magit-gitflow livid-mode json-mode json-snatcher json-reformat js-doc intero hy-mode dash-functional hlint-refactor hindent helm-hoogle helm-gitignore helm-css-scss go-guru go-eldoc gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper gh-md flyspell-correct-helm flycheck-package package-lint flycheck simple-httpd ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org sql-indent spaceline skewer-mode ruby-tools rspec-mode robe restclient restart-emacs request rake rainbow-delimiters popwin phpunit php-auto-yasnippets persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file ob-http neotree move-text mmm-mode minitest markdown-toc magit-popup macrostep lorem-ipsum live-py-mode linum-relative link-hint js2-refactor indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag haskell-snippets haml-mode google-translate golden-ratio go-mode gitignore-mode git-gutter git-gutter+ flyspell-correct flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu emmet-mode elm-mode elisp-slime-nav editorconfig dumb-jump drupal-mode diminish diff-hl define-word cython-mode csv-mode csharp-mode company-ghci company-ghc column-enforce-mode coffee-mode cmm-mode clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-highlight-symbol auto-dictionary auto-complete auto-compile anaconda-mode aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+ '(plantuml-default-exec-mode (quote jar))
+ '(plantuml-indent-level 1)
+ '(plantuml-jar-path "/home/darkman/Downloads/Software/plantuml.jar")
+ '(projectile-indexing-method (quote native))
  '(require-final-newline nil)
  '(safe-local-variable-values
    (quote
