@@ -121,8 +121,11 @@ fi
 # These temporarily hold secrets before moving to lpass / keyvault
 RC_DIR=~/.secret
 if [ -d $RC_DIR ]; then
-    for file in $RC_DIR/*rc
+    for file in $RC_DIR/*rc.enabled
     do
         . $file
     done
 fi
+
+# PROMPT='%F{blue}%~%f '
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

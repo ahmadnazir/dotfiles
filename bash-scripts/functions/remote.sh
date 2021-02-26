@@ -8,6 +8,7 @@ function rdp-vm-saw () {
         work)
             # TODO: update this to get the IP dynamically from /etc/hosts
             IP="?????????????"
+            echo "IP is not set" && exit -1
             ;;
         *)
             echo $"Usage: $0 {home|work}"
@@ -19,6 +20,8 @@ function rdp-vm-saw () {
         read -s "?Password:"
         echo
         SAW_VM_PW=$REPLY
+    else
+        echo "Password is already set in variable: SAW_VM_PWD"
     fi
 
 
@@ -32,7 +35,7 @@ function rdp-vm-saw () {
 
     # tls / but it shouldn't make a difference (I think)
     #
-    xfreerdp  /monitors:1 /f /u:'Administrator' /v:$IP /p:$SAW_VM_PWD /cert-ignore -sec-nla /sec:tls
+    xfreerdp  /monitors:1 /f /u:'ahraja@microsoft.com' /v:$IP /p:$SAW_VM_PWD /cert-ignore -sec-nla /sec:tls +auto-reconnect
 
     # Trying with timeout - doesn't seem to work
     #

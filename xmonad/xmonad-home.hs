@@ -22,6 +22,9 @@ import Data.Char
 
 import Debug.Trace
 
+-- Fix for Java swing applications e.g. intellij
+import XMonad.Hooks.SetWMName
+
 myModMask = mod4Mask
 
 workspacesAndScreens :: [(String, String, Int)]
@@ -170,6 +173,8 @@ defaults = defaultConfig {
            --                       ppTitle = xmobarColor "green" "" . shorten 50
            --                     }
 
+           -- Fix for Java swing applications e.g. intellij
+           , startupHook = setWMName "LG3D"
            } `Config.additionalKeysP` myKeys
 
 -- commands

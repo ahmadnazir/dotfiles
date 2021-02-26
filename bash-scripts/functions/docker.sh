@@ -11,9 +11,35 @@ docker-clean-exited-containers() {
     docker ps -a | grep Exited | awk '{print $1}' | xargs docker rm
 }
 
+# Sandboxed Docker interactive as sudo
+function boxsudi () {
+
+    # image
+    if [[ -z $1 ]]; then
+        echo "Docker image name not provided";
+        return -1;
+    fi
+    local image=$1;
+
+    local cmd='sh -c /bin/bash'
+    # local cmd=sh
+
+    local history=~/.bash_history_docker
+    touch $history
+
+    docker run -it \
+           -v /ssh-agent:/ssh-agent \
+           -v ~/.ssh:/root/.ssh \
+           -v $history:/root/.bash_history \
+           -w `pwd` \
+           -v `pwd`:`pwd` \
+           $image $cmd
+}
+
 # Docker interactive as sudo
 function sudi () {
 
+  local home=/home/darkman
   # image
   if [[ -z $1 ]]; then
     echo "Docker image name not provided";
@@ -42,8 +68,12 @@ function sudi () {
 # the current working directory
 #
 # Usage: 'di haskell', which will run a container for the haskell image
+#
+# Environment variables:
+#   export DI_PORTS="-p8000:8000"
 function di () {
 
+  local home=/home/darkman
   # image
   if [[ -z $1 ]]; then
     echo "Docker image name not provided";
@@ -67,9 +97,14 @@ function di () {
       cmd="${@:2}"
   fi
 
+  echo ${DI_PORTS:=""}
+
+  # echo The command is $cmd
+
   local history=~/.bash_history_docker
   touch $history
 
+  # echo \
   docker run -it \
          --rm \
          -v /ssh-agent:/ssh-agent \
@@ -78,8 +113,9 @@ function di () {
          -v /etc/passwd:/etc/passwd \
          -v /etc/group:/etc/group \
          -v $HOME:$HOME \
+         $DI_PORTS \
          -w `pwd` \
-         -v `pwd`:$dir \
+         -v `pwd`:`pwd` \
          -u $UID:$GID \
          $image sh -c $cmd
 

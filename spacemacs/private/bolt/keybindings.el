@@ -5,4 +5,4 @@
 (spacemacs/set-leader-keys "oxx" 'bolt--execute-cmd)
 
 ;; setup
-(spacemacs/set-leader-keys "oxB" 'bolt--set-key-binding-m-return)
+(spacemacs/set-leader-keys "oxd" 'bolt--execute-default-cmd)

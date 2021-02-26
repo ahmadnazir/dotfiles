@@ -54,3 +54,26 @@ time-n-cmd() {
   )
 
 }
+
+
+fix-pen-mapping() {
+    cat <<EOF
+
+Assuming that devices have the following ids:
+
+    Wacom Pen and multitouch sensor Pen stylus   : 9
+    Wacom Pen and multitouch sensor Pen eraser   : 10
+    Wacom Pen and multitouch sensor Finger touch : 22
+
+Actually, it is:
+
+EOF
+
+    xinput | grep -i touch
+
+    read "?\nPress enter to continue... "
+
+    xinput map-to-output 9 eDP-1
+    xinput map-to-output 10 eDP-1
+    xinput map-to-output 22 eDP-1
+}

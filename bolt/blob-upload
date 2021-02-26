@@ -2,5 +2,6 @@
 
 # az storage blob upload -h
 
-NAME=$1
-az storage blob upload --container-name $BLOB_CONTAINER_NAME --name $NAME --file ./$NAME
+. "$(dirname "$(realpath "$0")")"/blob-common
+
+az storage blob upload --container-name $BLOB_CONTAINER_NAME --name $NAME --file $ROOT_DIR/$NAME

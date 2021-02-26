@@ -1,10 +1,12 @@
 #!/bin/bash
 
-PREFIX=${1:-$BLOB_PREFIX}
-NAME=$1
+NAME=`echo -n $1`
+PREFIX=${NAME:-$BLOB_PREFIX}
+ROOT_DIR=~/tmp/blobs
 
-echo "Name      : $NAME"
-echo "Prefix    : $PREFIX"
-echo "Container : $BLOB_CONTAINER_NAME"
+# TODO: echo if debug option enabled
+# echo "Name      : $NAME"
+# echo "Prefix    : $PREFIX"
+# echo "Container : $BLOB_CONTAINER_NAME"
 
 # TODO: move validation for the inputs and environment variables here

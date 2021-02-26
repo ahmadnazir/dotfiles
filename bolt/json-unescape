@@ -2,10 +2,9 @@
 
 import sys, json
 
-# Unescape
 s = json.loads(sys.argv[1])
 
-# Load the string as json
+# unescape
 j = json.loads(s)
 
 # Pretty print

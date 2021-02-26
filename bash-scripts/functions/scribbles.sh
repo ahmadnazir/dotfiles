@@ -6,11 +6,9 @@ function scribbles-publish () {
 
 function scribbles-clean () {
     cd ~/code/me/scribbles
-    cd build
-    mv html html_
-    mkdir html
-    touch html/.nojekyll
-    rm html_ -r
+    rm build -r
+    mkdir -p build/html
+    touch build/html/.nojekyll
     cd -
 }
 

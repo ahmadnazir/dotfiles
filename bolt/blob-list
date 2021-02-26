@@ -9,5 +9,10 @@
 
 . "$(dirname "$(realpath "$0")")"/blob-common
 
-az storage blob list --container-name $BLOB_CONTAINER_NAME --prefix $PREFIX | jq ".[].name" -r
+# --num-results 100 \
+
+az storage blob list \
+   --container-name $BLOB_CONTAINER_NAME \
+   --prefix $PREFIX \
+    | jq ".[].name" -r
 
