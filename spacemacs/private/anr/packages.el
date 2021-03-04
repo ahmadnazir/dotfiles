@@ -35,7 +35,7 @@
     (visual :location local)
     (window :location local)
     (crypt :location local)
-    (plantuml :location local)
+    ;; (plantuml :location local)
     )
   "The list of Lisp packages required by the anr layer.
 
