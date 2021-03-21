@@ -4,16 +4,16 @@
 
   tasks:
 
-  # - name: cowsay
-  #   apt:
-  #     name: cowsay
-  #     # state: absent
 
-  - name: Notifications
-    pacman:
-      name:
-        - dunst
-        - dunstify
-        - libnotify
+  # - name: X Fonts
+  #   pacman:
+  #     name:
+  #       - xorg-fonts-100dpi
+  #       - xorg-fonts-75dpi
+  #     #   - xorg-fonts-alias
+  #     #   - xorg-fonts-cyrillic
+  #     #   - xorg-fonts-misc
+  #     #   - xorg-fonts-type1
+  #     state: absent
 
 

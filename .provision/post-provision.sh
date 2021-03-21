@@ -8,3 +8,4 @@ systemctl enable --now systemd-notify
 yay -S ttf-symbola-free
 yay -S silver-searcher-git
 yay -S mcrypt
+yay -S xscreensaver-arch-logo
