@@ -1,0 +1,31 @@
+---
+- name: Provision with goodies
+  hosts: localhost
+
+  tasks:
+  - name: vim
+    pacman:
+      name: vim
+  - name: emacs
+    pacman:
+      name: emacs
+
+  - name: curl
+    pacman:
+      name: curl
+  - name: tree
+    pacman:
+      name: tree
+
+  # Really fast search: ag > awk > grep (Runtimes)
+  # @see https://github.com/ggreer/the_silver_searcher
+  - name: The silver searcher
+    pacman:
+      name: the-silver-searcher
+
+  # - name: autojump
+  #   pacman:
+  #     name: autojump
+  # - name: cowsay
+  #   pacman:
+  #     name: cowsay

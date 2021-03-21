@@ -1,0 +1,121 @@
+---
+- name: Provision linux machine with goodies
+  hosts: localhost
+
+  tasks:
+  - name: xmonad
+    pacman:
+      name: xmonad
+  - name: xmobar
+    pacman:
+      name: xmobar
+  - name: xmobar
+    pacman:
+      name: xmobar
+  - name: dmenu
+    pacman:
+      name: dmenu
+  - name: mcrypt
+    pacman:
+      name: mcrypt
+
+  # Sound
+  - name: alsa-utils
+    pacman:
+      name: alsa-utils
+  - name: Install PulseAudio
+    pacman:
+      name:
+        - pulseaudio
+        - pulseaudio-alsa
+        - pavucontrol
+
+  # backlight
+  - name: Power utils (Keyboard backlight)
+    pacman:
+      name:
+        - upower
+        - python-dbus
+
+  - name: Multiple monitors
+    pacman:
+      name:
+        - arandr
+
+  # - name: xclip
+  #   pacman:
+  #     name: xclip
+
+  # - name: zsh
+  #   pacman:
+  #     name: zsh
+
+  # - name: jq
+  #   pacman:
+  #     name: jq
+
+  # - name: feh
+  #   pacman:
+  #     name: feh
+
+  # - name: docker
+  #   pacman:
+  #     name: docker.io
+  # - name: docker-compose
+  #   pacman:
+  #     name: docker-compose
+
+  # - name: Chromium
+  #   pacman:
+  #     name: chromium-browser
+
+  # # Screen recording
+  # - name: Kazam
+  #   pacman:
+  #     name: kazam
+  # # Screenshots
+  # - name: flameshot
+  #   pacman:
+  #     name: flameshot
+
+  # # Play videos
+  # - name: VLC
+  #   pacman:
+  #     name: vlc
+
+  # # Secret management
+  # - name: Last pass
+  #   pacman:
+  #     name: lastpass-cli
+
+  # # xfreerdp
+  # - name: Remote desktop
+  #   pacman:
+  #     name: freerdp2-x11
+
+  # # Python
+  # #
+  # # Formatter
+  # - name: Yapf
+  #   pacman:
+  #     name: yapf3
+  # # Package installer
+  # - name: pip
+  #   pacman:
+  #     name: python3-pip
+
+  # - name: hugo
+  #   pacman:
+  #     name: hugo
+
+  # - name: graphviz
+  #   pacman:
+  #     name: graphviz
+
+  # - name: rlwrap
+  #   pacman:
+  #     name: rlwrap
+
+  # - name: openjdk-8-jre
+  #   pacman:
+  #     name: openjdk-8-jre

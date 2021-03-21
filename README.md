@@ -1,11 +1,14 @@
-# dotfiles
-
-This place is for my dotfiles and system setup.
+# dotfiles managed by yadm
 
 ## Linux
 
+| Distro         | Arch   |
+| Window manager | Xmonad |
+| Status bar     | Xmobar |
+| Notifications  | dunst  |
+
 ```
-./provision/provision.sh
+~/.provision/provision.sh
 ```
 
 ## Windows

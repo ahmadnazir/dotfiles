@@ -1,1 +1,1 @@
-/home/darkman/.xmonad/xmonad-xinerama.hs
+xmonad-vanilla.hs

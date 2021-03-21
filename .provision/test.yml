@@ -1,0 +1,19 @@
+---
+- name: Testing provisioning of libraries
+  hosts: localhost
+
+  tasks:
+
+  # - name: cowsay
+  #   apt:
+  #     name: cowsay
+  #     # state: absent
+
+  - name: Notifications
+    pacman:
+      name:
+        - dunst
+        - dunstify
+        - libnotify
+
+

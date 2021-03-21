@@ -1,0 +1,5 @@
+xterm*faceName: Monospace
+xterm*faceSize: 14
+xterm*metaSendsEscape: true
+xterm*background: black
+xterm*foreground: lightgray
