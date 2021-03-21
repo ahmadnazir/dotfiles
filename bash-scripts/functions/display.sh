@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# W1=DP-1-2
-# W2=DP-2-2
+
+# TODO: external monitor at home
+# xrandr --output HDMI-1 --scale 1.4x1.4 --output eDP-1 --primary
+# xmonad --restart
 
 # H1=HDMI-1
 
