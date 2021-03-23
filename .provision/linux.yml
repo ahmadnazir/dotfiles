@@ -30,6 +30,13 @@
         - pulseaudio-alsa
         - pavucontrol
 
+  - name: Bluetooth
+    pacman:
+      name:
+        - bluez
+        - bluez-utils
+        - pulseaudio-bluetooth
+
   # backlight
   - name: Power utils (Keyboard backlight)
     pacman:
@@ -41,6 +48,35 @@
     pacman:
       name:
         - arandr
+
+  - name: Pdf
+    pacman:
+      name:
+        - evince
+
+  - name: Slack
+    pacman:
+      name:
+        - slack-desktop
+
+  - name: Docker
+    pacman:
+      name:
+        - docker
+        - docker-compose
+
+  # Screenshots
+  - name: Flameshot
+    pacman:
+      name:
+        - flameshot
+
+  - name: Terminals and tools
+    pacman:
+      name:
+        - kitty
+        - exa
+
 
   # - name: xclip
   #   pacman:
@@ -73,10 +109,6 @@
   # - name: Kazam
   #   pacman:
   #     name: kazam
-  # # Screenshots
-  # - name: flameshot
-  #   pacman:
-  #     name: flameshot
 
   # # Play videos
   # - name: VLC

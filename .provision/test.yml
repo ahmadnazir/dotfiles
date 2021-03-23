@@ -5,15 +5,10 @@
   tasks:
 
 
-  # - name: X Fonts
-  #   pacman:
-  #     name:
-  #       - xorg-fonts-100dpi
-  #       - xorg-fonts-75dpi
-  #     #   - xorg-fonts-alias
-  #     #   - xorg-fonts-cyrillic
-  #     #   - xorg-fonts-misc
-  #     #   - xorg-fonts-type1
-  #     state: absent
+  - name: Terminals and tools
+    pacman:
+      name:
+        - kitty
+        - exa
 
 
