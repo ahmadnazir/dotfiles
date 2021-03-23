@@ -311,11 +311,11 @@
 
     # Close notification. Equivalent dunstctl command:
     # dunstctl close
-    # close = ctrl+space
+    close = mod4+period
 
     # Close all notifications. Equivalent dunstctl command:
     # dunstctl close-all
-    # close_all = ctrl+shift+space
+    close_all = mod4+shift+period
 
     # Redisplay last message(s). Equivalent dunstctl command:
     # dunstctl history-pop
