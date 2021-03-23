@@ -10,8 +10,8 @@ primary-screen () {
 }
 
 secondary-screen () {
-    xrandr --output $SECONDARY --auto --below $PRIMARY --scale 1.4x1.4 \
-           --output $PRIMARY --primary
+    xrandr --output $PRIMARY --primary \
+           --output $SECONDARY --auto --right-of $PRIMARY --scale 1.4x1.4
     xmonad --restart
 }
 
