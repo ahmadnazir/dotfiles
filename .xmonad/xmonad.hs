@@ -12,7 +12,7 @@ main = xmonad =<< xmobar defaults
 
 defaults = desktopConfig
       {
-        terminal    = "xterm"  ,
+        terminal    = "kitty"  ,
         modMask     = mod4Mask ,
         borderWidth = 1 ,
         workspaces      = map fst' workspacesAndScreens
