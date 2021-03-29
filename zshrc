@@ -1,3 +1,6 @@
+# [2021-03-29] Deprecated:
+# Currently I am using bash (.bashrc). I'll consider this if there is a need.
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
