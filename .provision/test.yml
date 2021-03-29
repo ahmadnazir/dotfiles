@@ -1,14 +1,20 @@
 ---
 - name: Testing provisioning of libraries
   hosts: localhost
+  roles:
+  - kewlfft.aur
 
   tasks:
 
-
-  - name: Terminals and tools
+  - name: Terminal and tools
     pacman:
       name:
         - kitty
         - exa
+        - parallel
+        - unzip
+        - xclip
 
-
+  # - aur: name=autojump
+  #   become: true
+  #   become_user: "{{ user.name }}"

@@ -1,6 +1,8 @@
 ---
 - name: Provision linux machine with goodies
   hosts: localhost
+  roles:
+  - kewlfft.aur
 
   tasks:
   - name: xmonad
@@ -49,10 +51,12 @@
       name:
         - arandr
 
-  - name: Pdf
+  - name: Pdf / screenshot / images
     pacman:
       name:
         - evince
+        - flameshot
+        - eog
 
   - name: Slack
     pacman:
@@ -65,22 +69,19 @@
         - docker
         - docker-compose
 
-  # Screenshots
-  - name: Flameshot
-    pacman:
-      name:
-        - flameshot
-
   - name: Terminals and tools
     pacman:
       name:
         - kitty
         - exa
+        - parallel
+        - unzip
+        - xclip
 
+  - aur: name=autojump
+    become: true
+    become_user: "{{ user.name }}"
 
-  # - name: xclip
-  #   pacman:
-  #     name: xclip
 
   # - name: zsh
   #   pacman:

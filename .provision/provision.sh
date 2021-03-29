@@ -3,6 +3,7 @@
 # Requires ansible
 
 # provision
+ansible-galaxy install kewlfft.aur
 sudo ansible-playbook common.yml -vvv
 sudo ansible-playbook linux.yml -vvv
 

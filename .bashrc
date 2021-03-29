@@ -17,8 +17,7 @@ source /usr/share/nvm/nvm.sh
 source /usr/share/nvm/bash_completion
 source /usr/share/nvm/install-nvm-exec
 
-#
-# PATH=$PATH:~/bin
+. /usr/share/autojump/autojump.bash
 
+. ~/.functions/cb.sh
 
-source ~/.functions/cb.sh
