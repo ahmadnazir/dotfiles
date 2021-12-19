@@ -46,5 +46,17 @@
                 }
             ]
         }
-    ]
+    ],
+    "workbench.editorAssociations": {
+        "*.ts": "default",
+        "*.ipynb": "jupyter-notebook"
+    },
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "python.defaultInterpreterPath": "/home/mandark/code/scratch/python/env/bin/python3.9",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.minimap.enabled": false
 }

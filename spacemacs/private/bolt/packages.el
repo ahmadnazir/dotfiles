@@ -62,7 +62,7 @@ Each entry is either:
 
 
 (defun bolt/init-bolt()
-  "Initialize util package"
+  "Initialize bolt package"
   (use-package bolt)
   )
 

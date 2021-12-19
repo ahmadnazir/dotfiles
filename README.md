@@ -11,6 +11,18 @@
 ~/.provision/provision.sh
 ```
 
+### Upgrading
+
+```
+yay -Syu
+```
+
+Recompile xmonad (probably needed if haskell is also updated)::
+
+```
+xmonad --recompile
+```
+
 ## Windows
 
 On WSL2, explicitly run relevant commands from the provision script mentioned
