@@ -555,6 +555,14 @@ before packages are loaded."
   ;; `, s f'     : Execute sql query
   ;; `<C-return> ' Execute pine expression
   ;;
+  (add-to-list 'tramp-methods
+               '("yadm"
+                 (tramp-login-program "yadm")
+                 (tramp-login-args (("enter")))
+                 (tramp-login-env (("SHELL") ("/bin/bash")))
+                 (tramp-remote-shell "/bin/bash")
+                 (tramp-remote-shell-args ("-c"))))
+
   (add-hook 'pine-mode-hook
             '(lambda ()
                (local-set-key (kbd "<C-return>") 'pine-mode--eval-at-point)

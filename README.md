@@ -1,11 +1,15 @@
 # dotfiles managed by yadm
 
+Refer to [YADM](./YADM.md) for details.
+
 ## Linux
 
+```
 | Distro         | Arch   |
 | Window manager | Xmonad |
 | Status bar     | Xmobar |
 | Notifications  | dunst  |
+```
 
 ```
 ~/.provision/provision.sh
