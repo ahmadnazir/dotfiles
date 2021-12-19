@@ -1,20 +1,15 @@
 ---
 - name: Testing provisioning of libraries
   hosts: localhost
-  roles:
-  - kewlfft.aur
+  # roles:
+  # - kewlfft.aur
 
   tasks:
 
-  - name: Terminal and tools
+  - name: Test
     pacman:
       name:
-        - kitty
-        - exa
-        - parallel
-        - unzip
-        - xclip
-        - jq
+        - python-pip
 
   # - aur: name=autojump
   #   become: true

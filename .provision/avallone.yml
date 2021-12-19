@@ -1,0 +1,8 @@
+---
+- name: Provision machine with goodies required for Avallone stack
+  hosts: localhost
+
+  - name: DB
+    pacman:
+      name:
+        - postgresql-libs

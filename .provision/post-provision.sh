@@ -9,6 +9,11 @@ systemctl enable --now bluetooth
 systemctl enable --user --now pulseaudio
 systemctl enable --user --now pulseaudio.socket
 
+# I installed ntp and enabled the daemon but the following did the trick. Not
+# sure if the previous step was required.
+# systemctl status ntpd.service
+timedatectl set-ntp true
+
 # Bluetooth
 # ---------
 sudo rfkill unlock bluetooth

@@ -1,8 +1,8 @@
 ---
 - name: Provision linux machine with goodies
   hosts: localhost
-  roles:
-  - kewlfft.aur
+  # roles:
+  # - kewlfft.aur
 
   tasks:
   - name: xmonad
@@ -54,9 +54,10 @@
   - name: Pdf / screenshot / images
     pacman:
       name:
-        - evince
         - flameshot
         - eog
+        - evince
+        - pdftk
 
   - name: Slack
     pacman:
@@ -77,10 +78,17 @@
         - parallel
         - unzip
         - xclip
+        - jq
 
-  - aur: name=autojump
-    become: true
-    become_user: "{{ user.name }}"
+  - name: System
+    pacman:
+      name:
+        - lsof
+
+  # TODO: fix issue with roles
+  # - aur: name=autojump
+  #   become: true
+  #   become_user: "{{ user.name }}"
 
 
   # - name: zsh
