@@ -24,7 +24,7 @@ defaults = desktopConfig
 -- Names of the keys: https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Util-EZConfig.html
 
 -- notImplemented msg = spawn $ "echo '[not implemented] " ++ msg ++ "' >> /tmp/xmonad-not-implemented.log"
-notImplemented msg = spawn $ "dunstify '[" ++ msg ++ "] is not implemented'"
+notImplemented msg = spawn $ "dunstify --icon=pan-end-symbolic.symbolic '[" ++ msg ++ "] is not implemented'"
 
 myKeysP = [
     ("M-l" , spawn "xscreensaver-command --lock") ,
