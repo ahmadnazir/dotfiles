@@ -19,7 +19,7 @@ defaults = desktopConfig
       }
       `Config.additionalKeys` myKeys
       `Config.additionalKeysP` myKeysP
-      `Config.removeKeysP` ["M-" ++ [x] | x <- [',', '.']]
+      -- `Config.removeKeysP` ["M-" ++ [x] | x <- [',', '.']]
 
 -- Names of the keys: https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Util-EZConfig.html
 
@@ -28,8 +28,9 @@ notImplemented msg = spawn $ "dunstify '[" ++ msg ++ "] is not implemented'"
 
 myKeysP = [
     ("M-l" , spawn "xscreensaver-command --lock") ,
-    ("M-p" , spawn "dmenu_run -fn 'Monospace-14'")
+    ("M-p" , spawn "dmenu_run -fn 'Monospace-14'"),
     -- ("M-x" , spawn "dmenu_run -fn 'Monospace-20'")
+    ("M-." , spawn "dunstctl close")
   ]
   -- disable greedy view
   ++ [ ("M-" ++ keys,   myFocus screenId tag)    | (tag, keys, screenId) <- workspacesAndScreens ]

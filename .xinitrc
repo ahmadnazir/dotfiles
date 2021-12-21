@@ -5,7 +5,7 @@ modmap=$HOME/.Xmodmap
 [[ -f $modmap ]] && xrdb -merge "$modmap"
 
 xset -b                   # disable beep
-dunst &                   # notifications
+dunst ~/.config/dunstrc & # notifications
 flameshot &               # Screencapture
 xscreensaver -no-splash & # enabling locking
 exec xmonad
