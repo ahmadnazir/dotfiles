@@ -29,8 +29,8 @@ notImplemented msg = spawn $ "dunstify '[" ++ msg ++ "] is not implemented'"
 myKeysP = [
     ("M-l" , spawn "xscreensaver-command --lock") ,
     ("M-p" , spawn "dmenu_run -fn 'Monospace-14'"),
-    -- ("M-x" , spawn "dmenu_run -fn 'Monospace-20'")
-    ("M-." , spawn "dunstctl close")
+    ("M-." , spawn "dunstctl close"),
+    ("S-M-." , spawn "dunstctl history-pop")
   ]
   -- disable greedy view
   ++ [ ("M-" ++ keys,   myFocus screenId tag)    | (tag, keys, screenId) <- workspacesAndScreens ]
