@@ -1,3 +1,11 @@
+;; Visual / Accessibility
+;;
+(spacemacs/set-leader-keys "otf" 'visual/toggle-font-size)
+
+;; Dotfiles / yadm
+(spacemacs/set-leader-keys "oy" 'util/magit-status-yadm)
+
+
 ;; ;; Helper function to remove hooks
 ;; ;;
 ;; ;; (remove-hook 'clojure-mode-hook (first clojure-mode-hook))
@@ -47,12 +55,6 @@
 ;;              (local-set-key (kbd "<C-return>") 'omnisharp-auto-complete)
 ;;              ))
 
-;; ;; Buffers
-;; ;;
-
-;; Visual
-;;
-(spacemacs/set-leader-keys "otf" 'visual/toggle-font-size)
 
 
 ;; ; org journal

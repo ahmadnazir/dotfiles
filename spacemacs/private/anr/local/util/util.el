@@ -38,5 +38,11 @@
   (interactive)
   (shell-command (concat "chmod u+x " (shell-quote-argument buffer-file-name) " && echo Done!")))
 
+;;;###autoload
+(defun util/magit-status-yadm()
+  "TODO: move to it's own package"
+  (interactive)
+  (magit-status "/yadm::")
+  )
 
 (provide 'util)
