@@ -31,10 +31,10 @@
 
 (defconst anr-packages
   '(
-    (util :location local)
+    ;; (util :location local)
     (visual :location local)
-    (window :location local)
-    (crypt :location local)
+    ;; (window :location local)
+    ;; (crypt :location local)
     ;; (plantuml :location local)
     )
   "The list of Lisp packages required by the anr layer.

@@ -1,5 +1,3 @@
-(message "~/spacemacs/private/anr/keybindings.el is disabled")
-
 ;; ;; Helper function to remove hooks
 ;; ;;
 ;; ;; (remove-hook 'clojure-mode-hook (first clojure-mode-hook))
@@ -52,10 +50,9 @@
 ;; ;; Buffers
 ;; ;;
 
-;; ;; Visual
-;; ;;
-;; ;; @todo: use spacemacs conventions
-;; (global-set-key (kbd "C-0") 'visual/toggle-font-size)
+;; Visual
+;;
+(spacemacs/set-leader-keys "otf" 'visual/toggle-font-size)
 
 
 ;; ; org journal
