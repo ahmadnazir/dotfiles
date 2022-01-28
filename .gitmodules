@@ -1,18 +1,3 @@
-[submodule "spacemacs/private/sos/local/exsqlaim-mode"]
-	path = spacemacs/private/sos/local/exsqlaim-mode
-	url = git@github.com:ahmadnazir/exsqlaim-mode.git
-[submodule "spacemacs/private/penneo"]
-	path = spacemacs/private/penneo
-	url = git@github.com:ahmadnazir/spacemacs-penneo-layer.git
 [submodule "spacemacs/private/sos/local/pine-mode"]
 	path = spacemacs/private/sos/local/pine-mode
 	url = git@github.com:ahmadnazir/pine-mode.git
-[submodule "spacemacs/private/bolt/local/bolt"]
-	path = spacemacs/private/bolt/local/bolt
-	url = git@github.com:ahmadnazir/bolt.git
-[submodule "spacemacs/private/fzf"]
-	path = spacemacs/private/fzf
-	url = git@github.com:ashyisme/fzf-spacemacs-layer.git
-[submodule "spacemacs/private/scala-lsp"]
-	path = spacemacs/private/scala-lsp
-	url = git@github.com:zheli/scala-lsp.git
