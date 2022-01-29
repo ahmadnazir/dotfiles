@@ -70,11 +70,14 @@ This function should only modify configuration layer settings."
      restclient
 
      plantuml
+
+     ;; local
      bolt
      pine
 
      avallone
      anr
+     visual-regexp
      )
 
 

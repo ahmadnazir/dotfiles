@@ -18,20 +18,20 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `regexp-packages'. Then, for each package PACKAGE:
+;; added to `visual-regexp-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `regexp/init-PACKAGE' to load and initialize the package.
+;;   function `visual-regexp/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `regexp/pre-init-PACKAGE' and/or
-;;   `regexp/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `visual-regexp/pre-init-PACKAGE' and/or
+;;   `visual-regexp/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst regexp-packages
+(defconst visual-regexp-packages
   '(
-    visual-regexp
+    ;; visual-regexp
     visual-regexp-steroids
     )
   "The list of Lisp packages required by the regexp layer.
@@ -61,12 +61,12 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(defun regexp/init-visual-regexp()
-  "Initialize sql wrapper package"
-  (use-package visual-regexp)
-  )
+;; (defun visual-regexp/init-visual-regexp()
+;;   "Initialize sql wrapper package"
+;;   (use-package visual-regexp)
+;;   )
 
-(defun regexp/init-visual-regexp-steroids()
+(defun visual-regexp/init-visual-regexp-steroids()
   "Initialize sql wrapper package"
   (use-package visual-regexp-steroids)
   )
