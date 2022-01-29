@@ -1,0 +1,6 @@
+[submodule "spacemacs/private/bolt/local/bolt"]
+	path = spacemacs/private/bolt/local/bolt
+	url = git@github.com:ahmadnazir/bolt.git
+[submodule "spacemacs/private/pine/local/pine-mode"]
+	path = spacemacs/private/pine/local/pine-mode
+	url = git@github.com:ahmadnazir/pine-mode.git
