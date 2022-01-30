@@ -72,11 +72,11 @@ This function should only modify configuration layer settings."
      plantuml
 
      ;; local
+     anr
+     avallone
      bolt
      pine
-
-     avallone
-     anr
+     ;; wrappers
      visual-regexp
      )
 
