@@ -11,7 +11,7 @@ function scribbles-clean () {
     cd - > /dev/null
 }
 
-function -scribbles-compile () {
+function scribbles-compile () {
     docker run -it --rm \
            -v /etc/passwd:/etc/passwd \
            -v /etc/group:/etc/group \
@@ -39,7 +39,7 @@ function -scribbles-publish () {
 }
 
 function scribbles-publish () {
-    -scribbles-compile
+    scribbles-compile
 
     # Detect un-committed changes
     cd $DIR > /dev/null
