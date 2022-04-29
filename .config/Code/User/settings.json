@@ -58,5 +58,7 @@
     },
     "python.defaultInterpreterPath": "/home/mandark/code/scratch/python/env/bin/python3.9",
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "editor.minimap.enabled": false
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "all",
+    "nxConsole.enableTelemetry": false
 }
