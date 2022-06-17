@@ -1,33 +1,26 @@
 ---
-- name: Provision linux machine with goodies
+- name: Provision arch linux machine with goodies
   hosts: localhost
   # roles:
   # - kewlfft.aur
 
   tasks:
-  - name: xmonad
+  - name: gui
     pacman:
-      name: xmonad
-  - name: xmobar
-    pacman:
-      name: xmobar
-  - name: xmobar
-    pacman:
-      name: xmobar
-  - name: dmenu
-    pacman:
-      name: dmenu
+      name:
+        - xmonad
+        - xmobar
+        - dmenu
+        - x11-ssh-askpass
+
   - name: mcrypt
     pacman:
       name: mcrypt
 
-  # Sound
-  - name: alsa-utils
-    pacman:
-      name: alsa-utils
-  - name: Install PulseAudio
+  - name: Sound
     pacman:
       name:
+        - alsa-utils
         - pulseaudio
         - pulseaudio-alsa
         - pavucontrol
@@ -79,11 +72,18 @@
         - unzip
         - xclip
         - jq
+        - ngrok
 
   - name: System
     pacman:
       name:
         - lsof
+        - inotify-tools
+
+  - name: Misc
+    pacman:
+      name:
+        - noto-fonts-emoji
 
   # TODO: fix issue with roles
   # - aur: name=autojump
@@ -91,38 +91,6 @@
   #   become_user: "{{ user.name }}"
 
 
-  # - name: zsh
-  #   pacman:
-  #     name: zsh
-
-  # - name: jq
-  #   pacman:
-  #     name: jq
-
-  # - name: feh
-  #   pacman:
-  #     name: feh
-
-  # - name: docker
-  #   pacman:
-  #     name: docker.io
-  # - name: docker-compose
-  #   pacman:
-  #     name: docker-compose
-
-  # - name: Chromium
-  #   pacman:
-  #     name: chromium-browser
-
-  # # Screen recording
-  # - name: Kazam
-  #   pacman:
-  #     name: kazam
-
-  # # Play videos
-  # - name: VLC
-  #   pacman:
-  #     name: vlc
 
   # # Secret management
   # - name: Last pass
@@ -133,21 +101,6 @@
   # - name: Remote desktop
   #   pacman:
   #     name: freerdp2-x11
-
-  # # Python
-  # #
-  # # Formatter
-  # - name: Yapf
-  #   pacman:
-  #     name: yapf3
-  # # Package installer
-  # - name: pip
-  #   pacman:
-  #     name: python3-pip
-
-  # - name: hugo
-  #   pacman:
-  #     name: hugo
 
   # - name: graphviz
   #   pacman:

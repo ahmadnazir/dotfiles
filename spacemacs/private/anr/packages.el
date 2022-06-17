@@ -31,7 +31,7 @@
 
 (defconst anr-packages
   '(
-    ;; (util :location local)
+    (util :location local)
     (visual :location local)
     ;; (window :location local)
     ;; (crypt :location local)

@@ -52,3 +52,7 @@ yay -S xscreensaver-arch-logo
 
 # other
 yay -S nvm
+
+yay -S ngrok
+
+sudo pacman -S gnome-keyring libsecret

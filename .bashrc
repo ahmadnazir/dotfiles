@@ -19,9 +19,9 @@ source /usr/share/nvm/install-nvm-exec
 
 . /usr/share/autojump/autojump.bash
 
+export PATH=$PATH:~/.local/bin/
 # Custom functions
 for file in ~/.functions/*.sh
 do
     . $file
 done
-

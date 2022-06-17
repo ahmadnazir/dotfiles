@@ -9,7 +9,7 @@
   - name: Test
     pacman:
       name:
-        - python-pip
+        - x11-ssh-askpass
 
   # - aur: name=autojump
   #   become: true

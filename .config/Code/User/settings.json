@@ -60,5 +60,9 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all",
-    "nxConsole.enableTelemetry": false
+    "nxConsole.enableTelemetry": false,
+    "debug.javascript.autoAttachFilter": "disabled",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }

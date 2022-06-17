@@ -1,6 +1,10 @@
-# IMAGE=ahmadnazir/sphinx
-IMAGE=suttang/sphinx-rtd-theme
+# IMAGE=suttang/sphinx-rtd-theme
+IMAGE=sphinxdoc/sphinx:5.0.1
 DIR=~/code/me/scribbles
+
+function print-info () {
+    text-info "Image: ${IMAGE}"
+}
 
 function scribbles-clean () {
     cd $DIR/build > /dev/null
@@ -12,6 +16,8 @@ function scribbles-clean () {
 }
 
 function scribbles-compile () {
+    print-info
+
     docker run -it --rm \
            -v /etc/passwd:/etc/passwd \
            -v /etc/group:/etc/group \
@@ -32,9 +38,9 @@ function -scribbles-publish () {
 
     git push origin `git subtree split --prefix build/html source`:master --force
 
-    text-info 'SCRIBBLES :: Publishing man pages locally'
+    # text-info 'SCRIBBLES :: Publishing man pages locally'
 
-    sudo cp build/man/scribbles.7 /usr/share/man/man7/
+    # sudo cp build/man/scribbles.7 /usr/share/man/man7/
     cd - > /dev/null
 }
 

@@ -45,4 +45,23 @@
   (magit-status "/yadm::")
   )
 
+
+;; Scribbles
+;; TODO: create a scribbles package
+
+;;;###autoload
+(defun scribble ()
+  (interactive)
+  (let* ((rel-path (format-time-string "%Y/%m/%d/"))
+         (title (read-string "What do want to scribble about? "))
+         (tags (read-string "Tags: "))
+         (scribbles-path "~/.scribbles/")
+         (scribble-file (concat scribbles-path rel-path (s-dashed-words title) ".rst"))
+         (time (format-time-string "%d/%m/%Y"))
+         (underline (s-replace-regexp "." "=" title))
+         )
+    (find-file scribble-file)
+    (unless (file-exists-p scribble-file)
+      (insert title "\n" underline "\n\n" ".. post:: " time "\n   " ":tags: " tags "\n\n"))))
+
 (provide 'util)
