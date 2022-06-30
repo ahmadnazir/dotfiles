@@ -11,11 +11,13 @@
         - xmonad
         - xmobar
         - dmenu
-        - x11-ssh-askpass
 
-  - name: mcrypt
+  - name: security
     pacman:
-      name: mcrypt
+      name:
+        - mcrypt
+        - arch-audit
+        - x11-ssh-askpass
 
   - name: Sound
     pacman:
@@ -31,6 +33,7 @@
         - bluez
         - bluez-utils
         - pulseaudio-bluetooth
+        - blueman
 
   # backlight
   - name: Power utils (Keyboard backlight)
@@ -73,6 +76,7 @@
         - xclip
         - jq
         - ngrok
+        - net-tools
 
   - name: System
     pacman:
