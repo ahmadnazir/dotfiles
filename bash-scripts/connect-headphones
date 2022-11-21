@@ -1,0 +1,1 @@
+bluetoothctl power on && bluetoothctl connect 78:2B:64:13:AE:89

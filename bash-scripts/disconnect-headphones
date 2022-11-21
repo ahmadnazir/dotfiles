@@ -1,0 +1,1 @@
+bluetoothctl power off
