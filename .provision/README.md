@@ -1,11 +1,13 @@
-Provision
-============
+# Provision
 
-Moving to arch. The provisioning scripts will be changing.
-
-During installation of the OS, the following packages are installed:
+## Pre-requisites
 
 ```
-pacstrap base base-devel intel-ucode iwd sudo ansible git
+sudo ansible git
 ```
 
+## Run
+
+```
+~/.provision/provision.sh
+```

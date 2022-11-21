@@ -571,11 +571,6 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  ;; Use `pine-mode' minor mode with `sql-mode' with major mode:
-  ;;
-  ;; `, s f'     : Execute sql query
-  ;; `<C-return> ' Execute pine expression
-  ;;
   (add-to-list 'tramp-methods
                '("yadm"
                  (tramp-login-program "yadm")
@@ -584,10 +579,14 @@ before packages are loaded."
                  (tramp-remote-shell "/bin/bash")
                  (tramp-remote-shell-args ("-c"))))
 
+  ;; Use `pine-mode' minor mode with `sql-mode' with major mode:
+  ;;
+  ;; `, s f'     : Execute sql query
+  ;; `<C-return> ' Execute pine expression
+  ;;
   (add-hook 'pine-mode-hook
             '(lambda ()
                (local-set-key (kbd "<C-return>") 'pine-mode--eval-at-point)
-               (local-set-key (kbd "C-c C-c") 'pine-mode--eval-at-point)
                ))
 
   )
@@ -605,6 +604,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auth-source-save-behavior nil)
  '(evil-want-Y-yank-to-eol nil)
  '(package-selected-packages
    '(git-modes yaml clj-refactor inflections helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a plantuml-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nginx-mode csv-mode restclient-helm ob-restclient restclient ob-http web-mode typescript-mode emmet-mode web-beautify tern prettier-js npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl impatient-mode simple-httpd helm-gtags ggtags dap-mode lsp-treemacs bui counsel-gtags counsel swiper ivy add-node-modules-path yaml-mode company treemacs-magit smeargle overseer orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-journal org-download org-cliplink org-brain nameless magit-svn magit-section magit-gitflow magit-popup macrostep lsp-haskell lsp-mode htmlize hlint-refactor hindent helm-org-rifle helm-hoogle helm-gitignore helm-git-grep haskell-snippets yasnippet haskell-mode gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient flycheck-package package-lint flycheck flycheck-elsa evil-org evil-mc emr clang-format list-utils elisp-slime-nav cmm-mode auto-compile packed ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox org-superstar open-junk-file multi-line lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol aggressive-indent ace-link ace-jump-helm-line))

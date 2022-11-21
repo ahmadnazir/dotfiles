@@ -1,6 +1,7 @@
-# IMAGE=suttang/sphinx-rtd-theme
+# Copied from the the scribbles repo
+
 IMAGE=sphinxdoc/sphinx:5.0.1
-DIR=~/code/me/scribbles
+DIR=~/code/ahmadnazir/scribbles
 
 function print-info () {
     text-info "Image: ${IMAGE}"

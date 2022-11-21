@@ -3,3 +3,8 @@ xterm*faceSize: 14
 xterm*metaSendsEscape: true
 xterm*background: black
 xterm*foreground: lightgray
+
+! Xft.dpi: 96
+
+! Xcursor.theme: Simple-and-Soft
+! Xcursor.size:16

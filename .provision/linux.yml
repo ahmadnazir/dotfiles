@@ -1,73 +1,69 @@
 ---
-- name: Provision arch linux machine with goodies
+- name: Provision linux machine with goodies
   hosts: localhost
-  # roles:
-  # - kewlfft.aur
 
   tasks:
   - name: gui
-    pacman:
+    package:
       name:
         - xmonad
         - xmobar
         - dmenu
 
   - name: security
-    pacman:
+    package:
       name:
-        - mcrypt
-        - arch-audit
-        - x11-ssh-askpass
+        # - mcrypt
+        # - x11-ssh-askpass
+        - xscreensaver
 
   - name: Sound
-    pacman:
+    package:
       name:
         - alsa-utils
         - pulseaudio
-        - pulseaudio-alsa
         - pavucontrol
+        # arch
+        # - pulseaudio-alsa
 
   - name: Bluetooth
-    pacman:
+    package:
       name:
+        - bluetooth
         - bluez
-        - bluez-utils
-        - pulseaudio-bluetooth
         - blueman
+        # arch
+        # - bluez-utils
+        # - pulseaudio-bluetooth
 
-  # backlight
-  - name: Power utils (Keyboard backlight)
-    pacman:
-      name:
-        - upower
-        - python-dbus
+  # # backlight
+  # - name: Power utils (Keyboard backlight)
+  #   package:
+  #     name:
+  #       - upower
+  #       - python-dbus
 
   - name: Multiple monitors
-    pacman:
+    package:
       name:
         - arandr
 
   - name: Pdf / screenshot / images
-    pacman:
+    package:
       name:
         - flameshot
         - eog
         - evince
         - pdftk
 
-  - name: Slack
-    pacman:
-      name:
-        - slack-desktop
-
   - name: Docker
-    pacman:
+    package:
       name:
         - docker
         - docker-compose
 
   - name: Terminals and tools
-    pacman:
+    package:
       name:
         - kitty
         - exa
@@ -75,45 +71,18 @@
         - unzip
         - xclip
         - jq
-        - ngrok
+        # - ngrok
         - net-tools
+        - dunst
 
   - name: System
-    pacman:
+    package:
       name:
         - lsof
         - inotify-tools
+        - xinput
 
-  - name: Misc
-    pacman:
-      name:
-        - noto-fonts-emoji
-
-  # TODO: fix issue with roles
-  # - aur: name=autojump
-  #   become: true
-  #   become_user: "{{ user.name }}"
-
-
-
-  # # Secret management
-  # - name: Last pass
-  #   pacman:
-  #     name: lastpass-cli
-
-  # # xfreerdp
-  # - name: Remote desktop
-  #   pacman:
-  #     name: freerdp2-x11
-
-  # - name: graphviz
-  #   pacman:
-  #     name: graphviz
-
-  # - name: rlwrap
-  #   pacman:
-  #     name: rlwrap
-
-  # - name: openjdk-8-jre
-  #   pacman:
-  #     name: openjdk-8-jre
+  # - name: Misc
+  #   package:
+  #     name:
+  #       - noto-fonts-emoji

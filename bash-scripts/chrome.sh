@@ -2,4 +2,4 @@
 
 # google-chrome-stable --remote-debugging-port=9222
 
-google-chrome-stable
+google-chrome --force-device-scale-factor=1.3

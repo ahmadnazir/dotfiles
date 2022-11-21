@@ -50,7 +50,7 @@ myKeys =
     -- skipping wifi functionality - supported natively
 
     ((0 , xF86XK_Tools)             , notImplemented "settings")     ,
-    ((0 , xF86XK_Bluetooth)         , notImplemented "bluetooth")    ,
+    -- ((0 , xF86XK_Bluetooth)         , notImplemented "bluetooth")    , -- seems to be supported
     -- skipping keyboard settings - don't know what the key is
     ((0 , xF86XK_Favorites)         , notImplemented "favourites")
   ]
