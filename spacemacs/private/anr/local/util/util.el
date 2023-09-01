@@ -57,7 +57,7 @@
          (tags (read-string "Tags: "))
          (scribbles-path "~/.scribbles/")
          (scribble-file (concat scribbles-path rel-path (s-dashed-words title) ".rst"))
-         (time (format-time-string "%d/%m/%Y"))
+         (time (format-time-string "%b %d, %Y"))
          (underline (s-replace-regexp "." "=" title))
          )
     (find-file scribble-file)
