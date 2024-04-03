@@ -14,7 +14,7 @@ PS1='[\t] \w $ '
 print_pre_prompt ()
 {
     #  NX Version
-    NX_VER=`nx --version`
+    NX_VER=`nx --version 2> /dev/null`
     status=$?
     if [ $status -eq 0 ]; then
         PS1R="nx: ${NX_VER} |"
