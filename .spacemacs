@@ -50,7 +50,7 @@ This function should only modify configuration layer settings."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
      git
@@ -91,6 +91,15 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
                                       editorconfig
+                                      ;; Made copilot a local package in `anr`
+                                      ;; layer because using the following
+                                      ;; throws an error i.e. emacs-27.2 is not
+                                      ;; available
+                                      ;;
+                                      ;; (copilot :location (recipe
+                                      ;;                     :fetcher github
+                                      ;;                     :repo "ahmadnazir/copilot.el"
+                                      ;;                     :files ("*.el" "dist")))
                                       )
 
    ;; A list of packages that cannot be updated.
@@ -266,7 +275,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 14.0
+                               :size 12.0
                                :weight normal
                                :width normal)
 
@@ -586,9 +595,26 @@ before packages are loaded."
   ;;
   (add-hook 'pine-mode-hook
             '(lambda ()
+               (sql-mode)
+               ;; Doesn't seem to work if I try to disable the sqlind-minor-mode
+               ;; (sqlind-minor-mode)
                (local-set-key (kbd "<C-return>") 'pine-mode--eval-at-point)
                ))
 
+
+
+  (with-eval-after-load 'company
+    ;; disable inline previews
+    (delq 'company-preview-if-just-one-frontend company-frontends))
+
+  (with-eval-after-load 'copilot
+    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+
+  (add-hook 'prog-mode-hook 'copilot-mode)
+
+  (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
+  (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
   )
 
 
@@ -606,9 +632,10 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(auth-source-save-behavior nil)
  '(evil-want-Y-yank-to-eol nil)
- '(org-journal-file-format "%Y%m%d.org")
+ '(org-journal-dir "~/Journals/main/")
+ '(org-journal-file-format "%Y/%Y%m%d.org")
  '(package-selected-packages
-   '(git-modes yaml clj-refactor inflections helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a plantuml-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nginx-mode csv-mode restclient-helm ob-restclient restclient ob-http web-mode typescript-mode emmet-mode web-beautify tern prettier-js npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl impatient-mode simple-httpd helm-gtags ggtags dap-mode lsp-treemacs bui counsel-gtags counsel swiper ivy add-node-modules-path yaml-mode company treemacs-magit smeargle overseer orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-journal org-download org-cliplink org-brain nameless magit-svn magit-section magit-gitflow magit-popup macrostep lsp-haskell lsp-mode htmlize hlint-refactor hindent helm-org-rifle helm-hoogle helm-gitignore helm-git-grep haskell-snippets yasnippet haskell-mode gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient flycheck-package package-lint flycheck flycheck-elsa evil-org evil-mc emr clang-format list-utils elisp-slime-nav cmm-mode auto-compile packed ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox org-superstar open-junk-file multi-line lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol aggressive-indent ace-link ace-jump-helm-line))
+   '(ac-ispell attrap auto-complete auto-yasnippet clojure-snippets company-anaconda company-cabal company-go company-restclient know-your-http-well dante lcr project eldoc xref fuzzy helm-c-yasnippet helm-company yasnippet-snippets git-modes yaml clj-refactor inflections helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a plantuml-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nginx-mode csv-mode restclient-helm ob-restclient restclient ob-http web-mode typescript-mode emmet-mode web-beautify tern prettier-js npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl impatient-mode simple-httpd helm-gtags ggtags dap-mode lsp-treemacs bui counsel-gtags counsel swiper ivy add-node-modules-path yaml-mode company treemacs-magit smeargle overseer orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-journal org-download org-cliplink org-brain nameless magit-svn magit-section magit-gitflow magit-popup macrostep lsp-haskell lsp-mode htmlize hlint-refactor hindent helm-org-rifle helm-hoogle helm-gitignore helm-git-grep haskell-snippets yasnippet haskell-mode gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient flycheck-package package-lint flycheck flycheck-elsa evil-org evil-mc emr clang-format list-utils elisp-slime-nav cmm-mode auto-compile packed ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox org-superstar open-junk-file multi-line lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol aggressive-indent ace-link ace-jump-helm-line))
  '(restclient-inhibit-cookies nil)
  '(safe-local-variable-values
    '((cljr-warn-on-eval)
