@@ -1,3 +1,7 @@
+(global-set-key (kbd "C--") 'zoom-frm-out)
+(global-set-key (kbd "C-=") 'zoom-frm-in)
+
+
 ;; Visual / Accessibility
 ;;
 (spacemacs/set-leader-keys "otf" 'visual/toggle-font-size)
@@ -64,17 +68,19 @@
 ;; (spacemacs/set-leader-keys "ojf" 'org-journal-open-next-entry)
 
 ;; ; clock !
-;; (spacemacs/declare-prefix "oc" "clock")
-;; (spacemacs/set-leader-keys "ocd" 'org-clock-display)
-;; (spacemacs/set-leader-keys "oci" '(lambda() (interactive) (org-clock-in) (save-buffer)))
-;; (spacemacs/set-leader-keys "oco" '(lambda() (interactive) (org-clock-out) (save-buffer)))
-;; (spacemacs/set-leader-keys "ocr" '(lambda() (interactive)
-;;                                     (beginning-of-buffer)
-;;                                     (evil-open-below 0)
-;;                                     (org-clock-report)
-;;                                     (save-buffer)
-;;                                     (evil-force-normal-state)
-;;                                     ))
+(spacemacs/declare-prefix "c" "clock")
+(spacemacs/set-leader-keys "cc" 'org-journal-open-current-journal-file)
+(spacemacs/set-leader-keys "cn" 'org-journal-new-entry)
+(spacemacs/set-leader-keys "cd" 'org-clock-display)
+(spacemacs/set-leader-keys "ci" '(lambda() (interactive) (org-clock-in) (save-buffer)))
+(spacemacs/set-leader-keys "co" '(lambda() (interactive) (org-clock-out) (save-buffer)))
+(spacemacs/set-leader-keys "cr" '(lambda() (interactive)
+                                    (beginning-of-buffer)
+                                    (evil-open-below 0)
+                                    (org-clock-report)
+                                    (save-buffer)
+                                    (evil-force-normal-state)
+                                    ))
 
 ;; (spacemacs/set-leader-keys "or" 'helm-global-mark-ring)
 
