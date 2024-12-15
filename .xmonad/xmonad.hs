@@ -12,6 +12,7 @@ main = xmonad =<< xmobar defaults
 
 defaults = desktopConfig
       {
+        -- terminal    = "warp-terminal"  ,
         terminal    = "kitty"  ,
         modMask     = mod4Mask ,
         borderWidth = 1 ,

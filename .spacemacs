@@ -598,6 +598,8 @@ before packages are loaded."
                (sql-mode)
                ;; Doesn't seem to work if I try to disable the sqlind-minor-mode
                ;; (sqlind-minor-mode)
+               ;; How about this?
+               ;; (sql-indent-enable)
                (local-set-key (kbd "<C-return>") 'pine-mode--eval-at-point)
                ))
 

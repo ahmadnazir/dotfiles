@@ -24,11 +24,11 @@
 ;;              (local-set-key (kbd "<C-return>") 'eval-defun)
 ;;              ))
 
-;; ;; restclient-mode
-;; (add-hook 'restclient-mode-hook
-;;           '(lambda ()
-;;              (local-set-key (kbd "<C-return>") 'restclient-http-send-current-stay-in-window)
-;;              ))
+;; restclient-mode
+(add-hook 'restclient-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "<C-return>") 'restclient-http-send-current-stay-in-window)
+             ))
 
 ;; ;; clojure-mode
 ;; (add-hook 'clojure-mode-hook

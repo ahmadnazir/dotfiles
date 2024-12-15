@@ -7,27 +7,27 @@
 
 alias ls='ls --color=auto'
 
-# Ctrl-a doesn't always work with colors enabled
-# PS1="\e[0;32m[\t] \w > \e[m "
-PS1='[\t] \w $ '
+# # Ctrl-a doesn't always work with colors enabled
+# # PS1="\e[0;32m[\t] \w > \e[m "
+# PS1='[\t] \w $ '
 
-print_pre_prompt ()
-{
-    #  NX Version
-    NX_VER=`nx --version 2> /dev/null`
-    status=$?
-    if [ $status -eq 0 ]; then
-        PS1R="nx: ${NX_VER} |"
-    fi
+# print_pre_prompt ()
+# {
+#     #  NX Version
+#     NX_VER=`nx --version 2> /dev/null`
+#     status=$?
+#     if [ $status -eq 0 ]; then
+#         PS1R="nx: ${NX_VER} |"
+#     fi
 
-    #  Node Version
-    PS1R="${PS1R} node: `node -v`"
+#     #  Node Version
+#     PS1R="${PS1R} node: `node -v`"
 
-    PS1L=''
-    printf "%s%$(($COLUMNS-${#PS1L}))s" "$PS1L" "$PS1R"
-    PS1R=''
-}
-PROMPT_COMMAND=print_pre_prompt
+#     PS1L=''
+#     printf "%s%$(($COLUMNS-${#PS1L}))s" "$PS1L" "$PS1R"
+#     PS1R=''
+# }
+# PROMPT_COMMAND=print_pre_prompt
 
 # kitty
 source <(kitty + complete setup bash)
@@ -47,3 +47,12 @@ done
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
+
+# alias k9s="docker run --rm -it -v ~/.kube:/root/.kube quay.io/derailed/k9s:latest"
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+
+PATH=~/.console-ninja/.bin:$PATH
+alias l=looney

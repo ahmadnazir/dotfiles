@@ -17,6 +17,7 @@ dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XA
 
 # Settings for the touchpad
 DEVICE_ID=`xinput | grep -i touchpad | grep -E 'id.(..)' -o | awk -F '=' '{print $2}'`
+# DEVICE_ID=9 # Apple touchpad
 xinput set-prop $DEVICE_ID "libinput Tapping Enabled" 1
 xinput set-prop $DEVICE_ID "libinput Natural Scrolling Enabled" 1
 
