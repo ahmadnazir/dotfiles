@@ -73,9 +73,9 @@ This function should only modify configuration layer settings."
 
      ;; local
      anr
-     avallone
-     bolt
-     pine
+     ;; avallone
+     ;; bolt
+     ;; pine
      ;; wrappers
      visual-regexp
      )
@@ -275,7 +275,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 12.0
+                               :size 10.0
                                :weight normal
                                :width normal)
 
@@ -476,7 +476,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.
    ;; (default '("rg" "ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("ag" "ack" "grep") ;; "rg" doesn't seem to work at the moment
 
    ;; Format specification for setting the frame title.
    ;; %a - the `abbreviated-file-name', or `buffer-name'
@@ -554,7 +554,7 @@ default it calls `spacemacs/load-spacemacs-env' which loads the environment
 variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
   (spacemacs/load-spacemacs-env)
-)
+  )
 
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
@@ -562,7 +562,7 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-)
+  )
 
 
 (defun dotspacemacs/user-load ()
@@ -570,7 +570,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-)
+  )
 
 
 (defun dotspacemacs/user-config ()
@@ -580,13 +580,20 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (add-to-list 'tramp-methods
-               '("yadm"
-                 (tramp-login-program "yadm")
-                 (tramp-login-args (("enter")))
-                 (tramp-login-env (("SHELL") ("/bin/bash")))
-                 (tramp-remote-shell "/bin/bash")
-                 (tramp-remote-shell-args ("-c"))))
+  (setq ag-arguments
+        '(;;"--hidden"
+          ;; "--ignore" ".emacs.d"
+          ;; "--ignore" ".elpa"
+          ;; "--ignore" ".spacemacs"
+          ))
+
+  ;; (add-to-list 'tramp-methods
+  ;;              '("yadm"
+  ;;                (tramp-login-program "yadm")
+  ;;                (tramp-login-args (("enter")))
+  ;;                (tramp-login-env (("SHELL") ("/bin/bash")))
+  ;;                (tramp-remote-shell "/bin/bash")
+  ;;                (tramp-remote-shell-args ("-c"))))
 
   ;; Use `pine-mode' minor mode with `sql-mode' with major mode:
   ;;
@@ -609,11 +616,11 @@ before packages are loaded."
     ;; disable inline previews
     (delq 'company-preview-if-just-one-frontend company-frontends))
 
-  (with-eval-after-load 'copilot
-    (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-    (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
+  ;; (with-eval-after-load 'copilot
+  ;;   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  ;;   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
 
-  (add-hook 'prog-mode-hook 'copilot-mode)
+  ;; (add-hook 'prog-mode-hook 'copilot-mode)
 
   (define-key evil-insert-state-map (kbd "C-<tab>") 'copilot-accept-completion-by-word)
   (define-key evil-insert-state-map (kbd "C-TAB") 'copilot-accept-completion-by-word)
@@ -627,31 +634,71 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(auth-source-save-behavior nil)
- '(evil-want-Y-yank-to-eol nil)
- '(org-journal-dir "~/Journals/main/")
- '(org-journal-file-format "%Y/%Y%m%d.org")
- '(package-selected-packages
-   '(ac-ispell attrap auto-complete auto-yasnippet clojure-snippets company-anaconda company-cabal company-go company-restclient know-your-http-well dante lcr project eldoc xref fuzzy helm-c-yasnippet helm-company yasnippet-snippets git-modes yaml clj-refactor inflections helm-cider cider-eval-sexp-fu cider sesman seq queue parseedn clojure-mode parseclj a plantuml-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode counsel-css company-web web-completion-data nginx-mode csv-mode restclient-helm ob-restclient restclient ob-http web-mode typescript-mode emmet-mode web-beautify tern prettier-js npm-mode nodejs-repl livid-mode skewer-mode js2-refactor multiple-cursors js2-mode js-doc import-js grizzl impatient-mode simple-httpd helm-gtags ggtags dap-mode lsp-treemacs bui counsel-gtags counsel swiper ivy add-node-modules-path yaml-mode company treemacs-magit smeargle overseer orgit-forge orgit org-rich-yank org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-journal org-download org-cliplink org-brain nameless magit-svn magit-section magit-gitflow magit-popup macrostep lsp-haskell lsp-mode htmlize hlint-refactor hindent helm-org-rifle helm-hoogle helm-gitignore helm-git-grep haskell-snippets yasnippet haskell-mode gnuplot gitignore-templates gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link forge markdown-mode magit ghub closql emacsql-sqlite emacsql treepy git-commit with-editor transient flycheck-package package-lint flycheck flycheck-elsa evil-org evil-mc emr clang-format list-utils elisp-slime-nav cmm-mode auto-compile packed ws-butler writeroom-mode winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org symon symbol-overlay string-inflection string-edit spaceline-all-the-icons restart-emacs request rainbow-delimiters popwin pcre2el password-generator paradox org-superstar open-junk-file multi-line lorem-ipsum link-hint indent-guide hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-ls-git helm-flx helm-descbinds helm-ag google-translate golden-ratio font-lock+ flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol aggressive-indent ace-link ace-jump-helm-line))
- '(restclient-inhibit-cookies nil)
- '(safe-local-variable-values
-   '((cljr-warn-on-eval)
-     (typescript-backend . tide)
-     (typescript-backend . lsp)
-     (javascript-backend . tide)
-     (javascript-backend . tern)
-     (javascript-backend . lsp)))
- '(split-height-threshold nil)
- '(split-width-threshold 200))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
-)
+  (custom-set-variables
+   ;; custom-set-variables was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(auth-source-save-behavior nil)
+   '(evil-want-Y-yank-to-eol nil)
+   '(org-journal-dir "~/Journals/main/")
+   '(org-journal-file-format "%Y/%Y%m%d.org")
+   '(package-selected-packages
+     '(a ac-ispell ace-jump-helm-line ace-link add-node-modules-path
+         aggressive-indent alert attrap auto-compile auto-complete
+         auto-highlight-symbol auto-yasnippet bui centered-cursor-mode cider
+         cider-eval-sexp-fu clang-format clean-aindent-mode clj-refactor
+         clojure-mode clojure-snippets closql cmm-mode column-enforce-mode company
+         company-anaconda company-cabal company-go company-restclient company-web
+         counsel counsel-css counsel-gtags csv-mode dante dap-mode define-word
+         devdocs diminish dired-quick-sort dotenv-mode drag-stuff dumb-jump
+         editorconfig eldoc elisp-slime-nav emacsql emacsql-sqlite emmet-mode emr
+         eval-sexp-fu evil-anzu evil-args evil-cleverparens evil-collection
+         evil-easymotion evil-ediff evil-escape evil-exchange evil-goggles
+         evil-iedit-state evil-indent-plus evil-lion evil-lisp-state evil-matchit
+         evil-mc evil-nerd-commenter evil-numbers evil-org evil-surround
+         evil-textobj-line evil-tutor evil-unimpaired evil-visual-mark-mode
+         evil-visualstar expand-region eyebrowse fancy-battery flx-ido flycheck
+         flycheck-elsa flycheck-package font-lock+ forge fuzzy ggtags ghub
+         git-commit git-link git-messenger git-modes git-timemachine
+         gitattributes-mode gitconfig-mode gitignore-mode gitignore-templates gntp
+         gnuplot golden-ratio google-translate grizzl haml-mode haskell-mode
+         haskell-snippets helm-ag helm-c-yasnippet helm-cider helm-company
+         helm-css-scss helm-descbinds helm-flx helm-git-grep helm-gitignore
+         helm-gtags helm-hoogle helm-ls-git helm-make helm-mode-manager helm-org
+         helm-org-rifle helm-projectile helm-purpose helm-swoop helm-themes
+         helm-xref highlight-indentation highlight-numbers highlight-parentheses
+         hindent hl-todo hlint-refactor htmlize hungry-delete hybrid-mode
+         impatient-mode import-js indent-guide inflections ivy js-doc js2-mode
+         js2-refactor know-your-http-well lcr link-hint list-utils livid-mode
+         log4e lorem-ipsum lsp-haskell lsp-mode lsp-treemacs macrostep magit
+         magit-gitflow magit-popup magit-section magit-svn markdown-mode
+         multi-line multiple-cursors nameless nginx-mode nodejs-repl npm-mode
+         ob-http ob-restclient open-junk-file org-brain org-category-capture
+         org-cliplink org-download org-journal org-mime org-pomodoro org-present
+         org-projectile org-rich-yank org-superstar orgit orgit-forge overseer
+         package-lint packed paradox parseclj parseedn password-generator pcre2el
+         plantuml-mode popwin prettier-js project pug-mode queue
+         rainbow-delimiters request restart-emacs restclient restclient-helm
+         sass-mode scss-mode seq sesman simple-httpd skewer-mode slim-mode
+         smeargle spaceline-all-the-icons string-edit string-inflection swiper
+         symbol-overlay symon tagedit tern tide toc-org transient treemacs-evil
+         treemacs-icons-dired treemacs-magit treemacs-persp treemacs-projectile
+         treepy typescript-mode undo-tree use-package uuidgen vi-tilde-fringe
+         volatile-highlights web-beautify web-completion-data web-mode which-key
+         winum with-editor writeroom-mode ws-butler xref yaml yaml-mode yasnippet
+         yasnippet-snippets))
+   '(restclient-inhibit-cookies nil)
+   '(safe-local-variable-values
+     '((cljr-warn-on-eval) (typescript-backend . tide) (typescript-backend . lsp)
+       (javascript-backend . tide) (javascript-backend . tern)
+       (javascript-backend . lsp)))
+   '(split-height-threshold nil)
+   '(split-width-threshold 200))
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
+  )

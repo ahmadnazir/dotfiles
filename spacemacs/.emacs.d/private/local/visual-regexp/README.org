@@ -1,0 +1,31 @@
+#+TITLE: regexp layer
+
+# The maximum height of the logo should be 200 pixels.
+[[img/regexp.png]]
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_4_gh:noexport:
+ - [[#description][Description]]
+ - [[#install][Install]]
+ - [[#key-bindings][Key bindings]]
+
+* Description
+  This an initial attempt to write a layer related to regexp pacakges
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =regexp= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+  
+None key bindings so far.. this will come
+
+# | Key Binding | Description    |
+# |-------------+----------------|
+# | ~SPC x x x~ | Does thing01   |
+# # Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
+# # Examples:
+# # [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
+# # [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
+# # If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
