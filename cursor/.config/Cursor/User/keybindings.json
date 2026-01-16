@@ -122,5 +122,51 @@
         "key": "escape",
         "command":"workbench.action.focusActiveEditorGroup",
         "when":"!editorTextFocus"
+	},
+	{
+		"key": "ctrl+y",
+		"command": "extension.vim_ctrl+y",
+		"when": "false && editorTextFocus && vim.active && vim.use<C-y> && !inDebugRepl"
+	},
+	{
+		"key": "ctrl+y",
+		"command": "-extension.vim_ctrl+y",
+		"when": "editorTextFocus && vim.active && vim.use<C-y> && !inDebugRepl"
+	},
+	{
+		"key": "ctrl+0",
+		"command": "workbench.action.toggleSidebarVisibility"
+	},
+	{
+		"key": "ctrl+b",
+		"command": "-workbench.action.toggleSidebarVisibility"
+	},
+	{
+		"key": "ctrl+i",
+		"command": "composerMode.agent"
+	},
+	{
+		"key": "tab",
+		"command": "magit.toggle-fold",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "tab",
+		"command": "-magit.toggle-fold",
+		"when": "editorTextFocus && editorLangId == 'magit' && vim.mode =~ /^(?!SearchInProgressMode|CommandlineInProgress).*$/"
+	},
+	{
+		"key": "tab",
+		"command": "editor.action.acceptCursorTabSuggestion",
+		"when": "cpp.shouldAcceptTab"
+	},
+	{
+		"key": "tab",
+		"command": "-editor.action.acceptCursorTabSuggestion",
+		"when": "cpp.shouldAcceptTab"
+	},
+	{
+		"key": "ctrl+i",
+		"command": "composerMode.agent"
 	}
 ]

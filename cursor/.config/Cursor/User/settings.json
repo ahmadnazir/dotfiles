@@ -64,6 +64,9 @@
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "terminal.integrated.defaultProfile.linux": "bash",
     "terminal.integrated.profiles.linux": {
         "bash": {
@@ -97,17 +100,80 @@
     },
     "editor.inlineSuggest.enabled": true,
     "github.copilot.enable": {
-        "*": true,
-        "yaml": false,
+        "*": false,
         "plaintext": false,
         "markdown": true,
+        "scminput": false,
+        "yaml": false,
         "typescript": true
     },
-    "window.zoomLevel": 2,
     "vim.commandLineModeKeyBindings": [],
     "cursor.cpp.disabledLanguages": [
         "plaintext",
         "scminput",
-        "yaml"
-    ]
+        "yaml",
+        "magit"
+    ],
+    "workbench.sideBar.location": "right",
+    "cursor.composer.renderPillsInsteadOfBlocks": true,
+
+    "eslint.workingDirectories": [
+        {
+        "pattern": "*/"
+        }
+    ],
+    "calva.paredit.defaultKeyMap": "strict",
+    "files.autoSaveWorkspaceFilesOnly": true,
+    "calva.evalOnSave": true,
+    "calva.prettyPrintingOptions": {
+        "printEngine": "pprint",
+        "enabled": false,
+        "width": 120,
+        "maxLength": 50
+    },
+    "gitlens.gitCommands.skipConfirmations": [
+        "fetch:command",
+        "stash-push:command",
+        "switch:command"
+    ],
+    "window.commandCenter": true,
+    "remote.SSH.remotePlatform": {
+        "api.beamlynx": "linux",
+        "dev-server": "linux",
+        "rowl": "linux",
+        "zen": "linux"
+    },
+    "files.exclude": {
+        "config.ts": true
+    },
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "cursor.general.globalCursorIgnoreList": [
+        "**/.env",
+        "**/.env.*",
+        "**/credentials.json",
+        "**/credentials.*.json",
+        "**/secret.json",
+        "**/secrets.json",
+        "**/*.key",
+        "**/*.pem",
+        "**/*.pfx",
+        "**/*.p12",
+        "**/*.crt",
+        "**/*.cer",
+        "**/id_rsa",
+        "**/id_dsa",
+        "**/.ssh/id_*",
+        "**/.cursor/mcp.json",
+        "**/config.ts"
+    ],
+    "remote.autoForwardPortsSource": "hybrid"
+
 }
