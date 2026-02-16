@@ -1,0 +1,26 @@
+[Desktop Entry]
+Version=1.0
+Name=Google Chrome --disable-gpu
+GenericName=Web Browser
+# Gnome and KDE 3 uses Comment.
+Comment=Access the Internet
+StartupWMClass=Google-chrome
+Exec=/usr/bin/google-chrome-stable --disable-gpu %U
+StartupNotify=true
+Terminal=false
+Icon=google-chrome
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/google-chrome;
+Actions=new-window;new-private-window;
+
+
+[Desktop Action new-window]
+Name=New Window
+StartupWMClass=Google-chrome
+Exec=/usr/bin/google-chrome-stable --disable-gpu
+
+[Desktop Action new-private-window]
+Name=New Incognito Window
+StartupWMClass=Google-chrome
+Exec=/usr/bin/google-chrome-stable --incognito --disable-gpu

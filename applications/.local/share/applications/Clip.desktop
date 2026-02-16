@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Clip
+Comment=Clip
+# Exec=xdg-terminal-exec --app-id=TUI.float -e omarchy-cmd-screenshot
+Exec=sh -c 'sleep 0.1; omarchy-cmd-screenshot'
+# Exec=omarchy-cmd-screenshot
+Terminal=false
+Type=Application
+Icon=/home/mandark/.local/share/applications/icons/Clip.png
+StartupNotify=false
