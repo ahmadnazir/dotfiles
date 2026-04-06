@@ -1,4 +1,4 @@
-{
+{ "workbench.colorTheme": "Matte Black",
     "editor.fontFamily": "'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "vim.easymotion": true,
     "vim.useSystemClipboard": true,
@@ -58,7 +58,7 @@
     "python.defaultInterpreterPath": "/home/mandark/code/scratch/python/env/bin/python3.9",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.minimap.enabled": false,
-    "editor.renderWhitespace": "none",
+    "editor.renderWhitespace": "all",
     "nxConsole.enableTelemetry": false,
     "debug.javascript.autoAttachFilter": "disabled",
     "[typescript]": {
@@ -111,8 +111,7 @@
     "cursor.cpp.disabledLanguages": [
         "plaintext",
         "scminput",
-        "yaml",
-        "magit"
+        "yaml"
     ],
     "workbench.sideBar.location": "right",
     "cursor.composer.renderPillsInsteadOfBlocks": true,
@@ -174,6 +173,8 @@
         "**/.cursor/mcp.json",
         "**/config.ts"
     ],
-    "remote.autoForwardPortsSource": "hybrid"
+    "remote.autoForwardPortsSource": "hybrid",
+    "aws.cloudformation.telemetry.enabled": false,
+    "aws.telemetry": false
 
 }

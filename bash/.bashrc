@@ -10,7 +10,7 @@ source ~/.local/share/omarchy/default/bash/rc
 # Make an alias for invoking commands you use constantly
 # alias p='python'
 
-PATH=${PATH}:~/.local/bin/
+export PATH="$HOME/.local/bin:$PATH"
 alias l='looney'
 
 export NVM_DIR="$HOME/.nvm"
@@ -20,3 +20,7 @@ nvm() {
   source /usr/share/nvm/init-nvm.sh
   nvm "$@"
 }
+
+# eval "$(mise activate bash)"
+
+. "$HOME/.local/share/../bin/env"

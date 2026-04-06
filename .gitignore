@@ -1,1 +1,3 @@
 *.log
+cursor/.config/*
+*.conf.bak.*

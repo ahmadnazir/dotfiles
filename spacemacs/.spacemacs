@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(go
+   '(toml
+     go
      (clojure :variables
               clojure-enable-clj-refactor t)
      python
@@ -73,8 +74,8 @@ This function should only modify configuration layer settings."
 
      ;; local
      anr
-     ;; avallone
-     ;; bolt
+     avallone
+     bolt
      ;; pine
      ;; wrappers
      visual-regexp
@@ -682,12 +683,12 @@ This function is called at the very end of Spacemacs initialization."
          rainbow-delimiters request restart-emacs restclient restclient-helm
          sass-mode scss-mode seq sesman simple-httpd skewer-mode slim-mode
          smeargle spaceline-all-the-icons string-edit string-inflection swiper
-         symbol-overlay symon tagedit tern tide toc-org transient treemacs-evil
-         treemacs-icons-dired treemacs-magit treemacs-persp treemacs-projectile
-         treepy typescript-mode undo-tree use-package uuidgen vi-tilde-fringe
-         volatile-highlights web-beautify web-completion-data web-mode which-key
-         winum with-editor writeroom-mode ws-butler xref yaml yaml-mode yasnippet
-         yasnippet-snippets))
+         symbol-overlay symon tagedit tern tide toc-org toml-mode transient
+         treemacs-evil treemacs-icons-dired treemacs-magit treemacs-persp
+         treemacs-projectile treepy typescript-mode undo-tree use-package uuidgen
+         vi-tilde-fringe volatile-highlights web-beautify web-completion-data
+         web-mode which-key winum with-editor writeroom-mode ws-butler xref yaml
+         yaml-mode yasnippet yasnippet-snippets))
    '(restclient-inhibit-cookies nil)
    '(safe-local-variable-values
      '((cljr-warn-on-eval) (typescript-backend . tide) (typescript-backend . lsp)
