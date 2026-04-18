@@ -16,11 +16,23 @@ alias l='looney'
 export NVM_DIR="$HOME/.nvm"
 
 nvm() {
-  unset -f nvm
-  source /usr/share/nvm/init-nvm.sh
-  nvm "$@"
+    unset -f nvm
+    source /usr/share/nvm/init-nvm.sh
+    nvm "$@"
 }
 
 # eval "$(mise activate bash)"
 
 . "$HOME/.local/share/../bin/env"
+
+if command -v eza &> /dev/null; then
+  alias ls='eza -lh --group-directories-first --icons=auto --sort=modified'
+  alias lsa='ls -a'
+  alias lsar='lsa --reverse'
+  alias lt='eza --tree --level=2 --long --icons --git --sort=modified'
+  alias lta='lt -a'
+  alias ltar='lta --reverse'
+fi
+
+
+alias lg='lazygit'
