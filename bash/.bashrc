@@ -11,7 +11,6 @@ source ~/.local/share/omarchy/default/bash/rc
 # alias p='python'
 
 export PATH="$HOME/.local/bin:$PATH"
-alias l='looney'
 
 export NVM_DIR="$HOME/.nvm"
 
@@ -36,3 +35,14 @@ fi
 
 
 alias lg='lazygit'
+
+# Merlin
+alias m='merlin'
+
+# Bash completion
+[[ -r /usr/share/bash-completion/bash_completion ]] && . /usr/share/bash-completion/bash_completion
+bind 'set colored-stats on'        # Colored completion matches
+bind 'set colored-completion-prefix on'  # Colored prefix completion
+bind 'set menu-complete-display-prefix on'
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
