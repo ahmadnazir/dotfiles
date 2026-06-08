@@ -8,71 +8,51 @@ LOG_FILE="$LOG_DIR/ws-policy.log"
 mkdir -p "$LOG_DIR"
 
 log() {
-    # echo '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$1" >> /tmp/test.log
-    echo 'here we are' >> /tmp/test.log
-    printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$1" >>"$LOG_FILE"
+  printf '[%s] %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$1" >>"$LOG_FILE"
+}
+
+move_workspace_to_monitor() {
+  local ws="$1"
+  local monitor="$2"
+  local output
+
+  output="$(hyprctl dispatch "hl.dsp.workspace.move({ workspace = '${ws}', monitor = '${monitor}' })" 2>&1)"
+  if [[ "$output" == "ok" ]]; then
+    return 0
+  fi
+
+  log "WARN: failed moving workspace ${ws} -> ${monitor}: ${output}"
+  return 1
 }
 
 get_external() {
-  # first monitor name that isn't INTERNAL
   hyprctl monitors \
     | awk '/^Monitor /{print $2}' \
     | grep -v "^${INTERNAL}$" \
     | head -n 1 || true
 }
 
-apply_policy() {
-  local ext
-  ext="$(get_external)"
+log "remap-workspaces (internal=${INTERNAL})"
 
-  log "apply_policy: internal=${INTERNAL} external=${ext:-<none>}"
+ext="$(get_external)"
+log "external=${ext:-<none>}"
 
-  # 1–6 always on laptop
-  for ws in 1 2 3 4 5 6; do
-    if hyprctl dispatch moveworkspacetomonitor "$ws" "$INTERNAL" >/dev/null 2>&1; then
-      log "moved workspace $ws -> $INTERNAL"
-    else
-      log "WARN: failed moving workspace $ws -> $INTERNAL"
+for ws in 1 2 3 4 5 6; do
+  if move_workspace_to_monitor "$ws" "$INTERNAL"; then
+    log "moved workspace $ws -> $INTERNAL"
+  fi
+done
+
+if [[ -n "${ext}" ]]; then
+  for ws in 7 8 9 10; do
+    if move_workspace_to_monitor "$ws" "$ext"; then
+      log "moved workspace $ws -> $ext"
     fi
   done
-
-  if [[ -n "${ext}" ]]; then
-    # external present: 7–10 on external
-    for ws in 7 8 9 10; do
-      if hyprctl dispatch moveworkspacetomonitor "$ws" "$ext" >/dev/null 2>&1; then
-        log "moved workspace $ws -> $ext"
-      else
-        log "WARN: failed moving workspace $ws -> $ext"
-      fi
-    done
-  else
-    # no external: keep 7–10 on laptop
-    for ws in 7 8 9 10; do
-      if hyprctl dispatch moveworkspacetomonitor "$ws" "$INTERNAL" >/dev/null 2>&1; then
-        log "moved workspace $ws -> $INTERNAL (no external)"
-      else
-        log "WARN: failed moving workspace $ws -> $INTERNAL (no external)"
-      fi
-    done
-  fi
-}
-
-# Hyprland event socket (monitor add/remove)
-SOCK="${XDG_RUNTIME_DIR}/hypr/${HYPRLAND_INSTANCE_SIGNATURE}/.socket2.sock"
-
-log "ws-policy started (internal=${INTERNAL})"
-log "socket: ${SOCK}"
-
-# apply once at start
-log "initial policy apply"
-apply_policy
-
-# re-apply on monitor hotplug events
-socat -U - "UNIX-CONNECT:${SOCK}" | while read -r line; do
-  case "$line" in
-    monitoradded*|monitorremoved*)
-      log "event: $line"
-      apply_policy
-      ;;
-  esac
-done
+else
+  for ws in 7 8 9 10; do
+    if move_workspace_to_monitor "$ws" "$INTERNAL"; then
+      log "moved workspace $ws -> $INTERNAL (no external)"
+    fi
+  done
+fi
