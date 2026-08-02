@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Beamlynx
+Comment=Desktop app bundling the pine-lang server and beamlynx-ui UI, no Docker required
+Exec=/home/mandark/Software/beamlynx.AppImage %U
+Terminal=false
+Type=Application
+Icon=/home/mandark/.local/share/applications/icons/beamlynx.png
+Categories=Development;
+StartupWMClass=beamlynx
+StartupNotify=true
