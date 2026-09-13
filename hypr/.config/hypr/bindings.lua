@@ -5,7 +5,7 @@ o.bind("SUPER + SHIFT + B", "Browser", { omarchy = "browser" })
 o.bind("SUPER + SHIFT + ALT + B", "Browser (private)", { omarchy = "browser --private" })
 o.bind("SUPER + SHIFT + M", "Music", { omarchy = "or-focus spotify" })
 o.bind("SUPER + SHIFT + N", "Editor", { omarchy = "editor" })
-o.bind("SUPER + SHIFT + T", "Activity", { tui = "btop" })
+-- o.bind("SUPER + SHIFT + T", "Activity", { tui = "btop" })
 o.bind("SUPER + SHIFT + D", "Docker", { tui = "lazydocker" })
 o.bind("SUPER + SHIFT + G", "Signal", { launch = "signal-desktop", focus = "^signal$" })
 o.bind("SUPER + SHIFT + O", "Obsidian", { launch = "obsidian -disable-gpu --enable-wayland-ime", focus = "^obsidian$" })
@@ -53,3 +53,7 @@ o.bind("SUPER + F", "Full width", hl.dsp.window.fullscreen({ mode = "maximized" 
 -- Focus monitor to the left / right of current
 o.bind("SUPER + W", "Focus monitor left", hl.dsp.focus({ monitor = "l" }))
 o.bind("SUPER + E", "Focus monitor right", hl.dsp.focus({ monitor = "r" }))
+
+-- Voxtype
+hl.unbind("SUPER + T") -- Toggle window floating/tiling
+o.bind("SUPER + T", "Toggle voxtype recording", "voxtype record toggle")
