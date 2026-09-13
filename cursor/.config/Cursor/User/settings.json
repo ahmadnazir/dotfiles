@@ -175,6 +175,7 @@
     ],
     "remote.autoForwardPortsSource": "hybrid",
     "aws.cloudformation.telemetry.enabled": false,
-    "aws.telemetry": false
+    "aws.telemetry": false,
+    "window.autoDetectColorScheme": false
 
 }
