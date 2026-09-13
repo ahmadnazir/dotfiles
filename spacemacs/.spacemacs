@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(toml
+   '(lua
+     toml
      go
      (clojure :variables
               clojure-enable-clj-refactor t)
@@ -650,45 +651,45 @@ This function is called at the very end of Spacemacs initialization."
          auto-highlight-symbol auto-yasnippet bui centered-cursor-mode cider
          cider-eval-sexp-fu clang-format clean-aindent-mode clj-refactor
          clojure-mode clojure-snippets closql cmm-mode column-enforce-mode company
-         company-anaconda company-cabal company-go company-restclient company-web
-         counsel counsel-css counsel-gtags csv-mode dante dap-mode define-word
-         devdocs diminish dired-quick-sort dotenv-mode drag-stuff dumb-jump
-         editorconfig eldoc elisp-slime-nav emacsql emacsql-sqlite emmet-mode emr
-         eval-sexp-fu evil-anzu evil-args evil-cleverparens evil-collection
-         evil-easymotion evil-ediff evil-escape evil-exchange evil-goggles
-         evil-iedit-state evil-indent-plus evil-lion evil-lisp-state evil-matchit
-         evil-mc evil-nerd-commenter evil-numbers evil-org evil-surround
-         evil-textobj-line evil-tutor evil-unimpaired evil-visual-mark-mode
-         evil-visualstar expand-region eyebrowse fancy-battery flx-ido flycheck
-         flycheck-elsa flycheck-package font-lock+ forge fuzzy ggtags ghub
-         git-commit git-link git-messenger git-modes git-timemachine
-         gitattributes-mode gitconfig-mode gitignore-mode gitignore-templates gntp
-         gnuplot golden-ratio google-translate grizzl haml-mode haskell-mode
-         haskell-snippets helm-ag helm-c-yasnippet helm-cider helm-company
-         helm-css-scss helm-descbinds helm-flx helm-git-grep helm-gitignore
-         helm-gtags helm-hoogle helm-ls-git helm-make helm-mode-manager helm-org
-         helm-org-rifle helm-projectile helm-purpose helm-swoop helm-themes
-         helm-xref highlight-indentation highlight-numbers highlight-parentheses
-         hindent hl-todo hlint-refactor htmlize hungry-delete hybrid-mode
-         impatient-mode import-js indent-guide inflections ivy js-doc js2-mode
-         js2-refactor know-your-http-well lcr link-hint list-utils livid-mode
-         log4e lorem-ipsum lsp-haskell lsp-mode lsp-treemacs macrostep magit
-         magit-gitflow magit-popup magit-section magit-svn markdown-mode
-         multi-line multiple-cursors nameless nginx-mode nodejs-repl npm-mode
-         ob-http ob-restclient open-junk-file org-brain org-category-capture
-         org-cliplink org-download org-journal org-mime org-pomodoro org-present
-         org-projectile org-rich-yank org-superstar orgit orgit-forge overseer
-         package-lint packed paradox parseclj parseedn password-generator pcre2el
-         plantuml-mode popwin prettier-js project pug-mode queue
-         rainbow-delimiters request restart-emacs restclient restclient-helm
-         sass-mode scss-mode seq sesman simple-httpd skewer-mode slim-mode
-         smeargle spaceline-all-the-icons string-edit string-inflection swiper
-         symbol-overlay symon tagedit tern tide toc-org toml-mode transient
-         treemacs-evil treemacs-icons-dired treemacs-magit treemacs-persp
-         treemacs-projectile treepy typescript-mode undo-tree use-package uuidgen
-         vi-tilde-fringe volatile-highlights web-beautify web-completion-data
-         web-mode which-key winum with-editor writeroom-mode ws-butler xref yaml
-         yaml-mode yasnippet yasnippet-snippets))
+         company-anaconda company-cabal company-go company-lua company-restclient
+         company-web counsel counsel-css counsel-gtags csv-mode dante dap-mode
+         define-word devdocs diminish dired-quick-sort dotenv-mode drag-stuff
+         dumb-jump editorconfig eldoc elisp-slime-nav emacsql emacsql-sqlite
+         emmet-mode emr eval-sexp-fu evil-anzu evil-args evil-cleverparens
+         evil-collection evil-easymotion evil-ediff evil-escape evil-exchange
+         evil-goggles evil-iedit-state evil-indent-plus evil-lion evil-lisp-state
+         evil-matchit evil-mc evil-nerd-commenter evil-numbers evil-org
+         evil-surround evil-textobj-line evil-tutor evil-unimpaired
+         evil-visual-mark-mode evil-visualstar expand-region eyebrowse
+         fancy-battery flx-ido flycheck flycheck-elsa flycheck-package font-lock+
+         forge fuzzy ggtags ghub git-commit git-link git-messenger git-modes
+         git-timemachine gitattributes-mode gitconfig-mode gitignore-mode
+         gitignore-templates gntp gnuplot golden-ratio google-translate grizzl
+         haml-mode haskell-mode haskell-snippets helm-ag helm-c-yasnippet
+         helm-cider helm-company helm-css-scss helm-descbinds helm-flx
+         helm-git-grep helm-gitignore helm-gtags helm-hoogle helm-ls-git helm-make
+         helm-mode-manager helm-org helm-org-rifle helm-projectile helm-purpose
+         helm-swoop helm-themes helm-xref highlight-indentation highlight-numbers
+         highlight-parentheses hindent hl-todo hlint-refactor htmlize
+         hungry-delete hybrid-mode impatient-mode import-js indent-guide
+         inflections ivy js-doc js2-mode js2-refactor know-your-http-well lcr
+         link-hint list-utils livid-mode log4e lorem-ipsum lsp-haskell lsp-mode
+         lsp-treemacs lua-mode macrostep magit magit-gitflow magit-popup
+         magit-section magit-svn markdown-mode multi-line multiple-cursors
+         nameless nginx-mode nodejs-repl npm-mode ob-http ob-restclient
+         open-junk-file org-brain org-category-capture org-cliplink org-download
+         org-journal org-mime org-pomodoro org-present org-projectile
+         org-rich-yank org-superstar orgit orgit-forge overseer package-lint
+         packed paradox parseclj parseedn password-generator pcre2el plantuml-mode
+         popwin prettier-js project pug-mode queue rainbow-delimiters request
+         restart-emacs restclient restclient-helm sass-mode scss-mode seq sesman
+         simple-httpd skewer-mode slim-mode smeargle spaceline-all-the-icons
+         string-edit string-inflection swiper symbol-overlay symon tagedit tern
+         tide toc-org toml-mode transient treemacs-evil treemacs-icons-dired
+         treemacs-magit treemacs-persp treemacs-projectile treepy typescript-mode
+         undo-tree use-package uuidgen vi-tilde-fringe volatile-highlights
+         web-beautify web-completion-data web-mode which-key winum with-editor
+         writeroom-mode ws-butler xref yaml yaml-mode yasnippet yasnippet-snippets))
    '(restclient-inhibit-cookies nil)
    '(safe-local-variable-values
      '((cljr-warn-on-eval) (typescript-backend . tide) (typescript-backend . lsp)
