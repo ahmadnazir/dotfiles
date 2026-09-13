@@ -22,7 +22,7 @@ nvm() {
 
 # eval "$(mise activate bash)"
 
-. "$HOME/.local/share/../bin/env"
+. "$HOME/.local/bin/env"
 
 if command -v eza &> /dev/null; then
   alias ls='eza -lh --group-directories-first --icons=auto --sort=modified'
