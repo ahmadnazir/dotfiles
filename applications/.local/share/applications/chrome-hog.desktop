@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Name=Chrome Hog Finder
+Comment=Find which Chrome/Chromium window is spinning the fans
+Exec=xdg-terminal-exec --title=chrome-hog -- bash -c "/home/mandark/dotfiles/hypr/.config/hypr/scripts/chrome-hog.sh; echo; read -n1 -r -p 'Press any key to close...'"
+Terminal=false
+Type=Application
+Icon=utilities-system-monitor
+Categories=System;Monitor;
+StartupNotify=false
