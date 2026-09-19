@@ -17,7 +17,7 @@ new_tab = ["prefix+c", "ctrl+t"]
 previous_tab = ["prefix+p", "ctrl+pageup"]
 next_tab = ["prefix+n", "ctrl+pagedown"]
 # Session navigator (workspace/tab/pane tree with search)
-goto = ["prefix+g", "alt+shift+/", "alt+?"]
+goto = ["prefix+g", "ctrl+shift+/", "ctrl+?"]
 # Command palette (search and run any keybound action), like VSCode/Sublime's Ctrl+Shift+P
 command_palette = ["prefix+/", "ctrl+shift+p"]
 

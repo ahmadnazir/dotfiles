@@ -11,11 +11,11 @@ vim.keymap.set("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save File" })
 vim.keymap.set("n", "<leader>pf", LazyVim.pick("files"), { desc = "Find File (Project)" })
 vim.keymap.set("n", "<leader>sp", LazyVim.pick("live_grep"), { desc = "Search Project" })
 
--- alt+shift+/ also opens the project file picker, matching the herdr session
--- navigator and Emacs. Both spellings are mapped because the kitty keyboard
--- protocol can report the key as alt+'?' or as alt+shift+'/'.
-vim.keymap.set("n", "<M-?>", LazyVim.pick("files"), { desc = "Find File (Project)" })
-vim.keymap.set("n", "<M-S-/>", LazyVim.pick("files"), { desc = "Find File (Project)" })
+-- ctrl+shift+/ also opens the project file picker, matching the herdr session
+-- navigator and Emacs. Only <C-S-/> is mapped: <C-?> is 0x7f (DEL) in Vim's
+-- keycode notation, not this chord. <C-/> stays free for LazyVim's terminal
+-- toggle, which encodes differently.
+vim.keymap.set("n", "<C-S-/>", LazyVim.pick("files"), { desc = "Find File (Project)" })
 
 vim.keymap.set("n", "<C-PageUp>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous Tab" })
 vim.keymap.set("n", "<C-PageDown>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next Tab" })

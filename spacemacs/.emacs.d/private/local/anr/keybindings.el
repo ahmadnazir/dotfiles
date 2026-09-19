@@ -1,10 +1,13 @@
 (global-set-key (kbd "C--") 'zoom-frm-out)
 (global-set-key (kbd "C-=") 'zoom-frm-in)
 
-;; Find file in project on alt+shift+/ (M-?), mirroring the herdr session
-;; navigator and the LazyVim mapping. `SPC p f` still works as before.
-;; NOTE: this shadows the default `xref-find-references' binding on M-?.
-(global-set-key (kbd "M-?") 'helm-projectile-find-file)
+;; Find file in project on ctrl+shift+/, mirroring the herdr session navigator
+;; and the LazyVim mapping. `SPC p f` still works as before. Both spellings are
+;; bound because Emacs may fold shift into the character (C-?) or report it
+;; separately (C-S-/).
+;; NOTE: C-? shadows the default `undo-redo' binding.
+(global-set-key (kbd "C-?") 'helm-projectile-find-file)
+(global-set-key (kbd "C-S-/") 'helm-projectile-find-file)
 
 
 ;; Visual / Accessibility
