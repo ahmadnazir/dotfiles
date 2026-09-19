@@ -1,6 +1,11 @@
 (global-set-key (kbd "C--") 'zoom-frm-out)
 (global-set-key (kbd "C-=") 'zoom-frm-in)
 
+;; Find file in project on alt+shift+/ (M-?), mirroring the herdr session
+;; navigator and the LazyVim mapping. `SPC p f` still works as before.
+;; NOTE: this shadows the default `xref-find-references' binding on M-?.
+(global-set-key (kbd "M-?") 'helm-projectile-find-file)
+
 
 ;; Visual / Accessibility
 ;;
