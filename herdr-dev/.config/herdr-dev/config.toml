@@ -1,0 +1,24 @@
+onboarding = false
+
+[ui]
+status_indicators = "symbols"
+
+[ui.toast]
+delivery = "off"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+# Browser-style new tab, like Chrome/Firefox's Ctrl+T
+new_tab = ["prefix+c", "ctrl+t"]
+# Browser-style tab switching
+previous_tab = ["prefix+p", "ctrl+pageup"]
+next_tab = ["prefix+n", "ctrl+pagedown"]
+# Command palette (search and run any keybound action), like VSCode/Sublime's Ctrl+Shift+P
+command_palette = ["prefix+/", "ctrl+shift+p"]
+
+[keys.indexed]
+# Browser-style ctrl+1..9 jumps directly to tab N (like Chrome/Firefox tab shortcuts)
+tabs = "ctrl"
