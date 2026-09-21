@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 # Report/toggle the Bluetooth headphone profile between headset (mic-ready,
-# used by voxtype) and A2DP (high-fidelity, playback only). Default connect
+# used by voxtype) and A2DP (higher bitrate, playback only). On this hardware
+# noise cancellation only stays active in headset-head-unit mode -- A2DP
+# drops it -- so headset is the preferred day-to-day profile. Default connect
 # profile is forced to headset-head-unit via wireplumber.conf.d so there's no
-# per-recording profile-switch delay; this lets you opt into high-fidelity
-# audio on demand and it'll revert to headset on the next reconnect.
+# per-recording profile-switch delay; this lets you opt into A2DP on demand
+# and it'll revert to headset (NC back on) on the next reconnect.
 #
 # Usage: bt-audio-profile.sh status|toggle
 
@@ -23,9 +25,9 @@ case "${1:-status}" in
   status)
     profile=$(get_profile)
     if [[ "$profile" == a2dp-sink* ]]; then
-      echo '{"text":"","alt":"a2dp","class":"a2dp","tooltip":"Bluetooth: High-fidelity (A2DP)\nClick to switch to headset (mic-ready)"}'
+      echo '{"text":"","alt":"a2dp","class":"a2dp","tooltip":"Bluetooth: A2DP (noise cancellation off)\nClick to switch to headset (NC on)"}'
     elif [[ "$profile" == headset-head-unit* ]]; then
-      echo '{"text":"","alt":"headset","class":"headset","tooltip":"Bluetooth: Headset (mic-ready)\nClick to switch to high-fidelity (A2DP)"}'
+      echo '{"text":"","alt":"headset","class":"headset","tooltip":"Bluetooth: Headset (noise cancellation on)\nClick to switch to A2DP (NC off)"}'
     else
       echo '{"text":"","alt":"other","class":"other","tooltip":"Bluetooth profile: '"$profile"'"}'
     fi
