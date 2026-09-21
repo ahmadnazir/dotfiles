@@ -6,7 +6,7 @@
   "height": 26,
   "width": 0,
   "modules-left": ["custom/omarchy", "hyprland/workspaces"],
-  "modules-center": ["clock#horizontal", "clock#vertical", "custom/weather", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator"],
+  "modules-center": ["clock#horizontal", "clock#vertical", "custom/weather", "custom/update", "custom/voxtype", "custom/screenrecording-indicator", "custom/idle-indicator", "custom/notification-silencing-indicator", "custom/herdr-notify-mode"],
   "modules-right": [
     "group/tray-expander",
     "custom/bt-audio-profile",
@@ -195,6 +195,19 @@
     "tooltip": true,
     "on-click-right": "omarchy-voxtype-config",
     "on-click": "omarchy-voxtype-model"
+  },
+  "custom/herdr-notify-mode": {
+    "exec": "$HOME/.config/hypr/scripts/herdr-notify-mode.sh status",
+    "return-type": "json",
+    "format": "{icon}",
+    "format-icons": {
+      "sound": "󰕾",
+      "notify": "󰂚"
+    },
+    "interval": 30,
+    "signal": 12,
+    "tooltip": true,
+    "on-click": "$HOME/.config/hypr/scripts/herdr-notify-mode.sh toggle"
   },
   "custom/bt-audio-profile": {
     "exec": "$HOME/.config/hypr/scripts/bt-audio-profile.sh status",

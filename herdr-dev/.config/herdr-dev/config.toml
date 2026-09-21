@@ -3,8 +3,13 @@ onboarding = false
 [ui]
 status_indicators = "symbols"
 
+# How background agent state is announced. The two are flipped as a pair by
+# ~/.config/hypr/scripts/herdr-notify-mode.sh, wired to a waybar toggle.
 [ui.toast]
 delivery = "system"
+
+[ui.sound]
+enabled = false
 
 [theme]
 name = "catppuccin"
